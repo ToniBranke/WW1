@@ -16,4 +16,5 @@ Dieses Projekt zielt darauf ab, ein bestehendes, komplexes Excel-Tool zur Kalkul
   # Wo erhalten die Nutzer Hilfe zu diesem Projekt?
   Nutzer können sich entweder an die zuständigen Professoren/Dozenten wenden, jedoch ist es Ratsam erst die Heads bzw Leads der jeweiligen Divisionen zu kontaktieren.
   # Wer Verwaltet das Projekt und trägt dazu bei?
+  Die zuständigen Leads und Heads ergeben sich aus der Grafik, das GitHub-Repository wird von Toni Branke verwaltet bei Fragen oder Problemen bitte über Discord an mich wenden.
   ![image](https://github.com/user-attachments/assets/e35de964-953d-4df5-b869-45b48d4c39d4)
