@@ -13,6 +13,8 @@ Dieses Projekt zielt darauf ab, ein bestehendes, komplexes Excel-Tool zur Kalkul
   Insgesamt leistet das Projekt einen Beitrag zur Digitalisierung und Effizienzsteigerung von Verwaltungsprozessen im wissenschaftlichen Kontext.
   # wie können Nutzer an diesem Projekt mitarbeiten?
   Das Projekt ist im Rahmen des Wissenschaft und Wirtschaft 1 Moduls der Hochschule Mittweida, weshalb nur Mitglieder der Gruppe3 dieses Moduls an dem Projekt mitarbeiten können.
+  Die an dem Projekt arbeitenden erstellen sich zuerst einen neuen Branch unter dem Schema <b>"[Name]_Dev"</b>.
+  Gearbeitet wird <b>niemals</b> auf dem Main Branch sondern immer nur auf den jewiligen Dev-Branches.
   # Wo erhalten die Nutzer Hilfe zu diesem Projekt?
   Nutzer können sich entweder an die zuständigen Professoren/Dozenten wenden, jedoch ist es Ratsam erst die Heads bzw Leads der jeweiligen Divisionen zu kontaktieren.
   # Wer Verwaltet das Projekt und trägt dazu bei?
