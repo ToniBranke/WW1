@@ -1,0 +1,1 @@
+//zentrale Datenbankverbindung und Verwaltung
