@@ -13,12 +13,120 @@ body, html
     flex-wrap: flex;
     gap: 0.5rem;
     margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
 }
 
-.tabs
+.tab
 {
-    
+
+    /* formatierung für den link */
+    text-decoration: none;
+    text-align: center;
+
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    padding: 0.7em 1.5em; 
+    font-size: 1rem;
+    cursor: pointer;
+    color: #000000;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
 }
+
+.tab-active, .tab:hover
+{
+   /* formatierung für den link */
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+
+.projekt-form
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row
+{
+    display: flex;
+    gap: 2rem; 
+    margin-bottom: 1.1rem;
+}
+
+.form-row .form-group
+{
+    flex: 1 1 0; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.form-group label
+{
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color:#333;
+}
+
+.form-group input
+{
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus
+{
+    border-color: #4069b1;
+    outline: none;
+}
+
+.form-group.wide
+{
+    flex: 2 1 0;
+}
+
+.form-row-rigth
+{
+    justify-content: flex-end;
+    margin-top: 2.4rem;
+}
+
+.weiter-button
+{
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+}
+.weiter-button:hover 
+{
+    background: #24406a;
+}
+
 
 .login-body
 {
