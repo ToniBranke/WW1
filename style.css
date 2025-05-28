@@ -1,9 +1,23 @@
-body, html{
+body, html
+{
     height:100%;
     margin:0;
     font-family: 'Seorge UI', sans-serif;
     background-color: #e6e6e6;
     color: #222;
+}
+
+.tabs
+{
+    display: flex;
+    flex-wrap: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+}
+
+.tabs
+{
+    
 }
 
 .login-body

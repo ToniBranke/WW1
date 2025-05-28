@@ -8,7 +8,7 @@
     <script src="script.js"></script>
 </head>
 <body class="task-main">
-    <div class="task-container">
+    <div class="tabs">
         <button class="tab-active">Allgemeine Projektdaten</button>
         <button class="tab">Personalkosten</button>
         <button class="tab">Kosten für projektbezogene Leistungen</button>
@@ -16,10 +16,60 @@
         <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
         <button class="tab">Kosten für Räume und Flächen</button>
     </div>
+    
     <form class="projekt-form">
-        <div class="form-group">
-            <label for="projektname">Projektname</label>
-        </div> 
+        <div class="form-row">
+            <div class="form-group">
+                <label for="projektname">Projekttitel:</label>
+                <input type="text" id="projekttitel" name="projekttitel" required>
+            </div>
+            <div class="form-group">
+                <label for="auftraggeber">Auftraggeber:</label>
+                <input type="text" id="auftraggeber" name="auftraggeber" required>
+            </div>
+            <div class="form-group">
+                <label for="fakultaet">Fakultät:</label>
+                <input type="text" id="fakultaet" name="fakultart" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="verantwortlicher">Verantwortlicher:</label>
+                <input type="text" id="verantwortlicher" name="verantwortlicher" required>
+            </div>
+            <div class="form-group">
+                <label for="kostenstelle">Kostenstelle:</label>
+                <input type="text" id="kostenstelle" name="kostenstelle" required>
+            </div>
+            <div class="form-group">
+                <label for="weiterbildungstage">Anzahl <br> Weiterbildungstage:</label>
+                <input type="number" id="anzahl-weiterbildungstage" name="anzahl-weiterbildungstage" min="0" required>
+            </div>
+        </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="zeitraum-von">Geplanter Zetraum von:</label>
+                    <input type="date" id="zeitraum-von" name="zeitraum-von" required>
+                </div>
+                <div class="form-group">
+                    <label for="zeitraum-bis">bis:</label>
+                    <input type="date" id="zeitraum-bis" name="zeitraum-bis" required>
+                </div>
+                <div class="form-group">
+                    <label for="wirtschaftlcher-bereich">Wirtschaftlicher <br> Bereich:</label>
+                    <input type="text" id="wirtschaftlicher-bereich" name="wirtschaftlicher-bereich" required>
+                </div>
+            </div>
+            <div class="form-row"> 
+                <div class="form-group wide">
+                    <label for="projekt-kostentraegernummer">Projekt/<br> Kostenträgernummer:</label>
+                    <input type="text" id="projekt-kostentraegernummer" name="projekt-kostentraegernummer" required>
+                </div>
+            </div>
+            <div class="form-row form-row-rigth">
+                <button type="submit" class="weiter-button">Weiter</button>
+            </div>
+        </div>     
     </form>
 </body>
 
