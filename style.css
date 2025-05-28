@@ -98,6 +98,11 @@ body, html
     outline: none;
 }
 
+.form-group.small
+{
+    flex: 0 0 0;
+}
+
 .form-group.wide
 {
     flex: 2 1 0;
