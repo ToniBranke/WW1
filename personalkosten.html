@@ -25,43 +25,52 @@
         <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
         <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
     </div>
-    <form class="projekt-form">
-        Durch Projekt zu finanzierende Mitarebeiter
-        <div class="form-row">
-            <div class="form-group">
-                <label for="shk">SHK:</label>
-                <input type="number" id="shk" name="shk" min="0" required>
-            </div>
-            <div class="form-group">
-                <label for="whk">WHK:</label>
-                <input type="number" id="whk" name="whk" min="0" required>
-            </div>
-            <div class="form-group">
-                <label for="stufe">Stufe:</label>
-                <input type="number" id="stufe" name="stufe" min="0" required>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="wochenstunden">Wochenstunden:</label>
-                <input type="number" id="wochenstunden" name="wochenstunden" min="0" required>
-            </div>
-            <div class="form-group">
-                <label for="wochenImProjekt">Wochen im Projekt:</label>
-                <div class="form-group small">
-                    <label for="2025">2025</label>
-                    <input type="number" id="2025" name="2025" min="0" required>
-                    <label for="2026">2026</label>
-                    <input type="number" id="2026" name="2026" min="0" required>
-                    <label for="2027">2027</label>
-                    <input type="number" id="2027" name="2027" min="0" required>
+        <form class="projekt-form">
+            Durch Projekt zu finanzierende Mitarebeiter
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="shk">SHK:</label>
+                    <input type="number" id="shk" name="shk" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="whk">WHK:</label>
+                    <input type="number" id="whk" name="whk" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="stufe">Stufe:</label>
+                    <input type="number" id="stufe" name="stufe" min="0" required>
                 </div>
             </div>
-        </div>
-        <div class="form-row form-row-rigth">
-            <button type="submit" class="weiter-button">Weiter</button>
-        </div>
-    </form>
-</body>
-
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="wochenImProjekt">Wochen im Projekt:</label>
+                    <div class="felder-small">
+                        <div class="form-group">
+                            <label for="2025">2025</label>
+                            <input type="number" id="2025" name="2025" min="0" required>
+                        </div>
+                            <div class="form-group">
+                            <label for="2026">2026</label>
+                            <input type="number" id="2026" name="2026" min="0" required>
+                        </div>
+                            <div class="form-group">
+                                <label for="2027">2027</label>
+                                <input type="number" id="2027" name="2027" min="0" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="wochenstunden">Wochenstunden:</label>
+                    <input type="number" id="wochenstunden" name="wochenstunden" min="0" required>
+                </div>
+            </div>
+                <div class="form-row form-row-rigth">
+                    <button type="submit" class="weiter-button">Weiter</button>
+                </div>
+            </div>
+        </form>
+    </body>
 </html>

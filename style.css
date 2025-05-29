@@ -32,7 +32,7 @@ body, html
     padding: 0.7em 1.5em; 
     font-size: 1rem;
     cursor: pointer;
-    color: #000000;
+    color: #ffffff;
     font-weight: 500;
     transition: background 0.15s, color 0.15s;
     margin-bottom: -1px;
@@ -98,9 +98,29 @@ body, html
     outline: none;
 }
 
-.form-group.small
+/* Kleine Felder (Personal Jahre) */
+
+.felder-small
 {
-    flex: 0 0 0;
+    display: flex;
+    flex-direction: row;;
+    gap: 0.7em;
+    align-items: center;;
+}
+
+.felder-small label
+{
+    margin: 0 0.15em 0 0;
+    font-size: 0.97em;
+    color:#444;
+}
+
+.felder-small input [type="number"]
+{
+    width: 1em;
+    padding: 0.4em 0.3em;
+    font-size: 1em;
+    box-sizing: border-box;
 }
 
 .form-group.wide
