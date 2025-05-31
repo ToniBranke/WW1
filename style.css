@@ -51,6 +51,89 @@ body, html
     color: #fff;
 }
 
+/* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
+.main-content
+{
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23pc rbga(70, 90, 120, 0.06);
+    padding: 1.2rem 1.2rem;
+    min-width: 230px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.2rem;
+    margin-top: 0.4rem;
+}
+
+.sidebarButton
+{
+    padding: 0.7rem 1rem;
+    background: #fff;
+    color: #222;
+    font-size: 1.01rem;
+    border: 1px solid #222;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.14s, color 0.14s;
+    margin-bottom: 0.2rem;
+}
+
+.sidebarButton.addButton
+{
+    background: #4069b1;
+    color: #fff;
+    border: none;
+}
+
+.sidebarButton.addButton:hover
+{
+    background: #24406a
+}
+
+.sidebarButton.saveButton:hover
+{
+    background: #eee;
+}
+
+.sidebarSummary
+{
+    border: 1px solid #bcbcbc;
+    border-radius: 8px;
+    padding: 1em 0.8em;
+    background: #fff;
+}
+
+.summaryTitle
+{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.7em;
+    font-size: 1.07em;
+    color: #222;
+    text-align: center; 
+}
+
+.summaryList
+{
+    list-style: disc;
+    padding-left: 1.3em;
+    color: #4069b1;
+    margin: 0;
+}
+
 .projekt-form
 {
     background: #f8f8f8;
@@ -294,5 +377,17 @@ body, html
     {
         padding: 1.2rem 0.6rem;
         max-width: 99vw;
+    }
+    .main-content
+    {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sidebar
+    {
+        max-width: 100%;
+        min-width:0;
+        margin-top: 2rem;
     }
 }

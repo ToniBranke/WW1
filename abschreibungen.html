@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+        <script defer src="script.js"></script>
     </head>
     <body class="task-main">
         <div class="tabs">
@@ -25,7 +25,8 @@
             <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
             <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
         </div>
-        <form class="projekt-form" action="abschreibungen.php" method="post">
+        <div class="main-content">
+        <form class="projekt-form" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
             <div class="form-row">
                 <div class="form-group">
                     <!-- Anschaffungskosten drop down menü -->
@@ -68,5 +69,31 @@
                 <button type="submit" class="weiter-button">Weiter</button>
             </div>
         </form>
+<!-- Sidebar mit den Buttons und zusammenfassung -->
+    <aside class="sidebar">
+        <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
+        <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
+        <div class="sidebarSummary">
+            <span class="summaryTitle">Summe der Anschaffungskosten</span>
+            <ul class="summaryList" id="summaryList">
+        </div>
+        <div class="form-row form-row-rigth">
+            <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
+        </div>
+    </aside>
+   <!-- <script>
+        // JavaScript für die Sidebar-Funktionalität
+        document.querySelector('.addButton').addEventListener('click', function() {
+            // Logik zum Hinzufügen eines neuen Gegenstands
+            alert('Neuer Gegenstand hinzugefügt!');
+        });
+
+        document.querySelector('.saveButton').addEventListener('click', function() {
+            // Logik zum Speichern des Gegenstands
+            alert('Gegenstand gespeichert!');
+        });
+    </script>
+    -->
+    </div>
     </body>
 </html>
