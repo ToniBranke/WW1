@@ -1,0 +1,393 @@
+body, html
+{
+    height:100%;
+    margin:0;
+    font-family: 'Seorge UI', sans-serif;
+    background-color: #e6e6e6;
+    color: #222;
+}
+
+.tabs
+{
+    display: flex;
+    flex-wrap: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+}
+
+.tab
+{
+
+    /* formatierung für den link */
+    text-decoration: none;
+    text-align: center;
+
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    padding: 0.7em 1.5em; 
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
+}
+
+.tab-active, .tab:hover
+{
+   /* formatierung für den link */
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+
+/* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
+.main-content
+{
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23pc rbga(70, 90, 120, 0.06);
+    padding: 1.2rem 1.2rem;
+    min-width: 230px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.2rem;
+    margin-top: 0.4rem;
+}
+
+.sidebarButton
+{
+    padding: 0.7rem 1rem;
+    background: #fff;
+    color: #222;
+    font-size: 1.01rem;
+    border: 1px solid #222;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.14s, color 0.14s;
+    margin-bottom: 0.2rem;
+}
+
+.sidebarButton.addButton
+{
+    background: #4069b1;
+    color: #fff;
+    border: none;
+}
+
+.sidebarButton.addButton:hover
+{
+    background: #24406a
+}
+
+.sidebarButton.saveButton:hover
+{
+    background: #eee;
+}
+
+.sidebarSummary
+{
+    border: 1px solid #bcbcbc;
+    border-radius: 8px;
+    padding: 1em 0.8em;
+    background: #fff;
+}
+
+.summaryTitle
+{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.7em;
+    font-size: 1.07em;
+    color: #222;
+    text-align: center; 
+}
+
+.summaryList
+{
+    list-style: disc;
+    padding-left: 1.3em;
+    color: #4069b1;
+    margin: 0;
+}
+
+.projekt-form
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row
+{
+    display: flex;
+    gap: 2rem; 
+    margin-bottom: 1.1rem;
+}
+
+.form-row .form-group
+{
+    flex: 1 1 0; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.form-group label
+{
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color:#333;
+}
+
+.form-group input
+{
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus
+{
+    border-color: #4069b1;
+    outline: none;
+}
+
+/* Kleine Felder (Personal Jahre) */
+
+.felder-small
+{
+    display: flex;
+    flex-direction: row;;
+    gap: 0.7em;
+    align-items: center;;
+}
+
+.felder-small label
+{
+    margin: 0 0.15em 0 0;
+    font-size: 0.97em;
+    color:#444;
+}
+
+.felder-small input [type="number"]
+{
+    width: 1em;
+    padding: 0.4em 0.3em;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group.wide
+{
+    flex: 2 1 0;
+}
+
+.form-row-rigth
+{
+    justify-content: flex-end;
+    margin-top: 2.4rem;
+}
+
+.weiter-button
+{
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+}
+.weiter-button:hover 
+{
+    background: #24406a;
+}
+
+
+.login-body
+{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container
+{
+    background: #f8f8f8;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(70, 90, 120, 0.08);
+    width: 100%;
+    max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-logo
+{
+    margin-bottom: 1.5rem;
+    right: 0;
+}
+
+.logo-img
+{
+    width: 120px;
+    max-width: 100%;
+}
+
+.login-form
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.login-form h1
+{
+    margin-bottom: 1.1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+.form-group
+{
+    margin-bottom: 1.1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label
+{
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.form-group select
+{
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.form-group input
+{
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus
+{
+    border-color: #4069b1;
+    outline: none;
+}
+
+.form-links
+{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1rem;
+}
+
+.forgot-link 
+{
+    font-size: 0.95rem;
+    color: #4069b1;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-link:hover 
+{
+    color: #24406a;
+    text-decoration: underline;
+}
+
+.login-button 
+{
+    padding: 0.8rem 0;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.09rem;
+    border: none; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+}
+
+.login-button:hover 
+{
+    background: #325493;
+}
+
+.login-footer
+{
+    position: fixed;
+    bottom: 0;
+ 
+}
+
+@media (max-width: 400px)
+{
+    .login-container
+    {
+        padding: 1.2rem 0.6rem;
+        max-width: 99vw;
+    }
+    .main-content
+    {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sidebar
+    {
+        max-width: 100%;
+        min-width:0;
+        margin-top: 2rem;
+    }
+}

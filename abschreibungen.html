@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="script.js"></script>
+    </head>
+    <body class="task-main">
+        <div class="tabs">
+
+        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
+            <button class="tab-active">Allgemeine Projektdaten</button>
+            <button class="tab">Personalkosten</button>
+            <button class="tab">Kosten für projektbezogene Leistungen</button>
+            <button class="tab" >Sachkosten</button>
+            <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
+            <button class="tab">Kosten für Räume und Flächen</button>
+        -->
+            <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+            <a href="personalkosten.html" class="tab">Personalkosten</a>
+            <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+            <a href="sachkosten.html" class="tab">Sachkosten</a>
+            <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+            <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+        </div>
+        <div class="main-content">
+        <form class="projekt-form" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
+            <div class="form-row">
+                <div class="form-group">
+                    <!-- Anschaffungskosten drop down menü -->
+                    <label for="anschaffungskosten">Anschaffungskosten</label>
+                    <select id="anschaffungskosten" name="anschaffungskosten">
+                        <option value="150-1000">150-1.000 €</option>
+                        <option value="ab 1000">ab 1.000 €</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bezeichnung">Bezeichnung</label>
+                    <input type="text" id="bezeichnung" name="bezeichnung">
+                </div>
+                <div class="form-group">
+                    <label for="kaufpreis">Kaufpreis</label>
+                    <input type="number" id="kaufpreis" name="kaufpreis">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ueberProjektfinanzierung">über Projektfinanzierung</label>
+                    <input type="number" id="ueberProjektfinanzierung" name="ueberProjektfinanzierung">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="restbetrag">zu finanzierender Restbetrag</label>
+                    <input type="number" id="restbetrag" name="restbetrag">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="finanzierungRestbetragFolgekosten">Finanzierung Restbetrag und Folgekosten durch</label>
+                    <input type="number" id="finanzierungRestbetragFolgekosten" name="finanzierungRestbetragFolgekosten">
+                </div>
+            </div>
+            <div class="form-row form-row-rigth">
+                <button type="submit" class="weiter-button">Weiter</button>
+            </div>
+        </form>
+<!-- Sidebar mit den Buttons und zusammenfassung -->
+    <aside class="sidebar">
+        <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
+        <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
+        <div class="sidebarSummary">
+            <span class="summaryTitle">Summe der Anschaffungskosten</span>
+            <ul class="summaryList" id="summaryList">
+        </div>
+        <div class="form-row form-row-rigth">
+            <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
+        </div>
+    </aside>
+   <!-- <script>
+        // JavaScript für die Sidebar-Funktionalität
+        document.querySelector('.addButton').addEventListener('click', function() {
+            // Logik zum Hinzufügen eines neuen Gegenstands
+            alert('Neuer Gegenstand hinzugefügt!');
+        });
+
+        document.querySelector('.saveButton').addEventListener('click', function() {
+            // Logik zum Speichern des Gegenstands
+            alert('Gegenstand gespeichert!');
+        });
+    </script>
+    -->
+    </div>
+    </body>
+</html>
