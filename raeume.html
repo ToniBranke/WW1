@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kosten für Räume und Flächen</title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+        <script defer src="raeumeScript.js"></script>
     </head>
     <body class="task-main">
         <div class="tabs">
@@ -26,53 +26,59 @@
             <a href="raeume.html" class="tab-active">Kosten für Räume und Flächen</a>
         </div>
         <div class="main-content">
-            <form class="projekt-form" action="raeume.php" method="post">
-                <div class="form-row">
-                    <div class="form-group wide" id="bueronutzungsgebuehr">
+            <form class="projekt-form" id="raeumeForm" action="raeume.php" method="post" style="display: block;">
+                <div class="form-row" id="bueroNutzungsGebuehr" style="display: none;">
+                    <div class="form-group wide" >
                         <label for="bueronutzungsgebuehr">Büronutzungsgebühr</label>
                         <input type="number" id="bueronutzungsgebuehr" name="bueronutzungsgebuehr">
                     </div>
                 </div>
+            <div id="laborNutzungsGebuehr" style="display: none;">
                 <h3>Labornutzungsgebühr</h3>
-                <div class="form-row">
-                    <div class="form-group" id="labornutzungsgebuehrName">
+                <div class="form-row" >
+                    <div class="form-group" id="labornutzungsgebuehrNameDiv">
                         <label for="labornutzungsgebuehrName">Name</label>
                         <input type="text" id="labornutzungsgebuehrName" name="labornutzungsgebuehrName">
                     </div>
                     <div class="form-group" id="labornutzungsgebuehrJahr">
                         <label for="labornutzungsgebuehrJahr">Jahr</label>
-                        <input type="number" id="labornutzungsgebuehrJahr" name="labornutzungsgebuehrJahr">
+                        <select id="labornutzungsgebuehrJahr" name="labornutzungsgebuehrJahr">
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group" id="labornutzungsgebuehrAnzahl">
+                    <div class="form-group" id="labornutzungsgebuehrAnzahlDiv">
                         <label for="labornutzungsgebuehrAnzahl">Anzahl der Wochen</label>
                         <input type="number" id="labornutzungsgebuehrAnzahl" name="labornutzungsgebuehrAnzahl">
                     </div>
-                    <div class="form-group" id="labornutzungsgebuehrStunden">
+                    <div class="form-group" id="labornutzungsgebuehrStundenDiv">
                         <label for="labornutzungsgebuehrStunden">Stunden pro Woche</label>
                         <input type="number" id="labornutzungsgebuehrStunden" name="labornutzungsgebuehrStunden">
                     </div>
                 </div>
+            </div>
 
-                    
+            <div id="anderesNutzungsGebuehr" style="display: none;">
                         <h3>Zusatzräume</h3>
-                <div class="form-row">
-                    <div class="form-group" id="zusatzRaeumeName">
+                <div class="form-row" >
+                    <div class="form-group" id="zusatzRaeumeNameDiv">
                         <label for="zusatzRaeumeName">Name</label>
                         <input type="text" id="zusatzRaeumeName" name="zusatzRaeumeName">
                     </div>
-                    <div class="form-group" id="zusatzRaeumeQM">
+                    <div class="form-group" id="zusatzRaeumeQMDiv">
                         <label for="zusatzRaeumeQM">QM</label>
                         <input type="number" id="zusatzRaeumeQM" name="zusatzRaeumeQM">
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group" id="zusatzRaeumeMiete">
+                    <div class="form-group" id="zusatzRaeumeMieteDiv">
                         <label for="zusatzRaeumeMiete"> mtl. Miete pro QM</label>
                         <input type="number" id="zusatzRaeumeMiete" name="zusatzRaeumeMiete">
                     </div>
-                    <div class="form-group" id="zusaztRaeumeDauer">
+                    <div class="form-group" id="zusaztRaeumeDauerDiv">
                         <label for="zusatzRaeumeDauer">Monate</label>
                         <select id="zusatzRaeumeDauer" name="zusatzRaeumeDauer">
                             <option value="1">1 Monate</option>
@@ -90,22 +96,28 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-row form-row-rigth">
+            </div>
+            <div class ="form-row form-row-right">
+                <button type="button" class="weiter-button" id="saveButton">Gegenstand speichern</button>
+            </div>
+
+                <!--<div class="form-row form-row-rigth" >
                     <button type="submit" class="weiter-button">Weiter</button>
-                </div>
+                </div> -->
             </form>
             <aside class="sidebar">
-                <button type="button" class="sidebarButton buero">+ Büro</button>
-                <button type="button" class="sidebarButton labor">+ labor</button>
-                <button type="button" class="sidebarButton anderes">+ Anderes</button>
+                <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
+                <button type="button" class="sidebarButton labor" id="addLaborButton">+ labor</button>
+                <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
                 <div class="sidebarSummary">
                     <span class="summaryTitle">Summe der Nutzungskosten</span>
-                    <ul class="summaryList">
-
+                    <ul class="summaryList" id="raeumeSummaryList">
                     </ul>
                 </div>
+                <div class="form-row form-row-rigth">
+                    <button type="submit" class="weiter-button" id="submitButton" style="display: none;">Weiter</button>
+                </div>
             </aside>
-            
         </div>
     </body>
 </html>
