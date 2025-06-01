@@ -6,8 +6,12 @@
     <title>Personalkosten</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="buttonScript.js"></script>
 </head>
 <body class="personalkosten-body">
+     <div class="logoutButtonContainer">
+            <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
     <div class="tabs">
 
        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -30,15 +34,15 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="shk">SHK:</label>
-                    <input type="number" id="shk" name="shk" min="0" required>
+                    <input type="number" id="shk" name="shk" min="0" placeholder="0" >
                 </div>
                 <div class="form-group">
                     <label for="whk">WHK:</label>
-                    <input type="number" id="whk" name="whk" min="0" required>
+                    <input type="number" id="whk" name="whk" min="0" placeholder="0" >
                 </div>
                 <div class="form-group">
                     <label for="stufe">Stufe:</label>
-                    <input type="number" id="stufe" name="stufe" min="0" required>
+                    <input type="number" id="stufe" name="stufe" min="0" placeholder="0">
                 </div>
             </div>
             <div class="form-row">
@@ -47,15 +51,15 @@
                     <div class="felder-small">
                         <div class="form-group">
                             <label for="2025">2025</label>
-                            <input type="number" id="2025" name="2025" min="0" required>
+                            <input type="number" id="2025" name="2025" min="0" placeholder="0">
                         </div>
                             <div class="form-group">
                             <label for="2026">2026</label>
-                            <input type="number" id="2026" name="2026" min="0" required>
+                            <input type="number" id="2026" name="2026" min="0" placeholder="0">
                         </div>
                             <div class="form-group">
                                 <label for="2027">2027</label>
-                                <input type="number" id="2027" name="2027" min="0" required>
+                                <input type="number" id="2027" name="2027" min="0" placeholder="0">
                             </div>
                         </div>
                     </div>
@@ -64,13 +68,16 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="wochenstunden">Wochenstunden:</label>
-                    <input type="number" id="wochenstunden" name="wochenstunden" min="0" required>
+                    <input type="number" id="wochenstunden" name="wochenstunden" min="0" placeholder="0">
                 </div>
             </div>
                 <div class="form-row form-row-rigth">
-                    <button type="submit" class="weiter-button">Weiter</button>
+                    <button type="submit" class="weiter-button" id="submitButton">Weiter</button>
                 </div>
             </div>
         </form>
     </body>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
 </html>

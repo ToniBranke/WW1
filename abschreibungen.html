@@ -6,8 +6,12 @@
         <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
         <link rel="stylesheet" href="style.css">
         <script defer src="script.js"></script>
+        <script defer src="buttonScript.js"></script>
     </head>
     <body class="task-main">
+         <div class="logoutButtonContainer">
+            <button class="logoutButton" id="logoutButton">Abmelden</button>
+        </div>
         <div class="tabs">
 
         <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -44,35 +48,35 @@
                 </div>
                 <div class="form-group">
                     <label for="kaufpreis">Kaufpreis</label>
-                    <input type="number" id="kaufpreis" name="kaufpreis">
+                    <input type="number" id="kaufpreis" name="kaufpreis" placeholder="0">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="ueberProjektfinanzierung">über Projektfinanzierung</label>
-                    <input type="number" id="ueberProjektfinanzierung" name="ueberProjektfinanzierung">
+                    <input type="number" id="ueberProjektfinanzierung" name="ueberProjektfinanzierung" placeholder="0">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="restbetrag">zu finanzierender Restbetrag</label>
-                    <input type="number" id="restbetrag" name="restbetrag">
+                    <input type="number" id="restbetrag" name="restbetrag" placeholder="0">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="finanzierungRestbetragFolgekosten">Finanzierung Restbetrag und Folgekosten durch</label>
-                    <input type="number" id="finanzierungRestbetragFolgekosten" name="finanzierungRestbetragFolgekosten">
+                    <input type="text" id="finanzierungRestbetragFolgekosten" name="finanzierungRestbetragFolgekosten">
                 </div>
             </div>
             <div class="form-row form-row-rigth">
-                <button type="submit" class="weiter-button">Weiter</button>
+                <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
             </div>
         </form>
 <!-- Sidebar mit den Buttons und zusammenfassung -->
     <aside class="sidebar">
         <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
-        <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
+        
         <div class="sidebarSummary">
             <span class="summaryTitle">Summe der Anschaffungskosten</span>
             <ul class="summaryList" id="summaryList">
@@ -81,19 +85,9 @@
             <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
         </div>
     </aside>
-   <!-- <script>
-        // JavaScript für die Sidebar-Funktionalität
-        document.querySelector('.addButton').addEventListener('click', function() {
-            // Logik zum Hinzufügen eines neuen Gegenstands
-            alert('Neuer Gegenstand hinzugefügt!');
-        });
-
-        document.querySelector('.saveButton').addEventListener('click', function() {
-            // Logik zum Speichern des Gegenstands
-            alert('Gegenstand gespeichert!');
-        });
-    </script>
-    -->
     </div>
     </body>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
 </html>

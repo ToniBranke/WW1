@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Allgemeine Projektdaten</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="buttonScript.js"></script>
 </head>
 <body class="task-main">
+     <div class="logoutButtonContainer">
+            <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
     <div class="tabs">
 
        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -73,14 +77,16 @@
             <div class="form-row"> 
                 <div class="form-group wide">
                     <label for="projekt-kostentraegernummer">Projekt/<br> Kostenträgernummer:</label>
-                    <input type="text" id="projekt-kostentraegernummer" name="projekt-kostentraegernummer" required>
+                    <input type="numbers" id="projekt-kostentraegernummer" name="projekt-kostentraegernummer" required>
                 </div>
             </div>
             <div class="form-row form-row-rigth">
-                <button type="submit" class="weiter-button">Weiter</button>
+                <button type="submit" class="weiter-button" id="submitButton">Weiter</button>
             </div>
         </div>     
     </form>
 </body>
-
+<footer class="footer">
+    <p>&copy; 2025 Hochschule Mittweida</p>
+</footer>
 </html>

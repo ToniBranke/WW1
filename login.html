@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script defer src="buttonScript.js"></script>
   <!-- PHP Dokument --> 
     </head>
 <body class="login-body">
@@ -23,15 +23,17 @@
             <label for="password">Passwort</label>
             <input type="password" id="password" name="password" required>
        </div>
-       <div class="form-links">
-            <!-- <a href="register.html">Registrieren</a> -->
-            <a href="forgot-password.html" class="forgot-link">Passwort vergessen?</a>
-       </div>
-       <button type="submit" class="login-button">Anmelden</button>
+            <div class="form-links">
+                <!-- <a href="register.html">Registrieren</a> -->
+                <a href="passwortVergessen.html" class="forgot-link">Passwort vergessen?</a> 
+                <a href="register.html" class="register-link">Registrieren?</a>
+            </div>
+       <button type="button" class="login-button" id="submitButton">Anmelden</button> 
+       <!-- <a href="allgemein.html" class="login-button, tab-active">Anmelden</a> -->
     </form>
     </div>
 </body>
-<footer class="login-footer">
+<footer class="footer">
     <p>&copy; 2025 Hochschule Mittweida</p>
-    </footer>
+</footer>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE htlm>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Passwort vergessen</title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="script.js"></script>
+    </head>
+    <body class="login-body">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="bilder/Logo-hsmw.svg.png" alt="Logo HSMW" class="logo-img">
+            </div>
+            <form class="login-form" action="reset-password.php" method="post">
+                <h1>Passwort zurücksetzen</h1>
+                <div class="form-group">
+                    <label for="email">E-Mail-Adresse</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-links">
+                    <a href="login.html" class="forgot-link">Zurück zum Login</a>
+                </div>
+                <button type="submit" class="login-button" id="PasswortZuruecksetzenButton">Passwort zurücksetzen</button>
+            </form>     
+        </div>
+        <script>
+            document.getElementById('PasswortZuruecksetzenButton').addEventListener('click', function(event) {
+                event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+                alert('Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.');
+                window.location.href = 'login.html';
+            });
+        </script>
+    </body>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
+</html>

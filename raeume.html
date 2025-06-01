@@ -6,8 +6,12 @@
         <title>Kosten für Räume und Flächen</title>
         <link rel="stylesheet" href="style.css">
         <script defer src="raeumeScript.js"></script>
+        <script defer src="buttonScript.js"></script>
     </head>
     <body class="task-main">
+         <div class="logoutButtonContainer">
+            <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
         <div class="tabs">
 
         <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -30,7 +34,7 @@
                 <div class="form-row" id="bueroNutzungsGebuehr" style="display: none;">
                     <div class="form-group wide" >
                         <label for="bueronutzungsgebuehr">Büronutzungsgebühr</label>
-                        <input type="number" id="bueronutzungsgebuehr" name="bueronutzungsgebuehr">
+                        <input type="number" id="bueronutzungsgebuehr" name="bueronutzungsgebuehr" placeholder="0">
                     </div>
                 </div>
             <div id="laborNutzungsGebuehr" style="display: none;">
@@ -52,11 +56,11 @@
                 <div class="form-row">
                     <div class="form-group" id="labornutzungsgebuehrAnzahlDiv">
                         <label for="labornutzungsgebuehrAnzahl">Anzahl der Wochen</label>
-                        <input type="number" id="labornutzungsgebuehrAnzahl" name="labornutzungsgebuehrAnzahl">
+                        <input type="number" id="labornutzungsgebuehrAnzahl" name="labornutzungsgebuehrAnzahl" placeholder="0">
                     </div>
                     <div class="form-group" id="labornutzungsgebuehrStundenDiv">
                         <label for="labornutzungsgebuehrStunden">Stunden pro Woche</label>
-                        <input type="number" id="labornutzungsgebuehrStunden" name="labornutzungsgebuehrStunden">
+                        <input type="number" id="labornutzungsgebuehrStunden" name="labornutzungsgebuehrStunden" placeholder="0">
                     </div>
                 </div>
             </div>
@@ -70,13 +74,13 @@
                     </div>
                     <div class="form-group" id="zusatzRaeumeQMDiv">
                         <label for="zusatzRaeumeQM">QM</label>
-                        <input type="number" id="zusatzRaeumeQM" name="zusatzRaeumeQM">
+                        <input type="number" id="zusatzRaeumeQM" name="zusatzRaeumeQM" placeholder="0">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group" id="zusatzRaeumeMieteDiv">
                         <label for="zusatzRaeumeMiete"> mtl. Miete pro QM</label>
-                        <input type="number" id="zusatzRaeumeMiete" name="zusatzRaeumeMiete">
+                        <input type="number" id="zusatzRaeumeMiete" name="zusatzRaeumeMiete" placeholder="0">
                     </div>
                     <div class="form-group" id="zusaztRaeumeDauerDiv">
                         <label for="zusatzRaeumeDauer">Monate</label>
@@ -115,9 +119,12 @@
                     </ul>
                 </div>
                 <div class="form-row form-row-rigth">
-                    <button type="submit" class="weiter-button" id="submitButton" style="display: none;">Weiter</button>
+                    <button type="submit" class="weiter-button" id="submitButton" style="display: none;">Abschließen</button>
                 </div>
             </aside>
         </div>
     </body>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
 </html>
