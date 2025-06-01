@@ -1,1 +1,0 @@
-// daten aus Datenbank übergeben
