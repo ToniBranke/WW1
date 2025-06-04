@@ -8,7 +8,7 @@
         <script defer src="script.js"></script>
         <script defer src="buttonScript.js"></script>
     </head>
-    <body class="task-main">
+    <body class="taskMain">
          <div class="logoutButtonContainer">
             <button class="logoutButton" id="logoutButton">Abmelden</button>
         </div>
@@ -26,50 +26,50 @@
             <a href="personalkosten.html" class="tab">Personalkosten</a>
             <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
             <a href="sachkosten.html" class="tab">Sachkosten</a>
-            <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+            <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
             <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
         </div>
-        <div class="main-content">
-        <form class="projekt-form" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
-            <div class="form-row">
-                <div class="form-group">
+        <div class="mainContent">
+        <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
+            <div class="formRow">
+                <div class="formGroup">
                     <!-- Anschaffungskosten drop down menü -->
-                    <label for="anschaffungskosten">Anschaffungskosten</label>
-                    <select id="anschaffungskosten" name="anschaffungskosten">
+                    <label for="acquisitionCost">Anschaffungskosten</label>
+                    <select id="acquisitionCost" name="acquisitionCost">
                         <option value="150-1000">150-1.000 €</option>
-                        <option value="ab 1000">ab 1.000 €</option>
+                        <option value="from1000">ab 1.000 €</option>
                     </select>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="bezeichnung">Bezeichnung</label>
-                    <input type="text" id="bezeichnung" name="bezeichnung">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="labelBezeichnung">Bezeichnung</label>
+                    <input type="text" id="labelBezeichnung" name="labelBezeichnung">
                 </div>
-                <div class="form-group">
-                    <label for="kaufpreis">Kaufpreis</label>
-                    <input type="number" id="kaufpreis" name="kaufpreis" placeholder="0">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="ueberProjektfinanzierung">über Projektfinanzierung</label>
-                    <input type="number" id="ueberProjektfinanzierung" name="ueberProjektfinanzierung" placeholder="0">
+                <div class="formGroup">
+                    <label for="purchasePrice">Kaufpreis</label>
+                    <input type="number" id="purchasePrice" name="purchasePrice" placeholder="0">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="restbetrag">zu finanzierender Restbetrag</label>
-                    <input type="number" id="restbetrag" name="restbetrag" placeholder="0">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="projectFinanzing">über Projektfinanzierung</label>
+                    <input type="number" id="projectFinanzing" name="projectFinanzing" placeholder="0">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="finanzierungRestbetragFolgekosten">Finanzierung Restbetrag und Folgekosten durch</label>
-                    <input type="text" id="finanzierungRestbetragFolgekosten" name="finanzierungRestbetragFolgekosten">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="remainingAmount">zu finanzierender Restbetrag</label>
+                    <input type="number" id="remainingAmount" name="remainingAmount" placeholder="0">
                 </div>
             </div>
-            <div class="form-row form-row-rigth">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="financingRamainingAmount">Finanzierung Restbetrag und Folgekosten durch</label>
+                    <input type="text" id="financingRamainingAmount" name="financingRamainingAmount">
+                </div>
+            </div>
+            <div class="formRow formRowRigth">
                 <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
             </div>
         </form>
@@ -79,10 +79,10 @@
         
         <div class="sidebarSummary">
             <span class="summaryTitle">Summe der Anschaffungskosten</span>
-            <ul class="summaryList" id="summaryList">
+            <ul class="summaryList" id="summaryListDepreciation">
         </div>
-        <div class="form-row form-row-rigth">
-            <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
+        <div class="formRow formRowRigth">
+            <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
         </div>
     </aside>
     </div>

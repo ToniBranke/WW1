@@ -38,7 +38,7 @@ body, html
     margin-bottom: -1px;
 }
 
-.tab-active, .tab:hover
+.tabActive, .tab:hover
 {
    /* formatierung für den link */
     text-decoration: none;
@@ -52,7 +52,7 @@ body, html
 }
 
 /* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
-.main-content
+.mainContent
 {
     display: flex; 
     justify-content: center;
@@ -134,7 +134,7 @@ body, html
     margin: 0;
 }
 
-.projekt-form
+.projectForm
 {
     background: #f8f8f8;
     border-radius: 10px;
@@ -144,28 +144,28 @@ body, html
     margin: 0 auto;
 }
 
-.form-row
+.formRow
 {
     display: flex;
     gap: 2rem; 
     margin-bottom: 1.1rem;
 }
 
-.form-row .form-group
+.formRow .formGroup
 {
     flex: 1 1 0; 
     display: flex; 
     flex-direction: column;
 }
 
-.form-group label
+.formGroup label
 {
     font-size: 1rem;
     margin-bottom: 0.3rem;
     color:#333;
 }
 
-.form-group input
+.formGroup input
 {
     padding: 0.65rem 0.9rem;
     border: 1px solid #bcbcbc;
@@ -175,7 +175,7 @@ body, html
     transition: border-color 0.2s;
 }
 
-.form-group input:focus
+.formGroup input:focus
 {
     border-color: #4069b1;
     outline: none;
@@ -183,7 +183,7 @@ body, html
 
 /* Kleine Felder (Personal Jahre) */
 
-.felder-small
+.textBoxSmall
 {
     display: flex;
     flex-direction: row;;
@@ -191,14 +191,14 @@ body, html
     align-items: center;;
 }
 
-.felder-small label
+.textBoxSmall label
 {
     margin: 0 0.15em 0 0;
     font-size: 0.97em;
     color:#444;
 }
 
-.felder-small input [type="number"]
+.textBoxSmall input [type="number"]
 {
     width: 1em;
     padding: 0.4em 0.3em;
@@ -206,18 +206,18 @@ body, html
     box-sizing: border-box;
 }
 
-.form-group.wide
+.formGroup.wide
 {
     flex: 2 1 0;
 }
 
-.form-row-rigth
+.formRowRigth
 {
     justify-content: flex-end;
     margin-top: 2.4rem;
 }
 
-.weiter-button
+.weiterButton
 {
     padding: 0.8rem 2.1rem;
     background: #4069b1;
@@ -230,13 +230,15 @@ body, html
     font-weight: 500;
     letter-spacing: 0.02rem;
 }
-.weiter-button:hover 
+.weiterButton:hover 
 {
     background: #24406a;
 }
 
 
-.login-body
+/* Login Page Styles */
+
+.loginBody
 {
     min-height: 100vh;
     display: flex;
@@ -244,7 +246,7 @@ body, html
     align-items: center;
 }
 
-.login-container
+.loginContainer
 {
     background: #f8f8f8;
     padding: 2.5rem 2rem 2rem 2rem;
@@ -257,19 +259,19 @@ body, html
     align-items: center;
 }
 
-.login-logo
+.loginLogo
 {
     margin-bottom: 1.5rem;
     right: 0;
 }
 
-.logo-img
+.logoImg
 {
     width: 120px;
     max-width: 100%;
 }
 
-.login-form
+.loginForm
 {
     width: 100%;
     display: flex;
@@ -277,7 +279,7 @@ body, html
     align-items: stretch;
 }
 
-.login-form h1
+.loginForm h1
 {
     margin-bottom: 1.1rem;
     text-align: center;
@@ -285,20 +287,20 @@ body, html
 }
 
 
-.form-group
+.formGroup
 {
     margin-bottom: 1.1rem;
     display: flex;
     flex-direction: column;
 }
 
-.form-group label
+.formGroup label
 {
     font-size: 1rem;
     margin-bottom: 0.3rem;
 }
 
-.form-group select
+.formGroup select
 {
     padding: 0.75rem 0.9rem;
     border: 1px solid #bcbcbc;
@@ -308,7 +310,7 @@ body, html
     transition: border-color 0.2s;
 }
 
-.form-group input
+.formGroup input
 {
     padding: 0.75rem 0.9rem;
     border: 1px solid #bcbcbc;
@@ -318,20 +320,19 @@ body, html
     transition: border-color 0.2s;
 }
 
-.form-group input:focus
+.formGroup input:focus
 {
     border-color: #4069b1;
     outline: none;
 }
 
-.form-links
+.formLinks
 {
     display: flex;
-    /*justify-content: flex-start;*/
     margin-top: 1rem;
 }
 
-.forgot-link 
+.forgotLink 
 {
     font-size: 0.95rem;
     color: #4069b1;
@@ -339,7 +340,7 @@ body, html
     transition: color 0.2s;
 }
 
-.register-link
+.registerLink
 {
     font-size: 0.95rem;
     color: #4069b1;
@@ -350,13 +351,13 @@ body, html
 }
 
 
-.forgot-link:hover , .register-link:hover
+.forgotLink:hover , .registerLink:hover
 {
     color: #24406a;
     text-decoration: underline;
 }
 
-.login-button 
+.loginButton 
 {
     padding: 0.8rem 0;
     background: #4069b1;
@@ -370,7 +371,7 @@ body, html
     letter-spacing: 0.02rem;
 }
 
-.login-button:hover, .logoutButton:hover
+.loginButton:hover, .logoutButton:hover
 {
     background: #325493;
 }
@@ -422,7 +423,7 @@ body, html
     
 }
 
-.login-footer
+.loginFooter
 {
     position: fixed;
     bottom: 0;
@@ -431,12 +432,12 @@ body, html
 
 @media (max-width: 400px)
 {
-    .login-container
+    .loginContainer
     {
         padding: 1.2rem 0.6rem;
         max-width: 99vw;
     }
-    .main-content
+    .mainContent
     {
         flex-direction: column;
         align-items: stretch;
