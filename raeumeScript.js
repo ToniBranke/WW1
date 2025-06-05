@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function()
     const saveButton = document.getElementById('saveButton');
     const submitButton = document.getElementById('submitButton');
 
-    const bueroForm = document.getElementById('bueroNutzungsGebuehr');
-    const laborForm = document.getElementById('laborNutzungsGebuehr');
-    const anderesForm = document.getElementById('anderesNutzungsGebuehr');
+    const bueroForm = document.getElementById('officeUsageFeeContainer');
+    const laborForm = document.getElementById('LabUsageContainer');
+    const anderesForm = document.getElementById('otherRoomContainer');
     const raeumeForm = document.getElementById('raeumeForm');
 
     const raeumeList = document.getElementById('raeumeSummaryList');
@@ -57,21 +57,21 @@ document.addEventListener('DOMContentLoaded', function()
         
 
 
-        const LaborNamme = document.getElementById('labornutzungsgebuehrName').value;
-        const anderesName = document.getElementById('zusatzRaeumeName').value;
+        const LaborNamme = document.getElementById('LabName').value;
+        const anderesName = document.getElementById('otherRoomName').value;
         const bueroNutzungsGebuehrName = "büro";
 
         // holt die Eingegebenen werte aus dem Formular
-        const bueroNutzungsGebuehr = parseFloat(document.getElementById('bueronutzungsgebuehr').value) || 0;
+        const bueroNutzungsGebuehr = parseFloat(document.getElementById('officeUsageFee').value) || 0;
   
         //Labor Werte 
-        const laborNutzungWochen = parseFloat(document.getElementById('labornutzungsgebuehrAnzahl').value) || 0;
-        const laborNutzungStunden = parseFloat(document.getElementById('labornutzungsgebuehrStunden').value) || 0;
+        const laborNutzungWochen = parseFloat(document.getElementById('labUsageFeeWeeksAmount').value) || 0;
+        const laborNutzungStunden = parseFloat(document.getElementById('labUsageFeeHours').value) || 0;
 
         // Anderes Werte
-        const anderesQm = parseFloat(document.getElementById('zusatzRaeumeQM').value) || 0;
-        const anderesMiete = parseFloat(document.getElementById('zusatzRaeumeMiete').value) || 0;
-        const anderesDauer = parseFloat(document.getElementById('zusatzRaeumeDauer').value) || 0;
+        const anderesQm = parseFloat(document.getElementById('otherRoomSize').value) || 0;
+        const anderesMiete = parseFloat(document.getElementById('otherRoomRent').value) || 0;
+        const anderesDauer = parseFloat(document.getElementById('otherRoomDuration').value) || 0;
 
         /* allert falls keine werte eingegeben wurden
         if (!bezeichnung &&( kaufpreis+ restbetrag + folgekosten === 0))

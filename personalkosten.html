@@ -6,8 +6,12 @@
     <title>Personalkosten</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="buttonScript.js"></script>
 </head>
-<body class="personalkosten-body">
+<body class="taskMain">
+     <div class="logoutButtonContainer">
+            <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
     <div class="tabs">
 
        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -19,58 +23,62 @@
         <button class="tab">Kosten für Räume und Flächen</button>
     -->
         <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-        <a href="personalkosten.html" class="tab-active">Personalkosten</a>
+        <a href="personalkosten.html" class="tabActive">Personalkosten</a>
         <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
         <a href="sachkosten.html" class="tab">Sachkosten</a>
         <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
         <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
     </div>
-        <form class="projekt-form">
+        <form class="projectForm">
             Durch Projekt zu finanzierende Mitarebeiter
-            <div class="form-row">
-                <div class="form-group">
+            <div class="formRow">
+                <div class="formGroup">
                     <label for="shk">SHK:</label>
-                    <input type="number" id="shk" name="shk" min="0" required>
+                    <input type="number" id="shk" name="shk" min="0" placeholder="0" >
                 </div>
-                <div class="form-group">
+                <div class="formGroup">
                     <label for="whk">WHK:</label>
-                    <input type="number" id="whk" name="whk" min="0" required>
+                    <input type="number" id="whk" name="whk" min="0" placeholder="0" >
                 </div>
-                <div class="form-group">
-                    <label for="stufe">Stufe:</label>
-                    <input type="number" id="stufe" name="stufe" min="0" required>
+                <div class="formGroup">
+                    <label for="level">Stufe:</label>
+                    <input type="number" id="level" name="level" min="0" placeholder="0">
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="wochenImProjekt">Wochen im Projekt:</label>
-                    <div class="felder-small">
-                        <div class="form-group">
+            <div class="formRow">
+                <!-- Hier sollen die Jahre entfernt und gegen ein von bis getauscht werden -->
+                <div class="formGroup">
+                    <label for="weeksInProject">Wochen im Projekt:</label>
+                    <div class="textBoxSmall">
+                        <div class="formGroup">
                             <label for="2025">2025</label>
-                            <input type="number" id="2025" name="2025" min="0" required>
+                            <input type="number" id="2025" name="2025" min="0" placeholder="0">
                         </div>
-                            <div class="form-group">
+                            <div class="formGroup">
                             <label for="2026">2026</label>
-                            <input type="number" id="2026" name="2026" min="0" required>
+                            <input type="number" id="2026" name="2026" min="0" placeholder="0">
                         </div>
-                            <div class="form-group">
+                            <div class="formGroup">
                                 <label for="2027">2027</label>
-                                <input type="number" id="2027" name="2027" min="0" required>
+                                <input type="number" id="2027" name="2027" min="0" placeholder="0">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="wochenstunden">Wochenstunden:</label>
-                    <input type="number" id="wochenstunden" name="wochenstunden" min="0" required>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="weeklyHours">Wochenstunden:</label>
+                    <input type="number" id="weeklyHours" name="weeklyHours" min="0" placeholder="0">
                 </div>
             </div>
-                <div class="form-row form-row-rigth">
-                    <button type="submit" class="weiter-button">Weiter</button>
+                <div class="formRow formRowRigth">
+                    <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
                 </div>
             </div>
         </form>
     </body>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
 </html>
