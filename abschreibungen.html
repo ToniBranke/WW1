@@ -1,93 +1,110 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="script.js"></script>
-        <script defer src="buttonScript.js"></script>
-    </head>
-    <body class="taskMain">
-         <div class="logoutButtonContainer">
-            <button class="logoutButton" id="logoutButton">Abmelden</button>
-        </div>
-        <div class="tabs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body class="task-main">
+<div class="tabs">
 
-        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-            <button class="tab-active">Allgemeine Projektdaten</button>
-            <button class="tab">Personalkosten</button>
-            <button class="tab">Kosten für projektbezogene Leistungen</button>
-            <button class="tab" >Sachkosten</button>
-            <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-            <button class="tab">Kosten für Räume und Flächen</button>
-        -->
-            <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-            <a href="personalkosten.html" class="tab">Personalkosten</a>
-            <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-            <a href="sachkosten.html" class="tab">Sachkosten</a>
-            <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-            <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+    <!-- Buttons für demonstration auskommentiert und durch links ersetzt
+        <button class="tab-active">Allgemeine Projektdaten</button>
+        <button class="tab">Personalkosten</button>
+        <button class="tab">Kosten für projektbezogene Leistungen</button>
+        <button class="tab" >Sachkosten</button>
+        <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
+        <button class="tab">Kosten für Räume und Flächen</button>
+    -->
+    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+    <a href="personalkosten.html" class="tab">Personalkosten</a>
+    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+    <a href="sachkosten.html" class="tab">Sachkosten</a>
+    <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+    <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+</div>
+<div class="main-content">
+    <form class="projekt-form" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
+
+        <div class="form-row">
+            <div class="form-group">
+                <!-- Anschaffungskosten drop down menü -->
+                <label for="anschaffungskosten">Anschaffungskosten</label>
+                <select id="anschaffungskosten" name="anschaffungskosten">
+                    <option value="150-1000">150-1.000 €</option>
+                    <option value="ab 1000">ab 1.000 €</option>
+                </select>
+            </div>
         </div>
-        <div class="mainContent">
-        <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
-            <div class="formRow">
-                <div class="formGroup">
-                    <!-- Anschaffungskosten drop down menü -->
-                    <label for="acquisitionCost">Anschaffungskosten</label>
-                    <select id="acquisitionCost" name="acquisitionCost">
-                        <option value="150-1000">150-1.000 €</option>
-                        <option value="from1000">ab 1.000 €</option>
-                    </select>
-                </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="bezeichnung">Bezeichnung</label>
+                <input type="text" id="bezeichnung" name="bezeichnung">
             </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="labelBezeichnung">Bezeichnung</label>
-                    <input type="text" id="labelBezeichnung" name="labelBezeichnung">
-                </div>
-                <div class="formGroup">
-                    <label for="purchasePrice">Kaufpreis</label>
-                    <input type="number" id="purchasePrice" name="purchasePrice" placeholder="0">
-                </div>
+            <div class="form-group">
+                <label for="kaufpreis">Kaufpreis</label>
+                <input type="number" id="kaufpreis" name="kaufpreis">
+                <span class="tooltip-text">Reiner Kaufpreis, ohne Rabatte oder Förderungen</span>
             </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="projectFinanzing">über Projektfinanzierung</label>
-                    <input type="number" id="projectFinanzing" name="projectFinanzing" placeholder="0">
-                </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="ueberProjektfinanzierung">über Projektfinanzierung</label>
+                <input type="number" id="ueberProjektfinanzierung" name="ueberProjektfinanzierung">
+                <span class="tooltip-text">Anteil der Investition, der über das Projektbudget gedeckt wird</span>
             </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="remainingAmount">zu finanzierender Restbetrag</label>
-                    <input type="number" id="remainingAmount" name="remainingAmount" placeholder="0">
-                </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="restbetrag">zu finanzierender Restbetrag</label>
+                <input type="number" id="restbetrag" name="restbetrag">
+                <span class="tooltip-text">erbleibende Summe, die extern oder intern zu decken ist</span>
             </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="financingRamainingAmount">Finanzierung Restbetrag und Folgekosten durch</label>
-                    <input type="text" id="financingRamainingAmount" name="financingRamainingAmount">
-                </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="finanzierungRestbetragFolgekosten">Finanzierung Restbetrag und Folgekosten durch</label>
+                <input type="number" id="finanzierungRestbetragFolgekosten" name="finanzierungRestbetragFolgekosten">
+                <span class="tooltip-text">Quelle für Restfinanzierung und spätere Kosten (z.B. Wartung)</span>
             </div>
-            <div class="formRow formRowRigth">
-                <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
-            </div>
-        </form>
-<!-- Sidebar mit den Buttons und zusammenfassung -->
+        </div>
+
+        <div class="form-row form-row-rigth">
+            <button type="submit" class="weiter-button">Weiter</button>
+        </div>
+
+    </form>
+    <!-- Sidebar mit den Buttons und zusammenfassung -->
     <aside class="sidebar">
         <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
-        
+        <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
         <div class="sidebarSummary">
             <span class="summaryTitle">Summe der Anschaffungskosten</span>
-            <ul class="summaryList" id="summaryListDepreciation">
+            <ul class="summaryList" id="summaryList">
         </div>
-        <div class="formRow formRowRigth">
-            <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
+        <div class="form-row form-row-rigth">
+            <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
         </div>
     </aside>
-    </div>
-    </body>
-    <footer class="footer">
-        <p>&copy; 2025 Hochschule Mittweida</p>
-    </footer>
+
+    <!-- <script>
+         // JavaScript für die Sidebar-Funktionalität
+         document.querySelector('.addButton').addEventListener('click', function() {
+             // Logik zum Hinzufügen eines neuen Gegenstands
+             alert('Neuer Gegenstand hinzugefügt!');
+         });
+
+         document.querySelector('.saveButton').addEventListener('click', function() {
+             // Logik zum Speichern des Gegenstands
+             alert('Gegenstand gespeichert!');
+         });
+     </script>
+     -->
+</div>
+</body>
 </html>
