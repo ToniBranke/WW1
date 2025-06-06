@@ -450,3 +450,58 @@ body, html
         margin-top: 2rem;
     }
 }
+
+.form-group {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+
+.tooltip-text {
+    visibility: hidden;
+    width: 230px;
+    background-color: #3f68b0;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 5px;
+    border-color: #ffffff;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: -3.5rem; /* Tooltip unter dem Eingabefeld */
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    pointer-events: none;
+}
+
+
+.form-group:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+input.error {
+    border: 2px solid #d93025 !important;
+    background-color: rgba(181, 129, 125, 0.47) !important;
+}
+
+#wirtschaftlicher-bereich {
+    width: 220px;
+}
+
+#projekt-kostentraegernummer {
+    width: 220px;
+}
+
+#zeitraum-von {
+    width: 220px;
+}
+
+#zeitraum-bis {
+    width: 220px;
+}
