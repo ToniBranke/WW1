@@ -7,64 +7,24 @@ body, html
     color: #222;
 }
 
-.tab, .tab-active {
-  flex: 0 0 auto;        /* Prevents shrinking or growing */
-  text-align: center;    /* Optional: centers text */
-  padding: 10px 15px;
-  text-decoration: none;
-  border: 1px solid #ccc;
-  background-color: #f4f4f4;
-  white-space: nowrap;   /* Prevent text from wrapping */
-  box-sizing: border-box;
-}
-
-.tabs-container {
-  width: 100%;
-}
-
-.tabs-dropdown {
-  display: none;
-  width: 80%;
-  padding: 10px;
-  font-size: 16px;
-  align-self: center;
-  margin: 0 auto;  
-
-  text-decoration: none;
-  text-align: center;
-
-  padding: 0.7em 1.5em;
-  border-radius: 8px 8px 4px 4px;
-  margin-top: 2rem;
-  background: #2b4572;
-  color: #fff;
-  margin-bottom: 2.2rem;
-}
-
-.tabs
-{
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    margin-bottom: 2.2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    justify-content: center;
-    overflow-x: auto;   /* Optional: Allows horizontal scrolling if needed */
+/* Formatierung für einzelne Tabs */
+.tab, .tab-active { 
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0.7em 1.5em;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .tab
 {
-
-    /* formatierung für den link */
-    text-decoration: none;
-    text-align: center;
-
     margin-top: 2rem;
     background: #6e6e6e;
     border: none;
     border-radius: 8px 8px 4px 4px;
-    padding: 0.7em 1.5em; 
     font-size: 1rem;
     cursor: pointer;
     color: #ffffff;
@@ -75,11 +35,6 @@ body, html
 
 .tab-active
 {
-   /* formatierung für den link */
-    text-decoration: none;
-    text-align: center;
-
-    padding: 0.7em 1.5em;
     border-radius: 8px 8px 4px 4px;
     margin-top: 2rem;
     background: #2b4572;
@@ -88,7 +43,6 @@ body, html
 
 .tab:hover
 {
-/* formatierung für den link */
     text-decoration: none;
     text-align: center;
 
@@ -99,14 +53,75 @@ body, html
     color: #fff;
 }
 
-@media (max-width: 1500px) {
-  .tabs {
-    display: none;
-  }
 
-  .tabs-dropdown {
-    display: block;
-  }
+/* Formatierung für Tabbar  und Dropdown*/
+.tabs-container {
+    width: 100%;
+
+    position: relative;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabs, .tabs-dropdown {
+    opacity: 1;
+    position: relative;
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+    overflow-x: auto;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 100%;
+}
+
+.tabs.nav-transition, .tabs-dropdown.nav-transition {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tabs-dropdown {
+    width: 80%;
+    font-size: 16px;
+    align-self: center;
+    margin: 0 auto;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+}
+
+.tabs-hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50px);
+    pointer-events: none;
+}
+
+.dropdown-hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(50px);
+    pointer-events: none;
+}
+
+@media (max-width: 1500px) {
+    .tabs {
+        /*display: none;*/
+    }
+
+    .tabs-dropdown {
+        display: block;
+    }
 }
 
 /* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */

@@ -36,11 +36,53 @@
                 <option value="raeume.html">Kosten für Räume und Flächen</option>
             </select>
         </div>
+
+         <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
         <script>
-        document.getElementById('tabsDropdown').addEventListener('change', function () {
-            window.location.href = this.value;
-        });
+            const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
+
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
+
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabs-hidden');
+                    dropdown.classList.remove('dropdown-hidden');
+                } else {
+                    tabs.classList.remove('tabs-hidden');
+                    dropdown.classList.add('dropdown-hidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabs-hidden');
+                    dropdown.classList.remove('dropdown-hidden');
+                } else {
+                    dropdown.classList.add('dropdown-hidden');
+                }
+
+                requestAnimationFrame(() => {
+                    tabs.classList.add('nav-transition');
+                    dropdown.classList.add('nav-transition');
+                });
+            });
+
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
         </script>
+
+
         <form class="projekt-form">
             Durch Projekt zu finanzierende Mitarebeiter
             <div class="form-row">
