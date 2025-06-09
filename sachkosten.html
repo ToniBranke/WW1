@@ -6,8 +6,12 @@
     <title>Sachkosten</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="buttonScript.js"></script>
 </head>
-<body class="task-main">
+<body class="taskMain">
+    <div class="logoutButtonContainer">
+    <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
     <div class="tabs">
 
     <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -21,73 +25,76 @@
         <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
         <a href="personalkosten.html" class="tab">Personalkosten</a>
         <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-        <a href="sachkosten.html" class="tab-active">Sachkosten</a>
+        <a href="sachkosten.html" class="tabActive">Sachkosten</a>
         <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
         <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
     </div>
-    <form class="projekt-form" action="abschreibungen.html" method="post">
-        <div class="form-row">
-            <div class="login-form">
+    <form class="projectForm" action="abschreibungen.html" method="post">
+        <div class="formRow">
+            <div class="loginForm">
                 <h1>Geschäftsbedarf</h1>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="bueromaterial">Büromaterial</label>
-                <input type="number" id="bueromaterial" name="bueromaterial" placeholder="Büromaterial">
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="officeSupplies">Büromaterial</label>
+                <input type="number" id="officeSupplies" name="officeSupplies" placeholder="0">
             </div>
-            <div class="form-group">
-                <label for="softwareLizenzen">Software / Lizenzen</label>
-                <input type="number" id="softwareLizenzen" name="softwareLizenzen" placeholder="Software / Lizenzen">
+            <div class="formGroup">
+                <label for="softwareLicenses">Software / Lizenzen</label>
+                <input type="number" id="softwareLicenses" name="softwareLicenses" placeholder="0">
             </div>
-            <div class="form-group">
-                <label for="werbekosten">Werbekosten</label>
-                <input type="number" id="werbekosten" name="werbekosten" placeholder="Werbekosten">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="PortoTelefonKommunikation">Porto / Telefon / Kommunikation</label>
-                <input type="number" id="PortoTelefonKommunikation" name="PortoTelefonKommunikation" placeholder="Porto / Telefon / Kommunikation">
-            </div>
-            <div class="form-group">
-                <lable for="speichermedien">Speichermedien</lable>
-                <input type="number" id="speichermedien" name="speichermedien" placeholder="Speichermedien">
-            </div>
-            <div class="form-group">
-                <lable for="instandhaltung">Instandhaltung</lable>
-                <input type="number" id="instandhaltung" name="instandhaltung" placeholder="Instandhaltung">
+            <div class="formGroup">
+                <label for="advertisingCost">Werbekosten</label>
+                <input type="number" id="advertisingCost" name="advertisingCost" placeholder="0">
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="GeraeteAusstattungUnter150">Geräte / Ausstattung < 150 </label>
-                <input type="number" id="GeraeteAusstattungUnter150" name="GeraeteAusstattungUnter150" placeholder="Geräte / Ausstattung < 150">
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="PostagePhoneComm">Porto / Telefon / Kommunikation</label>
+                <input type="number" id="PostagePhoneComm" name="PostagePhoneComm" placeholder="0">
             </div>
-            <div class="form-group">
-                <label for="literaturZeitschriften">Literatur / Zeitschriften</label>
-                <input type="number" id="literaturZeitschriften" name="literaturZeitschriften" placeholder="Literatur / Zeitschriften">
+            <div class="formGroup">
+                <lable for="storageDevices">Speichermedien</lable>
+                <input type="number" id="storageDevices" name="storageDevices" placeholder="0">
             </div>
-            <div class="form-group">
-                <label for="materialien">Materialien(Roh-, Hilfs-, Betriebsstoffe)</label>
-                <input type="number" id="materialien" name="materialien" placeholder="Materialien(Roh-, Hilfs-, Betriebsstoffe)">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group wide">
-                <label for="Reisekosten"><h2>Reisekosten</h2></label>
-                <input type="number" id="Reisekosten" name="Reisekosten" placeholder="Reisekosten">
+            <div class="formGroup">
+                <lable for="maintenance">Instandhaltung</lable>
+                <input type="number" id="maintenance" name="maintenance" placeholder="0">
             </div>
         </div>
-        <div class="form-row">    
-            <div class="form-group wide">
-                <label for="sontigeAufwendungen"><h2>Sonstige Aufwendungen</h2></label>
-                <input type="number" id="sontigeAufwendungen" name="sontigeAufwendungen" placeholder="Sonstige Aufwendungen">
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="devicesBelow150">Geräte / Ausstattung < 150 </label>
+                <input type="number" id="devicesBelow150" name="devicesBelow150" placeholder="0">
+            </div>
+            <div class="formGroup">
+                <label for="magazinesLiterature">Literatur / Zeitschriften</label>
+                <input type="number" id="magazinesLiterature" name="magazinesLiterature" placeholder="0">
+            </div>
+            <div class="formGroup">
+                <label for="materials">Materialien(Roh-, Hilfs-, Betriebsstoffe)</label>
+                <input type="number" id="materials" name="materials" placeholder="0">
             </div>
         </div>
-        <div class="form-row form-row-rigth">
-            <button type="submit" class="weiter-button">Weiter</button>
+        <div class="formRow">
+            <div class="formGroup wide">
+                <label for="travelCost"><h2>Reisekosten</h2></label>
+                <input type="number" id="travelCost" name="travelCost" placeholder="0">
+            </div>
         </div>
-        
+        <div class="formRow">    
+            <div class="formGroup wide">
+                <label for="otherExpenses"><h2>Sonstige Aufwendungen</h2></label>
+                <input type="number" id="otherExpenses" name="otherExpenses" placeholder="0">
+            </div>
+        </div>
+        <div class="formRow formRowRigth">
+            <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
+        </div>
     </form>
 </body>
+<footer class="footer">
+    <p>&copy; 2025 Hochschule Mittweida</p>
+</footer>
+</html>
