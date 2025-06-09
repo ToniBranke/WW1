@@ -14,16 +14,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p style='color:black;'>Bitte um Überprüfung von dem Benutzernamen und Passwort.</p>";
     } else {
         // Benutzerdaten abfragen
-        $stmt = $db->prepare("SELECT * FROM mitarbeiterdb1 WHERE benutzername = :benutzername");
+        $stmt = $db->prepare("SELECT * FROM mitarbeiter WHERE benutzername = :benutzername");
         $stmt->bindValue(':benutzername', $username, SQLITE3_TEXT);
         $result = $stmt->execute();
         $user = $result->fetchArray(SQLITE3_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            echo "<p style='color:green;'>✅ Anmeldung erfolgreich. Willkommen, " . htmlspecialchars($user['name']) . "!</p>";
+        if ($user && password_verify($password, $user['passwort'])) {
+            //Nutzerdaten in Session speichern
+            session_start();
+            $_SESSION['username'] = $user['benutzername'];
+            $_SESSION['name'] = $user['name'];
+
+            // Weiterleitung zu allgemein.html
+            header("Location: ../allgemein.html");
+        exit();
         } else {
+            // Fehlermeldung bei falschen Anmeldedaten
             echo "<p style='color:red;'>❌ Benutzername oder Passwort ist falsch.</p>";
         }
+
     }
 }
 ?>

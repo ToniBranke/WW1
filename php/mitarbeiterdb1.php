@@ -1,24 +1,23 @@
 <?php
 $db = new SQLite3('mitarbeiterdb1.sqlite');
 
-// Tabelle erstellen
+// Tabelle mit auto-increment integer id als Primärschlüssel
 $db->exec("
 CREATE TABLE IF NOT EXISTS mitarbeiter (
-    tarif_gruppe TEXT,
-    entgeltgruppe TEXT,
-    status TEXT CHECK(status IN ('intern', 'extern')),
-    bezeichnungs_id TEXT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tarif_gruppe TEXT DEFAULT 'TG1',
+    entgeltgruppe TEXT DEFAULT 'EG1',
     name TEXT,
-    adresse TEXT,
-    telefonnummer TEXT,
-    benutzername TEXT,
+    benutzername TEXT UNIQUE,
+    email TEXT UNIQUE,
     passwort TEXT,
-    entgelt_stunde REAL,
-    monatsgehalt REAL,
-    ag TEXT,
-    jsz TEXT,
-    is_assigned_to TEXT
-);");
+    entgelt_stunde REAL DEFAULT 20,
+    monatsgehalt REAL DEFAULT 2000,
+    ag TEXT DEFAULT 'AG1',
+    jsz TEXT DEFAULT 'JSZ1',
+    is_assigned_to TEXT DEFAULT 'unassigned'
+);
+");
 
 // 📥 CSV-Import
 if (isset($_FILES['csv']) && $_FILES['csv']['error'] === 0) {

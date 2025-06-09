@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registrierung</title>
         <link rel="stylesheet" href="style.css">
-        <script defer src="script.js"></script>
+        <!-- Removed script.js -->
     </head>
     <body class="loginBody">
         <div class="loginContainer">
             <div class="registerLogo">
                 <img src="bilder/Logo-hsmw.svg.png" alt="Logo HSMW" class="logoImg">
             </div>
-            <form class="registerForm" action="register.php" method="post">
+            <form class="registerForm" action="php/register.php" method="post">
                 <h1>Registrierung</h1>
                 <div class="formGroup">
                     <label for="registerUsername">Benutzername</label>
@@ -36,13 +36,6 @@
                 <button type="submit" class="weiterButton">Registrieren abschließen</button>
             </form>
         </div>
-        <script>
-            document.querySelector('.register-form').addEventListener('submit', function(event) {
-                event.preventDefault(); // Verhindert das Standardverhalten des Formulars
-                alert('Registrierung erfolgreich! Sie können sich jetzt anmelden.');
-                window.location.href = 'login.html'; // Weiterleitung zur Login-Seite
-            });
-        </script>
     </body>
     <footer class="footer">
         <p>&copy; 2025 Hochschule Mittweida</p>
