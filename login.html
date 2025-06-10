@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="buttonScript.js"></script>
-  <!-- PHP Dokument --> 
+    <!-- script defer src="buttonScript.js"></script>
+     PHP Dokument --> 
     </head>
 <body class="loginBody">
     <div class="loginContainer">
         <div class="loginLogo">
         <img src="bilder/Logo-hsmw.svg.png" alt="Logo HSMW" class="logoImg">
         </div>
-    <form class="loginForm" action="login.php" method="post">
+    <form class="loginForm" action="php/login1.php" method="post">
        <h1>Login</h1>
        <div class="formGroup">
             <label for="username">Benutzername</label>
@@ -28,7 +28,7 @@
                 <a href="passwortVergessen.html" class="forgotLink">Passwort vergessen?</a> 
                 <a href="register.html" class="registerLink">Registrieren?</a>
             </div>
-       <button type="button" class="loginButton" id="submitButton">Anmelden</button> 
+       <button type="submit" class="loginButton" id="submitButton">Anmelden</button> 
        <!-- <a href="allgemein.html" class="login-button, tab-active">Anmelden</a> -->
     </form>
     </div>
