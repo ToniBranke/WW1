@@ -52,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert new user, username = name
     $insert = $db->prepare("
         INSERT INTO mitarbeiter (
-            name, benutzername, passwort
-        ) VALUES (:name, :benutzername, :passwort)
+            name, benutzername, passwort, email
+        ) VALUES (:name, :benutzername, :passwort, :email)
     ");
     $insert->bindValue(':name', $username, SQLITE3_TEXT);
     $insert->bindValue(':benutzername', $username, SQLITE3_TEXT);
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($insert->execute()) {
         // Redirect to login page or show success message
-        header("Location: login.html");
+        header("Location: ../login.html");
         exit;
     } else {
         echo "Fehler bei der Registrierung. Bitte versuchen Sie es erneut.";
