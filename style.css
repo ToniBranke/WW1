@@ -541,8 +541,13 @@ body, html
 }
 
 
-.backButton:hover, .newProjectButton:hover, .selectButton:hover, .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, .logoutButton:hover, .weiterSelectButton:hover {
+.backButton:hover, .newProjectButton:hover, .selectButton:hover, .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, .logoutButton:hover, .weiterSelectButton:hover, .addButton:hover {
     background: #24406a;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-out;
+}
+
+.saveButton:hover, .buero:hover, .labor:hover, .anderes:hover {
     transform: scale(1.1);
     transition: transform 0.2s ease-out;
 }
