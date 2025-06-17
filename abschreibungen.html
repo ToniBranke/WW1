@@ -8,6 +8,11 @@
     <script defer src="script.js"></script>
 </head>
 <body class="task-main">
+
+<div class="logoutButtonContainer">
+    <button class="logoutButton" id="logoutButton">Abmelden</button>
+</div>
+
 <div class="tabs">
 
     <!-- Buttons für demonstration auskommentiert und durch links ersetzt
@@ -22,14 +27,14 @@
     <a href="personalkosten.html" class="tab">Personalkosten</a>
     <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
     <a href="sachkosten.html" class="tab">Sachkosten</a>
-    <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+    <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
     <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
 </div>
-<div class="main-content">
-    <form class="projekt-form" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
+<div class="mainContent">
+    <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
 
-        <div class="form-row">
-            <div class="form-group">
+        <div class="formRow">
+            <div class="formGroup">
                 <!-- Anschaffungskosten drop down menü -->
                 <label for="anschaffungskosten">Anschaffungskosten</label>
                 <select id="anschaffungskosten" name="anschaffungskosten">
@@ -38,44 +43,44 @@
                 </select>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group">
+        <div class="formRow">
+            <div class="formGroup">
                 <label for="bezeichnung">Bezeichnung</label>
                 <input type="text" id="bezeichnung" name="bezeichnung">
             </div>
-            <div class="form-group">
+            <div class="formGroup">
                 <label for="kaufpreis">Kaufpreis</label>
                 <input type="number" id="kaufpreis" name="kaufpreis">
                 <span class="tooltip-text">Reiner Kaufpreis, ohne Rabatte oder Förderungen</span>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="form-group">
+        <div class="formRow">
+            <div class="formGroup">
                 <label for="ueberProjektfinanzierung">über Projektfinanzierung</label>
                 <input type="number" id="ueberProjektfinanzierung" name="ueberProjektfinanzierung">
                 <span class="tooltip-text">Anteil der Investition, der über das Projektbudget gedeckt wird</span>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="form-group">
+        <div class="formRow">
+            <div class="formGroup">
                 <label for="restbetrag">zu finanzierender Restbetrag</label>
                 <input type="number" id="restbetrag" name="restbetrag">
                 <span class="tooltip-text">erbleibende Summe, die extern oder intern zu decken ist</span>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="form-group">
+        <div class="formRow">
+            <div class="formGroup">
                 <label for="finanzierungRestbetragFolgekosten">Finanzierung Restbetrag und Folgekosten durch</label>
                 <input type="number" id="finanzierungRestbetragFolgekosten" name="finanzierungRestbetragFolgekosten">
                 <span class="tooltip-text">Quelle für Restfinanzierung und spätere Kosten (z.B. Wartung)</span>
             </div>
         </div>
 
-        <div class="form-row form-row-rigth">
-            <button type="submit" class="weiter-button">Weiter</button>
+        <div class="formRow formRowRigth">
+            <button type="submit" class="weiterButton">Weiter</button>
         </div>
 
     </form>
@@ -87,8 +92,8 @@
             <span class="summaryTitle">Summe der Anschaffungskosten</span>
             <ul class="summaryList" id="summaryList">
         </div>
-        <div class="form-row form-row-rigth">
-            <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
+        <div class="formRow formRowRigth">
+            <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
         </div>
     </aside>
 
@@ -106,8 +111,9 @@
      </script>
      -->
 </div>
+
 </body>
-    <div class="footerBox">
+<div class="footerBox">
     <footer class="footer">
         <p>&copy; 2025 Hochschule Mittweida</p>
     </footer>
