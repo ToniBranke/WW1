@@ -77,26 +77,26 @@
             </div>
             <div class="formGroup">
                 <label for="magazinesLiterature">Literatur / Zeitschriften</label>
-                <input type="number" id="magazinesLiterature" name="magazinesLiterature" placeholder="0">
+                <input type="number" id="magazinesLiterature" name="magazinesLiterature" placeholder="0" required>
                 <span class="tooltip-text">Fachbücher, Journale oder abonnierte Zeitschriften</span>
             </div>
             <div class="formGroup">
                 <label for="materials">Materialien(Roh-, Hilfs-, Betriebsstoffe)</label>
-                <input type="number" id="materials" name="materials" placeholder="0">
-                <span class="tooltip-text">Projektbezogene Materialien, z. B. Papier, Chemikalien, Farbe</span>
+                <input type="number" id="materials" name="materials" placeholder="0" required>
+                <span class="tooltip-text">Projektbezogene Materialien, z.B. Papier, Chemikalien, Farbe</span>
             </div>
         </div>
         <div class="formRow">
             <div class="formGroup wide">
                 <label for="travelCost"><h2>Reisekosten</h2></label>
-                <input type="number" id="travelCost" name="travelCost" placeholder="0">
+                <input type="number" id="travelCost" name="travelCost" placeholder="0" required>
                 <span class="tooltip-text">Fahrt-, Übernachtungs- oder Verpflegungskosten auf Dienstreisen</span>
             </div>
         </div>
         <div class="formRow">    
             <div class="formGroup wide">
                 <label for="otherExpenses"><h2>Sonstige Aufwendungen</h2></label>
-                <input type="number" id="otherExpenses" name="otherExpenses" placeholder="0">
+                <input type="number" id="otherExpenses" name="otherExpenses" placeholder="0" required>
                 <span class="tooltip-text">Alle übrigen Kosten, die keiner anderen Kategorie zuzuordnen sind</span>
             </div>
         </div>
@@ -104,10 +104,11 @@
             <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
         </div>
     </form>
+    <script src="redBackground.js"></script>
 </body>
 <div class="footerBox">
-        <footer class="footer">
-            <p>&copy; 2025 Hochschule Mittweida</p>
-        </footer>
-    </div>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
+</div>
 </html>
