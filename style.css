@@ -3,7 +3,7 @@ body, html
     height:100%;
     margin:0;
     font-family: 'Seorge UI', sans-serif;
-    background-color: #e6e6e6;
+    background-color: #232323;
     color: #222;
 }
 
@@ -11,7 +11,7 @@ body, html
 {
     display: flex;
     flex-wrap: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     margin-bottom: 2.2rem;
     margin-left: 1rem;
     margin-right: 1rem;
@@ -141,6 +141,13 @@ body, html
     box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
     padding: 2rem 2.2rem;
     max-width: 800px;
+    margin: 0 auto;
+}
+
+.formRowSelection {
+    display: flex;
+    gap: -30rem;
+    margin-bottom: 1.1rem;
     margin: 0 auto;
 }
 
@@ -365,6 +372,7 @@ body, html
     transition: background 0.2s;
     font-weight: 500;
     letter-spacing: 0.02rem;
+    margin-top: 0.7rem;
 }
 
 .logoutButtonContainer
@@ -397,11 +405,11 @@ body, html
     bottom: 0;
     justify-content: flex;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     width: 100%;
-   
+
     padding: 0.8rem 0;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -410,8 +418,8 @@ body, html
     text-align: center;
     font-weight: 400;
     letter-spacing: 0.01rem;
-    
-    
+
+
 }
 
 .loginFooter
@@ -475,9 +483,9 @@ body, html
 }
 
 
-input.error {
-    border: 2px solid #d93025 !important;
-    background-color: rgba(181, 129, 125, 0.47) !important;
+.input-error {
+    border: 2px solid #d93025;
+    background-color: rgba(243, 128, 114, 0.47);
 }
 
 #wirtschaftlicher-bereich {
@@ -496,7 +504,7 @@ input.error {
     width: 220px;
 }
 
-.selectButton, .newProjectButton, .backButton, .createButton, .openButton {
+.selectButton, .newProjectButton, .createButton, .openButton {
     padding: 0.8rem 2.1rem;
     background: #4069b1;
     color: #fff;
@@ -509,12 +517,31 @@ input.error {
     letter-spacing: 0.02rem;
     margin: auto;
     display: block;
-    width: 250px;
+    width: 275px;
     height: 60px;
     justify-content: center;
 }
 
-.backButton:hover, .newProjectButton:hover, .selectButton:hover, .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, .logoutButton:hover {
+.weiterSelectButton, .backButton {
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 200px;
+    height: 60px;
+    justify-content: center;
+}
+
+
+.backButton:hover, .newProjectButton:hover, .selectButton:hover, .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, .logoutButton:hover, .weiterSelectButton:hover {
     background: #24406a;
     transform: scale(1.1);
     transition: transform 0.2s ease-out;
