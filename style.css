@@ -571,3 +571,14 @@ body, html
     padding: 1rem;
     border-radius: 8px;
 }
+
+.summaryContent li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.summaryContent li strong {
+    min-width: 400px; /* Breite für das Label */
+    display: inline-block;
+}
