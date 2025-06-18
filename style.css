@@ -522,25 +522,6 @@ body, html
     justify-content: center;
 }
 
-.weiterSelectButton, .backButton {
-    padding: 0.8rem 2.1rem;
-    background: #4069b1;
-    color: #fff;
-    font-size: 1.08rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.18s;
-    font-weight: 500;
-    letter-spacing: 0.02rem;
-    margin: auto;
-    display: block;
-    width: 200px;
-    height: 60px;
-    justify-content: center;
-}
-
-
 .backButton:hover, .newProjectButton:hover, .selectButton:hover, .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, .logoutButton:hover, .weiterSelectButton:hover, .addButton:hover {
     background: #24406a;
     transform: scale(1.1);
