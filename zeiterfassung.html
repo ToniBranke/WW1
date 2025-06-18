@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Zeiterfassung</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background: #f9f9f9; }
+        table { border-collapse: collapse; width: 100%; margin-top: 2em; }
+        th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
+        form { background: #fff; padding: 1em; border: 1px solid #ccc; max-width: 600px; }
+        label { display: block; margin-top: 1em; }
+        input[type="text"], input[type="datetime-local"], input[type="number"] {
+            width: 100%; padding: 0.5em; box-sizing: border-box;
+        }
+        .zeitfeld { display: flex; gap: 0.5em; align-items: center; }
+        input[type="submit"] {
+            margin-top: 1em; padding: 0.5em 1em; background: #007BFF; color: white; border: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Zeiterfassung</h1>
+
+<form action="zeiterfassung.php" method="POST">
+    <label>Mitarbeiter-ID:
+        <input type="number" name="mitarbeiter_id" required>
+    </label>
+
+    <label>Projekt-ID:
+        <input type="text" name="projekt_id" required>
+    </label>
+
+    <label>Beginn:
+        <div class="zeitfeld">
+            <input type="datetime-local" name="beginn" id="beginn" required>
+            <button type="button" onclick="setJetzt('beginn')">Jetztige Zeit</button>
+        </div>
+    </label>
+
+    <label>Ende:
+        <div class="zeitfeld">
+            <input type="datetime-local" name="ende" id="ende" required>
+            <button type="button" onclick="setJetzt('ende')">Jetztige Zeit</button>
+        </div>
+    </label>
+
+    <input type="submit" value="Zeiterfassung speichern">
+</form>
+
+<script>
+    function setJetzt(id) {
+        const now = new Date();
+
+        // Lokale Zeit (nicht UTC!) und Format auf yyyy-MM-ddTHH:mm kürzen
+        const jahr = now.getFullYear();
+        const monat = String(now.getMonth() + 1).padStart(2, '0');
+        const tag = String(now.getDate()).padStart(2, '0');
+        const stunde = String(now.getHours()).padStart(2, '0');
+        const minute = String(now.getMinutes()).padStart(2, '0');
+
+        const localTime = `${jahr}-${monat}-${tag}T${stunde}:${minute}`;
+        document.getElementById(id).value = localTime;
+    }
+</script>
+
+
+</body>
+</html>
