@@ -12,80 +12,133 @@
          <div class="logoutButtonContainer">
             <button class="logoutButton" id="logoutButton">Abmelden</button>
         </div>
-        <div class="tabs">
+        <div class="tabsContainer">
+            <div class="tabs" id="tabs">
+            <!-- 
+                Buttons für demonstration auskommentiert und durch links ersetzt
+                <button class="tab-active">Allgemeine Projektdaten</button>
+                <button class="tab">Personalkosten</button>
+                <button class="tab">Kosten für projektbezogene Leistungen</button>
+                <button class="tab" >Sachkosten</button>
+                <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
+                <button class="tab">Kosten für Räume und Flächen</button>
+            -->
+                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                <a href="personalkosten.html" class="tab">Personalkosten</a>
+                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                <a href="sachkosten.html" class="tab">Sachkosten</a>
+                <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+            </div>
+            <select class="tabsDropdown" id="tabsDropdown">
+                <option value="allgemein.html">Allgemeine Projektdaten</option>
+                <option vlaue="personalkosten.html">Personalkosten</option>
+                <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                <option value="sachkosten.html">Sachkosten</option>
+                <option value="abschreibungen.html" selected>Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                <option value="raeume.html">Kosten für Räume und Flächen</option>
+            </select>
+        </div>
+        <script>
+            const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
 
-        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-            <button class="tab-active">Allgemeine Projektdaten</button>
-            <button class="tab">Personalkosten</button>
-            <button class="tab">Kosten für projektbezogene Leistungen</button>
-            <button class="tab" >Sachkosten</button>
-            <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-            <button class="tab">Kosten für Räume und Flächen</button>
-        -->
-            <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-            <a href="personalkosten.html" class="tab">Personalkosten</a>
-            <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-            <a href="sachkosten.html" class="tab">Sachkosten</a>
-            <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-            <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-        </div>
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
+
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    tabs.classList.remove('tabsHidden');
+                    dropdown.classList.add('dropdownHidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    dropdown.classList.add('dropdownHidden');
+                }
+
+                requestAnimationFrame(() => {
+                    tabs.classList.add('navTransition');
+                    dropdown.classList.add('navTransition');
+                });
+            });
+
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        </script>
         <div class="mainContent">
-        <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
-            <div class="formRow">
-                <div class="formGroup">
-                    <!-- Anschaffungskosten drop down menü -->
-                    <label for="acquisitionCost">Anschaffungskosten</label>
-                    <select id="acquisitionCost" name="acquisitionCost">
-                        <option value="150-1000">150-1.000 €</option>
-                        <option value="from1000">ab 1.000 €</option>
-                    </select>
+            <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
+                <div class="formRow">
+                    <div class="formGroup">
+                        <!-- Anschaffungskosten drop down menü -->
+                        <label for="acquisitionCost">Anschaffungskosten</label>
+                        <select id="acquisitionCost" name="acquisitionCost">
+                            <option value="150-1000">150-1.000 €</option>
+                            <option value="from1000">ab 1.000 €</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="labelBezeichnung">Bezeichnung</label>
-                    <input type="text" id="labelBezeichnung" name="labelBezeichnung">
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="labelBezeichnung">Bezeichnung</label>
+                        <input type="text" id="labelBezeichnung" name="labelBezeichnung">
+                    </div>
+                    <div class="formGroup">
+                        <label for="purchasePrice">Kaufpreis</label>
+                        <input type="number" id="purchasePrice" name="purchasePrice" placeholder="0">
+                    </div>
                 </div>
-                <div class="formGroup">
-                    <label for="purchasePrice">Kaufpreis</label>
-                    <input type="number" id="purchasePrice" name="purchasePrice" placeholder="0">
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="projectFinanzing">über Projektfinanzierung</label>
+                        <input type="number" id="projectFinanzing" name="projectFinanzing" placeholder="0">
+                    </div>
                 </div>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="projectFinanzing">über Projektfinanzierung</label>
-                    <input type="number" id="projectFinanzing" name="projectFinanzing" placeholder="0">
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="remainingAmount">zu finanzierender Restbetrag</label>
+                        <input type="number" id="remainingAmount" name="remainingAmount" placeholder="0">
+                    </div>
                 </div>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="remainingAmount">zu finanzierender Restbetrag</label>
-                    <input type="number" id="remainingAmount" name="remainingAmount" placeholder="0">
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="financingRamainingAmount">Finanzierung Restbetrag und Folgekosten durch</label>
+                        <input type="text" id="financingRamainingAmount" name="financingRamainingAmount">
+                    </div>
                 </div>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="financingRamainingAmount">Finanzierung Restbetrag und Folgekosten durch</label>
-                    <input type="text" id="financingRamainingAmount" name="financingRamainingAmount">
+                <div class="formRow formRowRigth">
+                    <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
                 </div>
-            </div>
-            <div class="formRow formRowRigth">
-                <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
-            </div>
-        </form>
-<!-- Sidebar mit den Buttons und zusammenfassung -->
-    <aside class="sidebar">
-        <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
-        
-        <div class="sidebarSummary">
-            <span class="summaryTitle">Summe der Anschaffungskosten</span>
-            <ul class="summaryList" id="summaryListDepreciation">
+            </form>
+    <!-- Sidebar mit den Buttons und zusammenfassung -->
+            <aside class="sidebar">
+                <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
+                
+                <div class="sidebarSummary">
+                    <span class="summaryTitle">Summe der Anschaffungskosten</span>
+                    <ul class="summaryList" id="summaryListDepreciation">
+                </div>
+                <div class="formRow formRowRigth">
+                    <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
+                </div>
+            </aside>
         </div>
-        <div class="formRow formRowRigth">
-            <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
-        </div>
-    </aside>
-    </div>
     </body>
     <footer class="footer">
         <p>&copy; 2025 Hochschule Mittweida</p>

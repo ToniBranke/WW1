@@ -7,49 +7,9 @@ body, html
     color: #222;
 }
 
-.tabs
-{
-    display: flex;
-    flex-wrap: flex;
-    gap: 0.5rem;
-    margin-bottom: 2.2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    justify-content: center;
-}
 
-.tab
-{
 
-    /* formatierung für den link */
-    text-decoration: none;
-    text-align: center;
 
-    margin-top: 2rem;
-    background: #6e6e6e;
-    border: none;
-    border-radius: 8px 8px 4px 4px;
-    padding: 0.7em 1.5em; 
-    font-size: 1rem;
-    cursor: pointer;
-    color: #ffffff;
-    font-weight: 500;
-    transition: background 0.15s, color 0.15s;
-    margin-bottom: -1px;
-}
-
-.tabActive, .tab:hover
-{
-   /* formatierung für den link */
-    text-decoration: none;
-    text-align: center;
-
-    padding: 0.7em 1.5em;
-    border-radius: 8px 8px 4px 4px;
-    margin-top: 2rem;
-    background: #4069b1;
-    color: #fff;
-}
 
 /* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
 .mainContent
@@ -58,7 +18,7 @@ body, html
     justify-content: center;
     align-items: flex-start;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 7,5rem;
     margin: 0 auto;
 }
 
@@ -430,8 +390,169 @@ body, html
  
 }
 
-@media (max-width: 400px)
+/* Tabs */
+.tabsContainer
 {
+    width: 100%;
+    position: relative;
+    height: 7.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab, .tabActive
+{
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0.7em 1.5em;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.tab
+{
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
+}
+
+.tabActive
+{
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+}
+
+.tab:hover
+{
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+
+.tabs, .tabsDropdown {
+    opacity: 1;
+    position: relative;
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+    overflow-x: auto;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 100%;
+}
+
+.tabs.navTransition, .tabsDropdown.navTransition {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tabsDropdown {
+    width: 80%;
+    font-size: 16px;
+    align-self: center;
+    margin: 0 auto;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+}
+
+.tabsHidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50px);
+    pointer-events: none;
+}
+
+.dropdownHidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(50px);
+    pointer-events: none;
+}
+
+/*
+.tabActive, .tab:hover
+{
+   /* formatierung für den link //
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+/*
+.tabs
+{
+    display: flex;
+    flex-wrap: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+}
+
+.tab
+{
+
+     //formatierung für den link //
+    text-decoration: none;
+    text-align: center;
+
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    padding: 0.7em 1.5em; 
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
+}
+*/
+@media (max-width: 1500px)
+{
+    .tabs
+    {
+        /* display: none */
+    }
+
+    .tabsDropdown
+    {
+        display:block;
+    }
+
     .loginContainer
     {
         padding: 1.2rem 0.6rem;

@@ -1,92 +1,145 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sachkosten</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <script src="buttonScript.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sachkosten</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="buttonScript.js"></script>
     </head>
-<body class="taskMain">
-     <div class="logoutButtonContainer">
-            <button class="logoutButton" id="logoutButton">Abmelden</button>
-    </div>
-    <div class="tabs">
+    <body class="taskMain">
+        <div class="logoutButtonContainer">
+                <button class="logoutButton" id="logoutButton">Abmelden</button>
+        </div>
+        <div class="tabsContainer">
+            <div class="tabs" id="tabs">
 
-    <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-        <button class="tab-active">Allgemeine Projektdaten</button>
-        <button class="tab">Personalkosten</button>
-        <button class="tab">Kosten für projektbezogene Leistungen</button>
-        <button class="tab" >Sachkosten</button>
-        <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-        <button class="tab">Kosten für Räume und Flächen</button>
-    -->
-        <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-        <a href="personalkosten.html" class="tab">Personalkosten</a>
-        <a href="leistungen.html" class="tabActive">Kosten für projektbezogene Leistungen</a>
-        <a href="sachkosten.html" class="tab">Sachkosten</a>
-        <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-        <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-    </div>
-    <form class="projectForm" action="abschreibungen.html" method="post">
-        <div>
-            <p>Werkvertäge</p>
+            <!-- Buttons für demonstration auskommentiert und durch links ersetzt
+                <button class="tab-active">Allgemeine Projektdaten</button>
+                <button class="tab">Personalkosten</button>
+                <button class="tab">Kosten für projektbezogene Leistungen</button>
+                <button class="tab" >Sachkosten</button>
+                <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
+                <button class="tab">Kosten für Räume und Flächen</button>
+            -->
+                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                <a href="personalkosten.html" class="tab">Personalkosten</a>
+                <a href="leistungen.html" class="tabActive">Kosten für projektbezogene Leistungen</a>
+                <a href="sachkosten.html" class="tab">Sachkosten</a>
+                <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+            </div>
+            <select class="tabsDropdown" id="tabsDropdown">
+                <option value="allgemein.html">Allgemeine Projektdaten</option>
+                <option vlaue="personalkosten.html">Personalkosten</option>
+                <option value="leistungen.html" selected>Kosten für projektbezogene Leistungen</option>
+                <option value="sachkosten.html">Sachkosten</option>
+                <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                <option value="raeume.html">Kosten für Räume und Flächen</option>
+            </select>
         </div>
-        <div class="formRow">
-            <div class="formGroup">
-                <label for="workContract25">2025</label>
-                <input type="number" id="workContract25" name="workContract25" placeholder="0">
+        <script>
+            const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
+
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
+
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    tabs.classList.remove('tabsHidden');
+                    dropdown.classList.add('dropdownHidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    dropdown.classList.add('dropdownHidden');
+                }
+
+                requestAnimationFrame(() => {
+                    tabs.classList.add('navTransition');
+                    dropdown.classList.add('navTransition');
+                });
+            });
+
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        </script>
+        <form class="projectForm" action="abschreibungen.html" method="post">
+            <div>
+                <p>Werkvertäge</p>
             </div>
-            <div class="formGroup">
-                <label for="workContract26">2026</label>
-                <input type="number" id="workContract26" name="workContract26" placeholder="0">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="workContract25">2025</label>
+                    <input type="number" id="workContract25" name="workContract25" placeholder="0">
+                </div>
+                <div class="formGroup">
+                    <label for="workContract26">2026</label>
+                    <input type="number" id="workContract26" name="workContract26" placeholder="0">
+                </div>
+                <div class="formGroup">
+                    <label for="workContract27">2027</label>
+                    <input type="number" id="workContract27" name="workContract27" placeholder="0">
+                </div>
             </div>
-            <div class="formGroup">
-                <label for="workContract27">2027</label>
-                <input type="number" id="workContract27" name="workContract27" placeholder="0">
+            <div>
+                <p>Wissenschaftliche Dienstleistungen</p>
             </div>
-        </div>
-        <div>
-            <p>Wissenschaftliche Dienstleistungen</p>
-        </div>
-        <div class="formRow">
-            <div class="formGroup">
-                <label for="scientificService25">2025</label>
-                <input type="number" id="scientificService25" name="scientificService25" placeholder="0">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="scientificService25">2025</label>
+                    <input type="number" id="scientificService25" name="scientificService25" placeholder="0">
+                </div>
+                <div class="formGroup">
+                    <label for="scientificService26">2026</label>
+                    <input type="number" id="scientificService26" name="scientificService26" placeholder="0">
+                </div>
+                <div class="formGroup">
+                    <label for="scientificService27">2027</label>
+                    <input type="number" id="scientificService27" name="scientificService27" placeholder="0">
+                </div>
             </div>
-            <div class="formGroup">
-                <label for="scientificService26">2026</label>
-                <input type="number" id="scientificService26" name="scientificService26" placeholder="0">
+            <div>
+                <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
             </div>
-            <div class="formGroup">
-                <label for="scientificService27">2027</label>
-                <input type="number" id="scientificService27" name="scientificService27" placeholder="0">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="thirdPartyServices25">2025</label>
+                    <input type="number" id="thirdPartyService25" name="thirdPartyService25" placeholder="0">
+                </div>
+                <div class="formGroup">
+                    <label for="thirdPartyService26">2026</label>
+                    <input type="number" id="thirdPartyService26" name="thirdPartyService26" placeholder="0">
+                </div>
+                <div class="formGroup">
+                    <label for="thirdPartyService27">2027</label>
+                    <input type="number" id="thirdPartyService27" name="thirdPartyService27" placeholder="0">
+                </div>
             </div>
-        </div>
-        <div>
-            <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
-        </div>
-        <div class="formRow">
-            <div class="formGroup">
-                <label for="thirdPartyServices25">2025</label>
-                <input type="number" id="thirdPartyService25" name="thirdPartyService25" placeholder="0">
+            <div class="formRow formRowRigth">
+                <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
             </div>
-            <div class="formGroup">
-                <label for="thirdPartyService26">2026</label>
-                <input type="number" id="thirdPartyService26" name="thirdPartyService26" placeholder="0">
-            </div>
-            <div class="formGroup">
-                <label for="thirdPartyService27">2027</label>
-                <input type="number" id="thirdPartyService27" name="thirdPartyService27" placeholder="0">
-            </div>
-        </div>
-        <div class="formRow formRowRigth">
-            <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
-        </div>
-    </form>
-</body>
-<footer class="footer">
-    <p>&copy; 2025 Hochschule Mittweida</p>
-</footer>
+        </form>
+    </body>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
 </html>
