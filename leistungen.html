@@ -18,7 +18,7 @@
                 <button class="tab">Kosten für Räume und Flächen</button>
             -->
 
-            <div class="tabs" id="tabs">
+            <div class="tabbar" id="tabbar">
                 <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
                 <a href="personalkosten.html" class="tab">Personalkosten</a>
                 <a href="leistungen.html" class="tab-active">Kosten für projektbezogene Leistungen</a>
@@ -27,7 +27,7 @@
                 <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
             </div>
 
-            <select class="tabs-dropdown" id="tabsDropdown">
+            <select class="dropdown" id="dropdown">
                 <option value="allgemein.html">Allgemeine Projektdaten</option>
                 <option value="personalkosten.html">Personalkosten</option>
                 <option value="leistungen.html" selected>Kosten für projektbezogene Leistungen</option>
@@ -39,18 +39,18 @@
 
          <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
         <script>
-            const tabs = document.getElementById('tabs');
-            const dropdown = document.getElementById('tabsDropdown');
+            const tabs = document.getElementById('tabbar');
+            const dropdown = document.getElementById('dropdown');
 
             const changeWidth = 1500;
             let tooSmall = window.innerWidth <= changeWidth;
 
             function animateSwitch(showDropdown) {
                 if (showDropdown) {
-                    tabs.classList.add('tabs-hidden');
+                    tabs.classList.add('tabbar-hidden');
                     dropdown.classList.remove('dropdown-hidden');
                 } else {
-                    tabs.classList.remove('tabs-hidden');
+                    tabs.classList.remove('tabbar-hidden');
                     dropdown.classList.add('dropdown-hidden');
                 }
             }
@@ -65,7 +65,7 @@
 
             window.addEventListener('DOMContentLoaded', () => {
                 if (tooSmall) {
-                    tabs.classList.add('tabs-hidden');
+                    tabs.classList.add('tabbar-hidden');
                     dropdown.classList.remove('dropdown-hidden');
                 } else {
                     dropdown.classList.add('dropdown-hidden');
