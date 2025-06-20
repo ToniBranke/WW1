@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalkosten</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="neuerMitarbeiter.js"></script>
 </head>
 <body class="personalkosten-body">
     <div class="tabs-container">
@@ -83,52 +83,172 @@
         </script>
 
 
-        <form class="projekt-form">
-            Durch Projekt zu finanzierende Mitarebeiter
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="shk">SHK:</label>
-                    <input type="number" id="shk" name="shk" min="0" required>
-                </div>
-                <div class="form-group">
-                    <label for="whk">WHK:</label>
-                    <input type="number" id="whk" name="whk" min="0" required>
-                </div>
-                <div class="form-group">
-                    <label for="stufe">Stufe:</label>
-                    <input type="number" id="stufe" name="stufe" min="0" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="wochenImProjekt">Wochen im Projekt:</label>
-                    <div class="felder-small">
-                        <div class="form-group">
-                            <label for="2025">2025</label>
-                            <input type="number" id="2025" name="2025" min="0" required>
-                        </div>
-                            <div class="form-group">
-                            <label for="2026">2026</label>
-                            <input type="number" id="2026" name="2026" min="0" required>
-                        </div>
-                            <div class="form-group">
-                                <label for="2027">2027</label>
-                                <input type="number" id="2027" name="2027" min="0" required>
-                            </div>
-                        </div>
+        <div class="main-content">
+            <form class="projekt-form" id="personalForm" action="personal.php" method="post" style="display: none;">
+                
+                <!-- SHK/ WHK -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hk">SHK/ WHK</label>
+                        <select id="hk" name="hk">
+                            <option value="SHK">Studentische Hilfskraft</option>
+                            <option value="WHK">Wissenschaftliche Hilfskraft</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="wochenstunden">Wochenstunden:</label>
-                    <input type="number" id="wochenstunden" name="wochenstunden" min="0" required>
+                
+                <!-- Entgeltgruppe -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entgeltgr">Entgeltgruppe</label>
+                        <select id="entgeltgr" name="entgeltgr">
+                            <option value="E 01">E 01</option>
+                            <option value="E 02">E 02</option>
+                            <option value="E 03">E 03</option>
+                            <option value="E 04">E 04</option>
+                            <option value="E 05">E 05</option>
+                            <option value="E 06">E 06</option>
+                            <option value="E 07">E 07</option>
+                            <option value="E 08">E 08</option>
+                            <option value="E 09">E 09</option>
+                            <option value="E 10">E 10</option>
+                            <option value="E 11">E 11</option>
+                            <option value="E 12">E 12</option>
+                            <option value="E 13">E 13</option>
+                            <option value="E 14">E 14</option>
+                            <option value="E 15">E 15</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+
+                <!-- Stufe/ Std. satz -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="stufe">Stufe/ Std. satz</label>
+                        <input type="number" id="stufe" name="stufe">
+                    </div>
+                </div>
+
+                <!-- 2025, 2026, 2027 -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jahr2025">2025</label>
+                        <input type="number" id="jahr2025" name="jahr2025">
+                    </div>
+                    <div class="form-group">
+                        <label for="jahr2026">2026</label>
+                        <input type="number" id="jahr2026" name="jahr2026">
+                    </div>
+                    <div class="form-group">
+                        <label for="jahr2027">2027</label>
+                        <input type="number" id="jahr2027" name="jahr2027">
+                    </div>
+                </div>
+
+                <!-- Wochenstunden im Projekt -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="wochenstunden">Wochenstunden im Projekt</label>
+                        <input type="number" id="wochenstunden" name="wochenstunden">
+                    </div>
+                </div>
+
+                <!-- Submit -->
                 <div class="form-row form-row-rigth">
                     <button type="submit" class="weiter-button">Weiter</button>
                 </div>
+            </form>
+
+
+            <!-- haushaltfinanz. Hochschul-Mitarbeiter -->
+            <form2 class="projekt-form" id="personalForm2" action="personal.php" method="post" style="display: none;">
+                
+                <!-- Entgeltgruppe -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="entgeltgr">Entgeltgruppe</label>
+                        <select id="entgeltgr" name="entgeltgr">
+                            <option value="E 01 - 04">E 01 - 04</option>
+                            <option value="E 05 - 08">E 05 - 08</option>
+                            <option value="E 09 - 12">E 09 - 12</option>
+                            <option value="E 13 - 15">E 13 - 15</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="form-row">
+                    <div>2025</div>
+                    <div class="form-group">
+                        <label for="anzahlPersonen2025">Anzahl Personen</label>
+                        <input type="number" id="anzahlPersonen2025" name="anzahlPersonen2025">
+                    </div>
+                    <div class="form-group">
+                        <label for="gesamtStunden2025">Stunden gesamt im Projekt</label>
+                        <input type="number" id="gesamtStunden2025" name="gesamtStunden2025">
+                    </div>
+                </div>
+
+
+                <!-- 2026 -->
+                <div class="form-row">
+                    <div>2026</div>
+                    <div class="form-group">
+                        <label for="anzahlPersonen2026">Anzahl Personen</label>
+                        <input type="number" id="anzahlPersonen2026" name="anzahlPersonen2026">
+                    </div>
+                    <div class="form-group">
+                        <label for="gesamtStunden2026">Stunden gesamt im Projekt</label>
+                        <input type="number" id="gesamtStunden2026" name="gesamtStunden2026">
+                    </div>
+                </div>
+
+                <!-- 2027 -->
+                <div class="form-row">
+                    <div>2027</div>
+                    <div class="form-group">
+                        <label for="anzahlPersonen2027">Anzahl Personen</label>
+                        <input type="number" id="anzahlPersonen2027" name="anzahlPersonen2027">
+                    </div>
+                    <div class="form-group">
+                        <label for="gesamtStunden2027">Stunden gesamt im Projekt</label>
+                        <input type="number" id="gesamtStunden2027" name="gesamtStunden2027">
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-row form-row-rigth">
+                    <button type="submit" class="weiter-button">Weiter</button>
+                </div>
+            </form2>
+
+
+    <!-- Sidebar mit den Buttons und zusammenfassung -->
+        <aside class="sidebar">
+            <button type="button" class="sidebarButton addButton" id="addButton">+ zu finanz. Mitarbeiter</button>
+            <button type="button" class="sidebarButton addButton" id="addButton2">+ haushaltfinanz. Mitarbeiter</button>
+            <button type="button" class="sidebarButton saveButton" id="saveButton">Mitarbeiter speichern</button>
+            <div class="sidebarSummary">
+                <span class="summaryTitle">Summe der Personalkosten</span>
+                <ul class="summaryList" id="summaryList">
             </div>
-        </form>
+            <div class="form-row form-row-rigth">
+                <button type="submit" class="weiter-button" id="submitButton" style="display: block;">Weiter</button>
+            </div>
+        </aside>
+    <!-- <script>
+            // JavaScript für die Sidebar-Funktionalität
+            document.querySelector('.addButton').addEventListener('click', function() {
+                // Logik zum Hinzufügen eines neuen Gegenstands
+                alert('Neue Person hinzugefügt!');
+            });
+
+            document.querySelector('.saveButton').addEventListener('click', function() {
+                // Logik zum Speichern des Gegenstands
+                alert('Mitarbeiter gespeichert!');
+            });
+        </script>
+        -->
+        </div>
     </body>
 </html>
