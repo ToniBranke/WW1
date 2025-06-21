@@ -81,6 +81,7 @@
                     <div class="formGroup wide" >
                         <label for="officeUsageFee">Büronutzungsgebühr</label>
                         <input type="number" id="officeUsageFee" name="officeUsageFee" placeholder="0">
+                        <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
                     </div>
                 </div>
             <div id="LabUsageContainer" style="display: none;">
@@ -107,6 +108,7 @@
                     <div class="formGroup" id="LabUsageFeeHoursContainer">
                         <label for="labUsageFeeHours">Stunden pro Woche</label>
                         <input type="number" id="labUsageFeeHours" name="labUsageFeeHours" placeholder="0">
+                        <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
                     </div>
                 </div>
             </div>
@@ -127,6 +129,7 @@
                     <div class="formGroup" id="otherRoomRentContainer">
                         <label for="otherRoomRent"> mtl. Miete pro QM</label>
                         <input type="number" id="otherRoomRent" name="otherRoomRent" placeholder="0">
+                        <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
                     </div>
                     <div class="formGroup" id="otherRoomDurationContainer">
                         <label for="otherRoomDuration">Monate</label>
@@ -144,6 +147,7 @@
                             <option value="11">11 Monate</option>
                             <option value="12">12 Monate</option>
                         </select>
+                        <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
                     </div>
                 </div>
             </div>
@@ -157,7 +161,7 @@
             </form>
             <aside class="sidebar">
                 <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
-                <button type="button" class="sidebarButton labor" id="addLaborButton">+ labor</button>
+                <button type="button" class="sidebarButton labor" id="addLaborButton">+ Labor</button>
                 <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
                 <div class="sidebarSummary">
                     <span class="summaryTitle">Summe der Nutzungskosten</span>

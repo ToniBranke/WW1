@@ -7,9 +7,72 @@ body, html
     color: #222;
 }
 
+/* Buttons */
+.selectButton, .newProjectButton, .createButton, .openButton
+{
+    padding: o.8rem, 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 17.188rem;
+    height: 3.75rem;
+    justify-content: center;
+}
 
+/*
+.weiterSelectButton, .backButton
+{
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 200px;
+    height: 60px;
+    justify-content: center;
+}
+*/
 
+.backButton:hover, .newProjectButton:hover, .selectButton:hover, 
+.createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, 
+.logoutButton:hover, .addButton:hover, .weiterSelectButton:hover
+{
+    background: #24406a;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-out;
+}
 
+.saveButton:hover, .buero:hover, .labor:hover, .anderes:hover
+{
+    transform: scale(1.1);
+    transform: transform o.2s ease-out
+}
+
+.selectionForm, .projectForm
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    align-items: center;
+}
 
 /* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
 .mainContent
@@ -53,14 +116,15 @@ body, html
 
 .sidebarButton.addButton
 {
-    background: #4069b1;
-    color: #fff;
+    background: #bcbcbc;
+    color: #000;
     border: none;
 }
 
 .sidebarButton.addButton:hover
 {
-    background: #24406a
+    background: #24406a;
+    color: #fff;
 }
 
 .sidebarButton.saveButton:hover
@@ -109,6 +173,20 @@ body, html
     display: flex;
     gap: 2rem; 
     margin-bottom: 1.1rem;
+}
+
+.formRowSelection
+{
+    display: flex;
+    gap: -30rem;
+    margin-bottom: 1.1rem;
+    margin: 0 auto;
+}
+
+.formGroup
+{
+    position: relative;
+    margin-bottom: 2.5rem;
 }
 
 .formRow .formGroup
@@ -189,12 +267,12 @@ body, html
     transition: background 0.18s;
     font-weight: 500;
     letter-spacing: 0.02rem;
+
 }
 .weiterButton:hover 
 {
     background: #24406a;
 }
-
 
 /* Login Page Styles */
 
@@ -368,9 +446,7 @@ body, html
     margin-left: auto;
     margin-right: auto; 
     width: 100%;
-   
     padding: 0.8rem 0;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,8 +455,6 @@ body, html
     text-align: center;
     font-weight: 400;
     letter-spacing: 0.01rem;
-    
-    
 }
 
 .loginFooter
@@ -495,6 +569,44 @@ body, html
     transform: translateX(-50%) translateY(50px);
     pointer-events: none;
 }
+
+/* Tooltips */
+
+.tooltipText
+{
+    visibility: hidden;
+    width: 14.375rem;
+    background-color: #3f68b0;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 5px;
+    border-color: #ffffff;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: -3.5rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+.formGroup:hover .tooltipText
+{
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.inputError
+{
+    border: 2px solid #d93025 !important; 
+    background-color: rgba(243, 128, 114, 0.74) !important;
+}
+
+/* added sumaryContent fuer Zusammenfassung (nicht vollstaendig) */
+
 
 /*
 .tabActive, .tab:hover
