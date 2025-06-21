@@ -7,28 +7,82 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script src="buttonScript.js"></script>
+    <script src="redBackground.js"></script>"
 </head>
 <body class="taskMain">
     <div class="logoutButtonContainer">
     <button class="logoutButton" id="logoutButton">Abmelden</button>
     </div>
-    <div class="tabs">
+    <div class="tabsContainer">
+        <div class="tabs" id="tabs">
 
-    <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-        <button class="tab-active">Allgemeine Projektdaten</button>
-        <button class="tab">Personalkosten</button>
-        <button class="tab">Kosten für projektbezogene Leistungen</button>
-        <button class="tab" >Sachkosten</button>
-        <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-        <button class="tab">Kosten für Räume und Flächen</button>
-    -->
-        <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-        <a href="personalkosten.html" class="tab">Personalkosten</a>
-        <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-        <a href="sachkosten.html" class="tabActive">Sachkosten</a>
-        <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-        <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-    </div>
+        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
+            <button class="tab-active">Allgemeine Projektdaten</button>
+            <button class="tab">Personalkosten</button>
+            <button class="tab">Kosten für projektbezogene Leistungen</button>
+            <button class="tab" >Sachkosten</button>
+            <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
+            <button class="tab">Kosten für Räume und Flächen</button>
+        -->
+            <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+            <a href="personalkosten.html" class="tab">Personalkosten</a>
+            <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+            <a href="sachkosten.html" class="tabActive">Sachkosten</a>
+            <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+            <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+        </div>
+        <select class="tabsDropdown" id="tabsDropdown">
+                <option value="allgemein.html">Allgemeine Projektdaten</option>
+                <option vlaue="personalkosten.html">Personalkosten</option>
+                <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                <option value="sachkosten.html"selected>Sachkosten</option>
+                <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                <option value="raeume.html">Kosten für Räume und Flächen</option>
+            </select>
+        </div>
+        <script>
+            const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
+
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
+
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    tabs.classList.remove('tabsHidden');
+                    dropdown.classList.add('dropdownHidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    dropdown.classList.add('dropdownHidden');
+                }
+
+                requestAnimationFrame(() => {
+                    tabs.classList.add('navTransition');
+                    dropdown.classList.add('navTransition');
+                });
+            });
+
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        </script>
     <form class="projectForm" action="abschreibungen.html" method="post">
         <div class="formRow">
             <div class="loginForm">
@@ -39,65 +93,112 @@
             <div class="formGroup">
                 <label for="officeSupplies">Büromaterial</label>
                 <input type="number" id="officeSupplies" name="officeSupplies" placeholder="0">
+
+                <span class="tooltipText">Verbrauchsmaterialien für den täglichen Bürobedarf</span>
+
                 <span class="tooltip-text">Verbrauchsmaterialien für den täglichen Bürobedarf</span>
+
             </div>
             <div class="formGroup">
                 <label for="softwareLicenses">Software / Lizenzen</label>
                 <input type="number" id="softwareLicenses" name="softwareLicenses" placeholder="0">
+
+                <span class="tooltipText">Kosten für Softwarekäufe oder Lizenzgebühren</span>
+
                 <span class="tooltip-text">Kosten für Softwarekäufe oder Lizenzgebühren</span>
+
             </div>
             <div class="formGroup">
                 <label for="advertisingCost">Werbekosten</label>
                 <input type="number" id="advertisingCost" name="advertisingCost" placeholder="0">
+
+                <span class="tooltipText">Ausgaben für Werbung, Flyer, Anzeigen oder Online-Marketing</span>
+
                 <span class="tooltip-text">Ausgaben für Werbung, Flyer, Anzeigen oder Online-Marketing</span>
+
             </div>
         </div>
         <div class="formRow">
             <div class="formGroup">
                 <label for="PostagePhoneComm">Porto / Telefon / Kommunikation</label>
                 <input type="number" id="PostagePhoneComm" name="PostagePhoneComm" placeholder="0">
+
+                <span class="tooltipText">Kosten für Postversand, Telefonate oder Internetnutzung</span>
+
                 <span class="tooltip-text">Kosten für Postversand, Telefonate oder Internetnutzung</span>
+
             </div>
             <div class="formGroup">
                 <lable for="storageDevices">Speichermedien</lable>
                 <input type="number" id="storageDevices" name="storageDevices" placeholder="0">
+
+                <span class="tooltipText">USB-Sticks, externe Festplatten oder SD-Karten</span>
+
                 <span class="tooltip-text">USB-Sticks, externe Festplatten oder SD-Karten</span>
+
             </div>
             <div class="formGroup">
                 <lable for="maintenance">Instandhaltung</lable>
                 <input type="number" id="maintenance" name="maintenance" placeholder="0">
+
+                <span class="tooltipText">Wartung oder kleinere Reparaturen von Geräten/Ausstattung</span>
+
                 <span class="tooltip-text">Wartung oder kleinere Reparaturen von Geräten/Ausstattung</span>
+
             </div>
         </div>
         <div class="formRow">
             <div class="formGroup">
                 <label for="devicesBelow150">Geräte / Ausstattung < 150 </label>
+
+                <input type="number" id="devicesBelow150" name="devicesBelow150" placeholder="0" max="150">
+                <span class="tooltipText">Kleingeräte und Ausstattungen unter 150€ netto pro Stück</span>
+
                 <input type="number" id="devicesBelow150" name="devicesBelow150" placeholder="0">
                     <span class="tooltip-text">Kleingeräte und Ausstattungen unter 150€ netto pro Stück</span>
+
             </div>
             <div class="formGroup">
                 <label for="magazinesLiterature">Literatur / Zeitschriften</label>
                 <input type="number" id="magazinesLiterature" name="magazinesLiterature" placeholder="0" required>
+
+                <span class="tooltipText">Fachbücher, Journale oder abonnierte Zeitschriften</span>
+
                 <span class="tooltip-text">Fachbücher, Journale oder abonnierte Zeitschriften</span>
+
             </div>
             <div class="formGroup">
                 <label for="materials">Materialien(Roh-, Hilfs-, Betriebsstoffe)</label>
                 <input type="number" id="materials" name="materials" placeholder="0" required>
+
+                <span class="tooltipText">Projektbezogene Materialien, z.B. Papier, Chemikalien, Farbe</span>
+
                 <span class="tooltip-text">Projektbezogene Materialien, z.B. Papier, Chemikalien, Farbe</span>
+
             </div>
         </div>
         <div class="formRow">
             <div class="formGroup wide">
                 <label for="travelCost"><h2>Reisekosten</h2></label>
+
+                <input type="number" id="travelCost" name="travelCost" placeholder="0"required>
+                <span class="tooltipText">Fahrt-, Übernachtungs- oder Verpflegungskosten auf Dienstreisen</span>
+
                 <input type="number" id="travelCost" name="travelCost" placeholder="0" required>
                 <span class="tooltip-text">Fahrt-, Übernachtungs- oder Verpflegungskosten auf Dienstreisen</span>
+
             </div>
         </div>
         <div class="formRow">    
             <div class="formGroup wide">
                 <label for="otherExpenses"><h2>Sonstige Aufwendungen</h2></label>
+
+                <input type="number" id="otherExpenses" name="otherExpenses" placeholder="0"required>
+                <span class="tooltipText">Alle übrigen Kosten, die keiner anderen Kategorie zuzuordnen sind</span>
+
                 <input type="number" id="otherExpenses" name="otherExpenses" placeholder="0" required>
                 <span class="tooltip-text">Alle übrigen Kosten, die keiner anderen Kategorie zuzuordnen sind</span>
+
             </div>
         </div>
         <div class="formRow formRowRigth">

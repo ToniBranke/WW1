@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function()
         const restbetrag = parseFloat(document.getElementById('restbetrag').value) || 0;
         const folgekosten = parseFloat(document.getElementById('finanzierungRestbetragFolgekosten').value) || 0;
 
-        // allert falls keine werte eingegeben wurden
+        // alert falls keine werte eingegeben wurden
         if (!bezeichnung &&( kaufpreis+ restbetrag + folgekosten === 0))
         {
             alert('Bitte geben Sie einen Wert ein.');
