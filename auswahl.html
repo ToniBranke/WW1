@@ -51,3 +51,63 @@
     <p>&copy; 2025 Hochschule Mittweida</p>
 </foot>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projektauswahl</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="buttonScript.js"></script>
+  <script src="auswahl.js"></script>
+</head>
+
+<body>
+
+<div class="logoutButtonContainer">
+  <button class="logoutButton" id="logoutButton">Abmelden</button>
+</div>
+
+<form class="projectForm">
+  <div>
+    <div class="formRow">
+      <button type="button" class="selectButton" id="selectButton">Projektauswahl</button>
+    </div>
+    <div class="formRow">
+      <button type="button" class="newProjectButton" id="newProjectButton">Neues Projekt erstellen</button>
+    </div>
+  </div>
+</form>
+
+
+
+<form class="selectionForm" id="selectForm" style="display: none">
+  <div>
+    <h2>Bisherige Projekte</h2>
+    <div class="formGroup">
+      <label for="existingProject">Projekt wählen:</label>
+      <select class="formGroup" id="existingProject" name="existingProject"></select>
+    </div>
+    <button class="openButton" type="button" id="submitButton">Öffnen</button>
+  </div>
+</form>
+
+<form class="projectForm" id="newProjectForm" style="display: none">
+  <h2>Neues Projekt erstellen</h2>
+  <div class="formGroup">
+    <label for="projectName">Projektname:</label>
+    <input class="formGroup" type="text" id="projectName" name="projectName" required>
+  </div>
+  <button class="createButton" type="submit">Anlegen</button>
+</form>
+
+</body>
+
+<div class="footerBox">
+  <footer class="footer">
+    <p>&copy; 2025 Hochschule Mittweida</p>
+  </footer>
+</div>
+</html>

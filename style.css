@@ -3,13 +3,14 @@ body, html
     height:100%;
     margin:0;
     font-family: 'Seorge UI', sans-serif;
-    background-color: #e6e6e6;
+    background-color: #232323;
     color: #222;
 }
 
 /* Buttons */
 .selectButton, .newProjectButton, .createButton, .openButton
 {
+
     padding: o.8rem, 2.1rem;
     background: #4069b1;
     color: #fff;
@@ -24,6 +25,14 @@ body, html
     display: block;
     width: 17.188rem;
     height: 3.75rem;
+
+    display: flex;
+    flex-wrap: flex;
+    gap: 1rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
     justify-content: center;
 }
 
@@ -168,6 +177,13 @@ body, html
     margin: 0 auto;
 }
 
+.formRowSelection {
+    display: flex;
+    gap: -30rem;
+    margin-bottom: 1.1rem;
+    margin: 0 auto;
+}
+
 .formRow
 {
     display: flex;
@@ -268,10 +284,14 @@ body, html
     font-weight: 500;
     letter-spacing: 0.02rem;
 
+
 }
 .weiterButton:hover 
 {
     background: #24406a;
+
+    margin: 1rem;
+
 }
 
 /* Login Page Styles */
@@ -407,11 +427,7 @@ body, html
     transition: background 0.2s;
     font-weight: 500;
     letter-spacing: 0.02rem;
-}
-
-.loginButton:hover, .logoutButton:hover
-{
-    background: #325493;
+    margin-top: 0.7rem;
 }
 
 .logoutButtonContainer
@@ -444,24 +460,33 @@ body, html
     bottom: 0;
     justify-content: flex;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     width: 100%;
+
     padding: 0.8rem 0;
+
+
+    padding: 0.8rem 0;
+
+
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.95rem;
-    color: #666;
+    color: #3f68b0;
     text-align: center;
     font-weight: 400;
     letter-spacing: 0.01rem;
+
+
+
+
 }
 
 .loginFooter
 {
     position: fixed;
     bottom: 0;
- 
 }
 
 /* Tabs */
@@ -682,4 +707,124 @@ body, html
         min-width:0;
         margin-top: 2rem;
     }
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+
+.tooltip-text {
+    visibility: hidden;
+    width: 230px;
+    background-color: #3f68b0;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 5px;
+    border-color: #ffffff;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: -3.5rem; /* Tooltip unter dem Eingabefeld */
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    pointer-events: none;
+}
+
+
+.form-group:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.input-error {
+    border: 2px solid #d93025;
+    background-color: rgba(243, 128, 114, 0.47);
+}
+
+#wirtschaftlicher-bereich {
+    width: 220px;
+}
+
+#projekt-kostentraegernummer {
+    width: 220px;
+}
+
+#zeitraum-von {
+    width: 220px;
+}
+
+#zeitraum-bis {
+    width: 220px;
+}
+
+.selectButton, .newProjectButton, .createButton, .openButton {
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 275px;
+    height: 60px;
+    justify-content: center;
+}
+
+.backButton:hover, .newProjectButton:hover, .selectButton:hover, .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, .logoutButton:hover, .weiterSelectButton:hover, .addButton:hover {
+    background: #24406a;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-out;
+}
+
+.saveButton:hover, .buero:hover, .labor:hover, .anderes:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-out;
+}
+
+.selectionForm, .projectForm
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    align-items: center;
+}
+
+.projectForm {
+    align-items: center;
+}
+
+.footerBox {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.summaryContent li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.summaryContent li strong {
+    min-width: 400px; /* Breite für das Label */
+    display: inline-block;
 }

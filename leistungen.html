@@ -12,6 +12,7 @@
         <div class="logoutButtonContainer">
                 <button class="logoutButton" id="logoutButton">Abmelden</button>
         </div>
+
         <div class="tabsContainer">
             <div class="tabs" id="tabs">
 
@@ -29,6 +30,20 @@
                 <a href="sachkosten.html" class="tab">Sachkosten</a>
                 <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
                 <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+              
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="workContract25">2025</label>
+                <input type="number" id="workContract25" name="workContract25" placeholder="0">
+                <span class="tooltip-text">Auftragsverhältnisse mit Externen zur Erbringung klar definierter Leistungen </span>
+            </div>
+            <div class="formGroup">
+                <label for="workContract26">2026</label>
+                <input type="number" id="workContract26" name="workContract26" placeholder="0">
+            </div>
+            <div class="formGroup">
+                <label for="workContract27">2027</label>
+                <input type="number" id="workContract27" name="workContract27" placeholder="0">
             </div>
             <select class="tabsDropdown" id="tabsDropdown">
                 <option value="allgemein.html">Allgemeine Projektdaten</option>
@@ -39,6 +54,7 @@
                 <option value="raeume.html">Kosten für Räume und Flächen</option>
             </select>
         </div>
+ Toni_Dev
         <script>
             const tabs = document.getElementById('tabs');
             const dropdown = document.getElementById('tabsDropdown');
@@ -85,6 +101,16 @@
         <form class="projectForm" action="abschreibungen.html" method="post">
             <div>
                 <p>Werkvertäge</p>
+
+        <div>
+            <p>Wissenschaftliche Dienstleistungen</p>
+        </div>
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="scientificService25">2025</label>
+                <input type="number" id="scientificService25" name="scientificService25" placeholder="0">
+                <span class="tooltip-text">Externe Dienstleistungen mit wissenschaftlichem Bezug</span>
+
             </div>
             <div class="formRow">
                 <div class="formGroup">
@@ -104,6 +130,7 @@
             <div>
                 <p>Wissenschaftliche Dienstleistungen</p>
             </div>
+
             <div class="formRow">
                 <div class="formGroup">
                     <label for="scientificService25">2025</label>
@@ -118,6 +145,17 @@
                     <label for="scientificService27">2027</label>
                     <input type="number" id="scientificService27" name="scientificService27" placeholder="0">
                 </div>
+
+        </div>
+        <div>
+            <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
+        </div>
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="thirdPartyServices25">2025</label>
+                <input type="number" id="thirdPartyService25" name="thirdPartyService25" placeholder="0">
+                <span class="tooltip-text">Dienste externer Anbieter, keine physischen Produkte oder Geräte</span>
+
             </div>
             <div>
                 <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
@@ -137,6 +175,7 @@
                     <input type="number" id="thirdPartyService27" name="thirdPartyService27" placeholder="0">
                 </div>
             </div>
+
             <div class="formRow formRowRigth">
                 <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
             </div>
@@ -146,3 +185,17 @@
         <p>&copy; 2025 Hochschule Mittweida</p>
     </footer>
 </html>
+
+        </div>
+        <div class="formRow formRowRigth">
+            <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
+        </div>
+    </form>
+</body>
+<div class="footerBox">
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
+</div>
+</html>
+
