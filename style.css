@@ -456,7 +456,7 @@ body, html
 
 .footer
 {
-    position : fixed;
+    position : bottom;
     bottom: 0;
     justify-content: flex;
     margin-left: auto;
