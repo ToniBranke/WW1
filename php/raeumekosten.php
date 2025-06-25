@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p>Zusatzraumkosten ($otherRoomSize qm × €$otherRoomRent × $otherRoomMonths Monate): €" . number_format($otherRoomCost, 2, ',', '.') . "</p>";
     echo "<h2>Gesamtkosten: €" . number_format($totalRoomCost, 2, ',', '.') . "</h2>";
 
+    //DB
     $db = new SQLite3('raeume.db');
     $db->exec("CREATE TABLE IF NOT EXISTS raeume (
         id INTEGER PRIMARY KEY,
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindValue(3, $otherRoomCost);
     $stmt->bindValue(4, $totalRoomCost);
     $stmt->execute();
-    
+
 } else {
     echo "Ungültige Anfrage.";
 }
