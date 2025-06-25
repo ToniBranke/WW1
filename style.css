@@ -173,6 +173,7 @@ body, html
     display: flex;
     gap: 2rem; 
     margin-bottom: 1.1rem;
+    
 }
 
 .formRowSelection
@@ -682,4 +683,15 @@ body, html
         min-width:0;
         margin-top: 2rem;
     }
+
+    @media (max-width: 860px) {
+  .formRow {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.3rem;
+  }
+  .formGroup {
+    margin-bottom: 1.3rem;
+  }
+}
 }
