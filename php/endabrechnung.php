@@ -1,70 +1,98 @@
 <?php
-// Verbindung zur DB
-$db = new SQLite3('projekt.db');
+/**
+ * Backend – Endabrechnung (V3‑7EN‑10)
+ *  pulls:
+ *      3‑2PK‑03, 3‑3PL‑01,
+ *      3‑4SK‑01, 3‑5IV‑02, 3‑6RF‑01,
+ *      V0‑7EN‑07_plannedPercentProfit
+ *  feeds:
+ *      V0‑7EN‑01_endimperialOneTwo
+ *      V0‑7EN‑02_endimperialTreeFourFive
+ *      V0‑7EN‑03_centralGKZ
+ *      V0‑7EN‑04_decentralGKZ
+ *      V0‑7EN‑05_endimperialNet
+ *      V0‑7EN‑06_plannedProfit
+ *      V0‑7EN‑08_plannedNet
+ *      V0‑7EN‑09_tax
+ *      V3‑7EN‑10_endimperial  →  3‑7EN‑01
+ */
 
-// Tabelle "felder" erstellen, falls sie nicht existiert
-$db->exec("
-    CREATE TABLE IF NOT EXISTS felder (
-        id TEXT PRIMARY KEY,
-        wert REAL
-    );
-");
-//TEstwerte
-$db->exec("INSERT OR REPLACE INTO felder (id, wert) VALUES 
-    ('3-2PK-03', 1000),
-    ('3-3PL-01', 500),
-    ('3-4SK-01', 200),
-    ('3-5IV-02', 300),
-    ('3-6RF-01', 100)
-");
+declare(strict_types=1);
 
-// DB Daten
-function getFeldwert($feldId) {
+$db = new SQLite3('deine_datenbank.sqlite');
+
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Hilfsfunktionen
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+/**
+ * Holt den Wert eines Feldes.
+ */
+function pull(string $feldId): float
+{
     global $db;
-    $stmt = $db->prepare("SELECT wert FROM felder WHERE id = :id");
-    $stmt->bindValue(':id', $feldId);
-    $result = $stmt->execute();
-    $row = $result->fetchArray(SQLITE3_ASSOC);
-    return $row ? floatval($row['wert']) : 0.0;
+    $stmt = $db->prepare('SELECT wert FROM felder WHERE id = :id LIMIT 1');
+    $stmt->bindValue(':id', $feldId, SQLITE3_TEXT);
+    $row = $stmt->execute()->fetchArray(SQLITE3_ASSOC);
+    return $row ? (float)$row['wert'] : 0.0;
 }
 
-// Gewinnaufschlag
-$geplanterProzentGewinn = isset($_POST['V0-7EN-07']) ? floatval($_POST['V0-7EN-07']) : 0.0;
+/**
+ * Schreibt einen Wert in ein Feld (upsert).
+ */
+function feed(string $feldId, float $wert): void
+{
+    global $db;
+    $stmt = $db->prepare('INSERT INTO felder (id, wert)
+                          VALUES (:id, :wert)
+                          ON CONFLICT(id) DO UPDATE SET wert = :wert');
+    $stmt->bindValue(':id',   $feldId, SQLITE3_TEXT);
+    $stmt->bindValue(':wert', $wert);
+    $stmt->execute();
+}
 
-//Berechnungsschritte
-$db->exec("INSERT OR REPLACE INTO felder (id, wert) VALUES ('V0-7EN-07_plannedPercentProfit', 0.15)"); //Fester Gewinnsatz von 15%
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//Kostenblöcke
+//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
-$personalkosten = getFeldwert('3-2PK-03');
-$projektleistungen = getFeldwert('3-3PL-01');
-$sonstigeKosten = getFeldwert('3-4SK-01') + getFeldwert('3-5IV-02') + getFeldwert('3-6RF-01');
+// V0‑7EN‑01_endimperialOneTwo ← SUM[3‑2PK‑03; 3‑3PL‑01]
+$V0_7EN_01_endimperialOneTwo = pull('3-2PK-03') + pull('3-3PL-01');
+feed('V0-7EN-01_endimperialOneTwo', $V0_7EN_01_endimperialOneTwo);
 
-$endimperialOneTwo = $personalkosten + $projektleistungen; // V0-7EN-01
-$endimperialTreeFourFive = $sonstigeKosten;                // V0-7EN-02
+// V0‑7EN‑02_endimperialTreeFourFive ← SUM[3‑4SK‑01; 3‑5IV‑02; 3‑6RF‑01]
+$V0_7EN_02_endimperialTreeFourFive = pull('3-4SK-01') + pull('3-5IV-02') + pull('3-6RF-01');
+feed('V0-7EN-02_endimperialTreeFourFive', $V0_7EN_02_endimperialTreeFourFive);
 
-$zentralGKZ = $endimperialOneTwo * 0.1932;                 // V0-7EN-03
-$dezentralGKZ = $endimperialOneTwo * 0.0564;               // V0-7EN-04
+// V0‑7EN‑03_centralGKZ ← V0‑7EN‑01 * 19.32 %
+$V0_7EN_03_centralGKZ = round($V0_7EN_01_endimperialOneTwo * 0.1932, 2);
+feed('V0-7EN-03_centralGKZ', $V0_7EN_03_centralGKZ);
 
-$endimperialNet = $endimperialOneTwo + $endimperialTreeFourFive; // V0-7EN-05
+// V0‑7EN‑04_decentralGKZ ← V0‑7EN‑01 * 5.64 %
+$V0_7EN_04_decentralGKZ = round($V0_7EN_01_endimperialOneTwo * 0.0564, 2);
+feed('V0-7EN-04_decentralGKZ', $V0_7EN_04_decentralGKZ);
 
-$geplanterGewinn = $endimperialNet * ($geplanterProzentGewinn / 100); // V0-7EN-06
-$geplantesNetto = $endimperialNet + $geplanterGewinn;                 // V0-7EN-08
+// V0‑7EN‑05_endimperialNet ← SUM[V0‑7EN‑01; V0‑7EN‑02]
+$V0_7EN_05_endimperialNet = $V0_7EN_01_endimperialOneTwo + $V0_7EN_02_endimperialTreeFourFive;
+feed('V0-7EN-05_endimperialNet', $V0_7EN_05_endimperialNet);
 
-$steuer = $geplantesNetto * 0.19;                                      // V0-7EN-09
+// Gewinnprozentsatz (V0‑7EN‑07_plannedPercentProfit) wird vom User erfasst
+$V0_7EN_07_plannedPercentProfit = pull('V0-7EN-07_plannedPercentProfit'); // z. B. 0.15 für 15 %
 
-$endabrechnung = $geplantesNetto + $steuer;                           // V3-7EN-10
+// V0‑7EN‑06_plannedProfit ← V0‑7EN‑05 * V0‑7EN‑07
+$V0_7EN_06_plannedProfit = round($V0_7EN_05_endimperialNet * $V0_7EN_07_plannedPercentProfit, 2);
+feed('V0-7EN-06_plannedProfit', $V0_7EN_06_plannedProfit);
 
-// Ergebnis 
-$stmt = $db->prepare("REPLACE INTO felder (id, wert) VALUES (:id, :wert)");
-$stmt->bindValue(':id', '3-7EN-01');
-$stmt->bindValue(':wert', $endabrechnung);
-$stmt->execute();
+// V0‑7EN‑08_plannedNet ← SUM[V0‑7EN‑05; V0‑7EN‑06]
+$V0_7EN_08_plannedNet = $V0_7EN_05_endimperialNet + $V0_7EN_06_plannedProfit;
+feed('V0-7EN-08_plannedNet', $V0_7EN_08_plannedNet);
 
-echo json_encode([
-    'endabrechnung' => round($endabrechnung, 2),
-    'steuer' => round($steuer, 2),
-    'netto' => round($geplantesNetto, 2),
-    'gewinn' => round($geplanterGewinn, 2),
-    'zentralGKZ' => round($zentralGKZ, 2),
-    'dezentralGKZ' => round($dezentralGKZ, 2)
-]);
-?>
+// V0‑7EN‑09_tax ← V0‑7EN‑08 * 19 %
+$V0_7EN_09_tax = round($V0_7EN_08_plannedNet * 0.19, 2);
+feed('V0-7EN-09_tax', $V0_7EN_09_tax);
+
+// V3‑7EN‑10_endimperial ← SUM[V0‑7EN‑08; V0‑7EN‑09]
+$V3_7EN_10_endimperial = $V0_7EN_08_plannedNet + $V0_7EN_09_tax;
+feed('V3-7EN-10_endimperial', $V3_7EN_10_endimperial);
+
+// 3‑7EN‑01 erhält die finale Bruttosumme
+feed('3-7EN-01', $V3_7EN_10_endimperial);
