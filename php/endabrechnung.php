@@ -28,10 +28,12 @@ function getFeldwert($feldId) {
     return $row ? floatval($row['wert']) : 0.0;
 }
 
-// (Gewinnaufschlag
+// Gewinnaufschlag
 $geplanterProzentGewinn = isset($_POST['V0-7EN-07']) ? floatval($_POST['V0-7EN-07']) : 0.0;
 
 //Berechnungsschritte
+$db->exec("INSERT OR REPLACE INTO felder (id, wert) VALUES ('V0-7EN-07_plannedPercentProfit', 0.15)"); //Fester Gewinnsatz von 15%
+
 $personalkosten = getFeldwert('3-2PK-03');
 $projektleistungen = getFeldwert('3-3PL-01');
 $sonstigeKosten = getFeldwert('3-4SK-01') + getFeldwert('3-5IV-02') + getFeldwert('3-6RF-01');
