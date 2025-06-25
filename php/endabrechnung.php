@@ -18,7 +18,7 @@ $db->exec("INSERT OR REPLACE INTO felder (id, wert) VALUES
     ('3-6RF-01', 100)
 ");
 
-// --- Daten aus Datenbank abrufen ---
+// DB Daten
 function getFeldwert($feldId) {
     global $db;
     $stmt = $db->prepare("SELECT wert FROM felder WHERE id = :id");
@@ -28,10 +28,10 @@ function getFeldwert($feldId) {
     return $row ? floatval($row['wert']) : 0.0;
 }
 
-// --- Eingabeparameter (Gewinnaufschlag) ---
+// (Gewinnaufschlag
 $geplanterProzentGewinn = isset($_POST['V0-7EN-07']) ? floatval($_POST['V0-7EN-07']) : 0.0;
 
-// --- Berechnungsschritte ---
+//Berechnungsschritte
 $personalkosten = getFeldwert('3-2PK-03');
 $projektleistungen = getFeldwert('3-3PL-01');
 $sonstigeKosten = getFeldwert('3-4SK-01') + getFeldwert('3-5IV-02') + getFeldwert('3-6RF-01');
@@ -51,7 +51,7 @@ $steuer = $geplantesNetto * 0.19;                                      // V0-7EN
 
 $endabrechnung = $geplantesNetto + $steuer;                           // V3-7EN-10
 
-// --- Ergebnis speichern ---
+// Ergebnis 
 $stmt = $db->prepare("REPLACE INTO felder (id, wert) VALUES (:id, :wert)");
 $stmt->bindValue(':id', '3-7EN-01');
 $stmt->bindValue(':wert', $endabrechnung);
