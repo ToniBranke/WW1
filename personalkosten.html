@@ -8,16 +8,16 @@
     <script src="neuerMitarbeiter.js"></script>
 </head>
 <body class="personalkosten-body">
-    <div class="tabs-container">
-            <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-                <button class="tab-active">Allgemeine Projektdaten</button>
-                <button class="tab">Personalkosten</button>
-                <button class="tab">Kosten für projektbezogene Leistungen</button>
-                <button class="tab" >Sachkosten</button>
-                <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-                <button class="tab">Kosten für Räume und Flächen</button>
-            -->
+    <header>
+        <div class="header-banner">
+            <h1>Kostenkalkulationstool</h1>
+        </div>
 
+        
+    </header>
+
+    <nav>
+        <div class="tabs-container">
             <div class="tabbar" id="tabbar">
                 <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
                 <a href="personalkosten.html" class="tab-active">Personalkosten</a>
@@ -37,7 +37,7 @@
             </select>
         </div>
 
-         <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
+        <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
         <script>
             const tabs = document.getElementById('tabbar');
             const dropdown = document.getElementById('dropdown');
@@ -81,8 +81,9 @@
                 window.location.href = this.value;
             });
         </script>
+    </nav>
 
-
+    <main>
         <div class="main-content">
             <form class="projekt-form" id="personalForm" action="personal.php" method="post" style="display: none;">
                 
@@ -250,5 +251,6 @@
         </script>
         -->
         </div>
-    </body>
+    </main>
+</body>
 </html>
