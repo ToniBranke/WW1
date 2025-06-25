@@ -1,45 +1,46 @@
 <?php
 /**
- * Backend – Endabrechnung (V3‑7EN‑10)
- *  pulls:
- *      3‑2PK‑03, 3‑3PL‑01,
- *      3‑4SK‑01, 3‑5IV‑02, 3‑6RF‑01,
- *      V0‑7EN‑07_plannedPercentProfit
- *  feeds:
- *      V0‑7EN‑01_endimperialOneTwo
- *      V0‑7EN‑02_endimperialTreeFourFive
- *      V0‑7EN‑03_centralGKZ
- *      V0‑7EN‑04_decentralGKZ
- *      V0‑7EN‑05_endimperialNet
- *      V0‑7EN‑06_plannedProfit
- *      V0‑7EN‑08_plannedNet
- *      V0‑7EN‑09_tax
- *      V3‑7EN‑10_endimperial  →  3‑7EN‑01
+ * Backend – Endabrechnung (V3-7EN-10)
+ * Stand: 25‑06‑2025 · auf Basis der haus­eigenen ID-Konvention
+ *
+ *  pulls (Projektdatenbank):
+ *      3-2PK-03  Personalkosten Imperial
+ *      3-3PL-01  Imperialkosten projekt­bez. Leistungen
+ *      3-4SK-01  Imperialkosten Sachkosten
+ *      3-5IV-01  Imperialkosten Inventar
+ *      3-6RF-04  Imperialkosten Räume/Flächen
+ *      V0-7EN-07_plannedPercentProfit  (Gewinn‑% – frei einzugeben, Default 3 %)
+ *      V0-7EN_taxPercent               (Steuer‑% – frei einzugeben, Default 19 %)
+ *
+ *  feeds (Zwischen- & Ergebnisfelder):
+ *      V0-7EN-01_endimperialOneTwo
+ *      V0-7EN-02_endimperialTreeFourFive
+ *      V0-7EN-03_centralGKZ
+ *      V0-7EN-04_decentralGKZ
+ *      V0-7EN-05_endimperialNet
+ *      V0-7EN-06_plannedProfit
+ *      V0-7EN-08_plannedNet
+ *      V0-7EN-09_tax
+ *      V3-7EN-10_endimperial → 3-7EN-01
  */
 
 declare(strict_types=1);
 
 $db = new SQLite3('deine_datenbank.sqlite');
 
-//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-// Hilfsfunktionen
-//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//-----------------------------------------------------------------
+// Helper
+//-----------------------------------------------------------------
 
-/**
- * Holt den Wert eines Feldes.
- */
-function pull(string $feldId): float
+function pull(string $feldId): ?float
 {
     global $db;
     $stmt = $db->prepare('SELECT wert FROM felder WHERE id = :id LIMIT 1');
     $stmt->bindValue(':id', $feldId, SQLITE3_TEXT);
     $row = $stmt->execute()->fetchArray(SQLITE3_ASSOC);
-    return $row ? (float)$row['wert'] : 0.0;
+    return $row ? (float) $row['wert'] : null;   // null ⇒ nicht gesetzt
 }
 
-/**
- * Schreibt einen Wert in ein Feld (upsert).
- */
 function feed(string $feldId, float $wert): void
 {
     global $db;
@@ -51,48 +52,79 @@ function feed(string $feldId, float $wert): void
     $stmt->execute();
 }
 
-//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-//Kostenblöcke
-//––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+//-----------------------------------------------------------------
+// 1) Imperiale Kostenblöcke
+//-----------------------------------------------------------------
 
-// V0‑7EN‑01_endimperialOneTwo ← SUM[3‑2PK‑03; 3‑3PL‑01]
-$V0_7EN_01_endimperialOneTwo = pull('3-2PK-03') + pull('3-3PL-01');
-feed('V0-7EN-01_endimperialOneTwo', $V0_7EN_01_endimperialOneTwo);
+$endimperialOneTwo = (pull('3-2PK-03') ?? 0.0) + (pull('3-3PL-01') ?? 0.0);
+feed('V0-7EN-01_endimperialOneTwo', $endimperialOneTwo);
 
-// V0‑7EN‑02_endimperialTreeFourFive ← SUM[3‑4SK‑01; 3‑5IV‑02; 3‑6RF‑01]
-$V0_7EN_02_endimperialTreeFourFive = pull('3-4SK-01') + pull('3-5IV-02') + pull('3-6RF-01');
-feed('V0-7EN-02_endimperialTreeFourFive', $V0_7EN_02_endimperialTreeFourFive);
+$endimperialTreeFourFive = (pull('3-4SK-01') ?? 0.0)
+                         + (pull('3-5IV-01') ?? 0.0)
+                         + (pull('3-6RF-04') ?? 0.0);
+feed('V0-7EN-02_endimperialTreeFourFive', $endimperialTreeFourFive);
 
-// V0‑7EN‑03_centralGKZ ← V0‑7EN‑01 * 19.32 %
-$V0_7EN_03_centralGKZ = round($V0_7EN_01_endimperialOneTwo * 0.1932, 2);
-feed('V0-7EN-03_centralGKZ', $V0_7EN_03_centralGKZ);
+//-----------------------------------------------------------------
+// 2) Gemeinkostenzuschläge (zentral / dezentral)
+//-----------------------------------------------------------------
 
-// V0‑7EN‑04_decentralGKZ ← V0‑7EN‑01 * 5.64 %
-$V0_7EN_04_decentralGKZ = round($V0_7EN_01_endimperialOneTwo * 0.0564, 2);
-feed('V0-7EN-04_decentralGKZ', $V0_7EN_04_decentralGKZ);
+const CENTRAL_RATE   = 0.1932; // 19,32 %
+const DECENTRAL_RATE = 0.0564; //  5,64 %
 
-// V0‑7EN‑05_endimperialNet ← SUM[V0‑7EN‑01; V0‑7EN‑02]
-$V0_7EN_05_endimperialNet = $V0_7EN_01_endimperialOneTwo + $V0_7EN_02_endimperialTreeFourFive;
-feed('V0-7EN-05_endimperialNet', $V0_7EN_05_endimperialNet);
+$centralGKZ   = round($endimperialOneTwo * CENTRAL_RATE, 2);
+$decentralGKZ = round($endimperialOneTwo * DECENTRAL_RATE, 2);
+feed('V0-7EN-03_centralGKZ',   $centralGKZ);
+feed('V0-7EN-04_decentralGKZ', $decentralGKZ);
 
-// Gewinnprozentsatz (V0‑7EN‑07_plannedPercentProfit) wird vom User erfasst
-$V0_7EN_07_plannedPercentProfit = pull('V0-7EN-07_plannedPercentProfit'); // z. B. 0.15 für 15 %
+//-----------------------------------------------------------------
+// 3) Netto ohne / mit Gewinn
+//-----------------------------------------------------------------
 
-// V0‑7EN‑06_plannedProfit ← V0‑7EN‑05 * V0‑7EN‑07
-$V0_7EN_06_plannedProfit = round($V0_7EN_05_endimperialNet * $V0_7EN_07_plannedPercentProfit, 2);
-feed('V0-7EN-06_plannedProfit', $V0_7EN_06_plannedProfit);
+$endimperialNet = $endimperialOneTwo + $endimperialTreeFourFive + $centralGKZ + $decentralGKZ;
+feed('V0-7EN-05_endimperialNet', $endimperialNet);
 
-// V0‑7EN‑08_plannedNet ← SUM[V0‑7EN‑05; V0‑7EN‑06]
-$V0_7EN_08_plannedNet = $V0_7EN_05_endimperialNet + $V0_7EN_06_plannedProfit;
-feed('V0-7EN-08_plannedNet', $V0_7EN_08_plannedNet);
+$plannedPercentProfit = pull('V0-7EN-07_plannedPercentProfit');
+if ($plannedPercentProfit === null || $plannedPercentProfit <= 0) {
+    $plannedPercentProfit = 0.03; // Default 3 %
+}
 
-// V0‑7EN‑09_tax ← V0‑7EN‑08 * 19 %
-$V0_7EN_09_tax = round($V0_7EN_08_plannedNet * 0.19, 2);
-feed('V0-7EN-09_tax', $V0_7EN_09_tax);
+$plannedProfit = round($endimperialNet * $plannedPercentProfit, 2);
+feed('V0-7EN-06_plannedProfit', $plannedProfit);
 
-// V3‑7EN‑10_endimperial ← SUM[V0‑7EN‑08; V0‑7EN‑09]
-$V3_7EN_10_endimperial = $V0_7EN_08_plannedNet + $V0_7EN_09_tax;
-feed('V3-7EN-10_endimperial', $V3_7EN_10_endimperial);
+$plannedNet = $endimperialNet + $plannedProfit;
+feed('V0-7EN-08_plannedNet', $plannedNet);
 
-// 3‑7EN‑01 erhält die finale Bruttosumme
-feed('3-7EN-01', $V3_7EN_10_endimperial);
+//-----------------------------------------------------------------
+// 4) Steuer & Brutto­endpreis
+//-----------------------------------------------------------------
+
+$taxPercent = pull('V0-7EN_taxPercent');
+if ($taxPercent === null || $taxPercent <= 0) {
+    $taxPercent = 0.19; // Default 19 %
+}
+
+$tax = round($plannedNet * $taxPercent, 2);
+feed('V0-7EN-09_tax', $tax);
+
+$endimperial = $plannedNet + $tax;
+feed('V3-7EN-10_endimperial', $endimperial);
+feed('3-7EN-01',              $endimperial);
+
+//-----------------------------------------------------------------
+// 5) Response für Frontend‑AJAX (optional)
+//-----------------------------------------------------------------
+
+header('Content-Type: application/json; charset=utf-8');
+
+echo json_encode([
+    'V0-7EN-01_endimperialOneTwo'       => $endimperialOneTwo,
+    'V0-7EN-02_endimperialTreeFourFive' => $endimperialTreeFourFive,
+    'V0-7EN-03_centralGKZ'              => $centralGKZ,
+    'V0-7EN-04_decentralGKZ'            => $decentralGKZ,
+    'V0-7EN-05_endimperialNet'          => $endimperialNet,
+    'V0-7EN-06_plannedProfit'           => $plannedProfit,
+    'V0-7EN-08_plannedNet'              => $plannedNet,
+    'V0-7EN-09_tax'                     => $tax,
+    'V3-7EN-10_endimperial'             => $endimperial,
+], JSON_PRETTY_PRINT);
+?>
