@@ -1,0 +1,121 @@
+<?php
+require __DIR__ . '/vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
+
+$db = new SQLite3('inventar.db');
+$db->exec("CREATE TABLE IF NOT EXISTS inventar (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    inventarnummer TEXT,
+    bezeichner TEXT,
+    kaufpreis_netto REAL,
+    kaufdatum TEXT,
+    derzeitiger_wert REAL,
+    wert_nach_einsatz REAL,
+    abschreibe_rate REAL,
+    position TEXT
+)");
+
+// Funktion zum Einfügen eines Datensatzes
+function insertData($db, $row) {
+    $stmt = $db->prepare("INSERT INTO inventar (
+        inventarnummer, bezeichner, kaufpreis_netto, kaufdatum, derzeitiger_wert,
+        wert_nach_einsatz, abschreibe_rate, position
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+    foreach ($row as $key => $val) {
+        $stmt->bindValue($key + 1, $val);
+    }
+    $stmt->execute();
+}
+
+// === Formularverarbeitung: Manuelle Eingabe ===
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_manual"])) {
+    $stmt = $db->prepare("INSERT INTO inventar (
+        inventarnummer, bezeichner, kaufpreis_netto, kaufdatum, derzeitiger_wert,
+        wert_nach_einsatz, abschreibe_rate, position
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt->bindValue(1, $_POST['inventarnummer']);
+    $stmt->bindValue(2, $_POST['bezeichner']);
+    $stmt->bindValue(3, $_POST['kaufpreis_netto']);
+    $stmt->bindValue(4, $_POST['kaufdatum']);
+    $stmt->bindValue(5, $_POST['derzeitiger_wert']);
+    $stmt->bindValue(6, $_POST['wert_nach_einsatz']);
+    $stmt->bindValue(7, $_POST['abschreibe_rate']);
+    $stmt->bindValue(8, $_POST['position']);
+    $stmt->execute();
+
+    echo "<p style='color:green;'>Eintrag gespeichert.</p>";
+}
+
+// === CSV/XLSX-Import ===
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["import_excel"])) {
+    $file = $_FILES['file']['tmp_name'];
+    $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+    if ($ext === 'csv') {
+        $handle = fopen($file, "r");
+        fgetcsv($handle); // Überschrift überspringen
+        while (($data = fgetcsv($handle)) !== false) {
+            insertData($db, $data);
+        }
+        fclose($handle);
+        echo "<p style='color:green;'>CSV-Import erfolgreich.</p>";
+    } elseif ($ext === 'xlsx') {
+        $spreadsheet = IOFactory::load($file);
+        $sheet = $spreadsheet->getActiveSheet()->toArray();
+        array_shift($sheet); // Überschrift entfernen
+        foreach ($sheet as $row) {
+            insertData($db, $row);
+        }
+        echo "<p style='color:green;'>XLSX-Import erfolgreich.</p>";
+    } else {
+        echo "<p style='color:red;'>Ungültiges Dateiformat.</p>";
+    }
+}
+
+// === SQL-Datei Import ===
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["import_sql"])) {
+    $sql = file_get_contents($_FILES['sqlfile']['tmp_name']);
+    $db->exec($sql);
+    echo "<p style='color:green;'>SQL-Datei erfolgreich importiert.</p>";
+}
+?>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventar</title>
+</head>
+<body>
+<h2>Manuelle Eingabe</h2>
+<form method="POST">
+    <input type="text" name="inventarnummer" placeholder="Inventarnummer" required><br><br>
+    <input type="text" name="bezeichner" placeholder="Bezeichner" required><br><br>
+    <input type="number" step="0.01" name="kaufpreis_netto" placeholder="Kaufpreis netto" required><br><br>
+    <input type="date" name="kaufdatum" required><br><br>
+    <input type="number" step="0.01" name="derzeitiger_wert" placeholder="Derzeitiger Wert" required><br><br>
+    <input type="number" step="0.01" name="wert_nach_einsatz" placeholder="Wert nach Einsatz" required><br><br>
+    <input type="number" step="0.01" name="abschreibe_rate" placeholder="Abschreibe Rate" required><br><br>
+    <input type="text" name="position" placeholder="Position" required><br><br>
+    <input type="submit" name="submit_manual" value="Eintragen">
+</form>
+
+<hr>
+<h2>CSV/XLSX-Import</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".csv,.xlsx" required>
+    <input type="submit" name="import_excel" value="Importieren">
+</form>
+
+<hr>
+<h2>SQL-Datei Import</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="sqlfile" accept=".sql" required>
+    <input type="submit" name="import_sql" value="SQL Importieren">
+</form>
+</body>
+</html>
+
