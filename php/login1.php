@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name'] = $user['name'];
 
             // Weiterleitung zu allgemein.html
-            header("Location: ../allgemein.html");
+            header("Location: ../auswahl.html");
+
         exit();
         } else {
             // Fehlermeldung bei falschen Anmeldedaten
