@@ -1,0 +1,184 @@
+<?php
+if (isset($_GET['download_template'])) {
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="projekt_vorlage.csv"');
+
+    $output = fopen('php://output', 'w');
+
+    $headers = [
+        "projektname", "auftraggeber", "projektleiter", "projektbeginn", "projektende",
+        "wirtschaftsbereich", "fakultaet", "kostenstelle", "kostentraegernummer",
+        "personalkosten_intern", "personalkosten_extern", "personalkosten_imperial",
+        "leistungen_imperial", "sachkosten_imperial",
+        "nutzungsgebuehr_inventar", "inventarkosten_imperial",
+        "bueronutzung", "labornutzung", "raumnutzung", "raeume_flaechen_imperial",
+        "gesamtpreis_endimperial", "angebotspreis_netto", "angebotspreis_brutto"
+    ];
+
+    fputcsv($output, $headers);
+    fclose($output);
+    exit;
+}
+
+$db = new SQLite3('projekt.db');
+
+// Tabelle erstellen, falls sie nicht existiert
+$db->exec("CREATE TABLE IF NOT EXISTS projekt (
+    id INTEGER PRIMARY KEY,
+    projektname TEXT,
+    auftraggeber TEXT,
+    projektleiter TEXT,
+    projektbeginn TEXT,
+    projektende TEXT,
+    wirtschaftsbereich TEXT,
+    fakultaet TEXT,
+    kostenstelle TEXT,
+    kostentraegernummer TEXT,
+
+    personalkosten_intern REAL,
+    personalkosten_extern REAL,
+    personalkosten_imperial REAL,
+
+    leistungen_imperial REAL,
+    sachkosten_imperial REAL,
+
+    nutzungsgebuehr_inventar REAL,
+    inventarkosten_imperial REAL,
+
+    bueronutzung REAL,
+    labornutzung REAL,
+    raumnutzung REAL,
+    raeume_flaechen_imperial REAL,
+
+    gesamtpreis_endimperial REAL,
+    angebotspreis_netto REAL,
+    angebotspreis_brutto REAL
+)");
+
+// Formularverarbeitung: Einzelprojekt einfügen
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_project'])) {
+    $stmt = $db->prepare("INSERT INTO projekt (
+        projektname, auftraggeber, projektleiter, projektbeginn, projektende,
+        wirtschaftsbereich, fakultaet, kostenstelle, kostentraegernummer,
+        personalkosten_intern, personalkosten_extern, personalkosten_imperial,
+        leistungen_imperial, sachkosten_imperial,
+        nutzungsgebuehr_inventar, inventarkosten_imperial,
+        bueronutzung, labornutzung, raumnutzung, raeume_flaechen_imperial,
+        gesamtpreis_endimperial, angebotspreis_netto, angebotspreis_brutto
+    ) VALUES (
+        :projektname, :auftraggeber, :projektleiter, :projektbeginn, :projektende,
+        :wirtschaftsbereich, :fakultaet, :kostenstelle, :kostentraegernummer,
+        :personalkosten_intern, :personalkosten_extern, :personalkosten_imperial,
+        :leistungen_imperial, :sachkosten_imperial,
+        :nutzungsgebuehr_inventar, :inventarkosten_imperial,
+        :bueronutzung, :labornutzung, :raumnutzung, :raeume_flaechen_imperial,
+        :gesamtpreis_endimperial, :angebotspreis_netto, :angebotspreis_brutto
+    )");
+
+    foreach ($_POST as $key => $value) {
+        if ($key !== "submit_project") {
+            $stmt->bindValue(":$key", $value);
+        }
+    }
+
+    $stmt->execute();
+}
+
+// CSV-Verarbeitung
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_csv']) && isset($_FILES['csv_file'])) {
+    $csvFile = $_FILES['csv_file']['tmp_name'];
+    if (($handle = fopen($csvFile, "r")) !== FALSE) {
+        $headers = fgetcsv($handle, 1000, ",");
+        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            $placeholders = implode(", ", array_fill(0, count($headers), "?"));
+            $query = "INSERT INTO projekt (" . implode(", ", $headers) . ") VALUES ($placeholders)";
+            $stmt = $db->prepare($query);
+            foreach ($data as $index => $value) {
+                $stmt->bindValue($index + 1, $value);
+            }
+            $stmt->execute();
+        }
+        fclose($handle);
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Projekterfassung</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        form {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 8px 14px;
+            background-color: #007acc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #005fa3;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Projekt-Daten eingeben</h1>
+<form method="POST">
+    <?php
+    $felder = [
+        "projektname", "auftraggeber", "projektleiter", "projektbeginn", "projektende",
+        "wirtschaftsbereich", "fakultaet", "kostenstelle", "kostentraegernummer",
+        "personalkosten_intern", "personalkosten_extern", "personalkosten_imperial",
+        "leistungen_imperial", "sachkosten_imperial",
+        "nutzungsgebuehr_inventar", "inventarkosten_imperial",
+        "bueronutzung", "labornutzung", "raumnutzung", "raeume_flaechen_imperial",
+        "gesamtpreis_endimperial", "angebotspreis_netto", "angebotspreis_brutto"
+    ];
+
+    foreach ($felder as $feld) {
+        echo "<label for=\"$feld\">$feld</label>";
+        echo "<input type=\"text\" name=\"$feld\" id=\"$feld\">";
+    }
+    ?>
+    <div class="form-buttons">
+        <button type="submit" name="submit_project">Projekt speichern</button>
+    </div>
+</form>
+
+<h2>CSV-Datei hochladen</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="csv_file" accept=".csv">
+    <div class="form-buttons">
+        <button type="submit" name="submit_csv">CSV importieren</button>
+        <div class="form-buttons">
+            <a href="?download_template" class="button">CSV-Vorlage herunterladen</a>
+        </div>
+
+    </div>
+</form>
+</body>
+</html>
