@@ -7,48 +7,71 @@ body, html
     color: #222;
 }
 
-.tabs
+/* Buttons */
+.selectButton, .newProjectButton, .createButton, .openButton
 {
-    display: flex;
-    flex-wrap: flex;
-    gap: 0.5rem;
-    margin-bottom: 2.2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    padding: o.8rem, 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 17.188rem;
+    height: 3.75rem;
     justify-content: center;
 }
 
-.tab
+/*
+.weiterSelectButton, .backButton
 {
-
-    /* formatierung für den link */
-    text-decoration: none;
-    text-align: center;
-
-    margin-top: 2rem;
-    background: #6e6e6e;
-    border: none;
-    border-radius: 8px 8px 4px 4px;
-    padding: 0.7em 1.5em; 
-    font-size: 1rem;
-    cursor: pointer;
-    color: #ffffff;
-    font-weight: 500;
-    transition: background 0.15s, color 0.15s;
-    margin-bottom: -1px;
-}
-
-.tabActive, .tab:hover
-{
-   /* formatierung für den link */
-    text-decoration: none;
-    text-align: center;
-
-    padding: 0.7em 1.5em;
-    border-radius: 8px 8px 4px 4px;
-    margin-top: 2rem;
+    padding: 0.8rem 2.1rem;
     background: #4069b1;
     color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 200px;
+    height: 60px;
+    justify-content: center;
+}
+*/
+
+.backButton:hover, .newProjectButton:hover, .selectButton:hover, 
+.createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, 
+.logoutButton:hover, .addButton:hover, .weiterSelectButton:hover
+{
+    background: #24406a;
+    transform: scale(1.1);
+    transition: transform 0.2s ease-out;
+}
+
+.saveButton:hover, .buero:hover, .labor:hover, .anderes:hover
+{
+    transform: scale(1.1);
+    transform: transform o.2s ease-out
+}
+
+.selectionForm, .projectForm
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    align-items: center;
 }
 
 /* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
@@ -58,7 +81,7 @@ body, html
     justify-content: center;
     align-items: flex-start;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 7,5rem;
     margin: 0 auto;
 }
 
@@ -93,14 +116,15 @@ body, html
 
 .sidebarButton.addButton
 {
-    background: #4069b1;
-    color: #fff;
+    background: #bcbcbc;
+    color: #000;
     border: none;
 }
 
 .sidebarButton.addButton:hover
 {
-    background: #24406a
+    background: #24406a;
+    color: #fff;
 }
 
 .sidebarButton.saveButton:hover
@@ -149,6 +173,21 @@ body, html
     display: flex;
     gap: 2rem; 
     margin-bottom: 1.1rem;
+    
+}
+
+.formRowSelection
+{
+    display: flex;
+    gap: -30rem;
+    margin-bottom: 1.1rem;
+    margin: 0 auto;
+}
+
+.formGroup
+{
+    position: relative;
+    margin-bottom: 2.5rem;
 }
 
 .formRow .formGroup
@@ -229,12 +268,12 @@ body, html
     transition: background 0.18s;
     font-weight: 500;
     letter-spacing: 0.02rem;
+
 }
 .weiterButton:hover 
 {
     background: #24406a;
 }
-
 
 /* Login Page Styles */
 
@@ -402,15 +441,13 @@ body, html
 
 .footer
 {
-    position : fixed;
+    position : bottom;
     bottom: 0;
     justify-content: flex;
     margin-left: auto;
     margin-right: auto; 
     width: 100%;
-   
     padding: 0.8rem 0;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -419,8 +456,6 @@ body, html
     text-align: center;
     font-weight: 400;
     letter-spacing: 0.01rem;
-    
-    
 }
 
 .loginFooter
@@ -430,8 +465,207 @@ body, html
  
 }
 
-@media (max-width: 400px)
+/* Tabs */
+.tabsContainer
 {
+    width: 100%;
+    position: relative;
+    height: 7.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab, .tabActive
+{
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0.7em 1.5em;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.tab
+{
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
+}
+
+.tabActive
+{
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+}
+
+.tab:hover
+{
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+
+.tabs, .tabsDropdown {
+    opacity: 1;
+    position: relative;
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+    overflow-x: auto;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 100%;
+}
+
+.tabs.navTransition, .tabsDropdown.navTransition {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tabsDropdown {
+    width: 80%;
+    font-size: 16px;
+    align-self: center;
+    margin: 0 auto;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+}
+
+.tabsHidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50px);
+    pointer-events: none;
+}
+
+.dropdownHidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(50px);
+    pointer-events: none;
+}
+
+/* Tooltips */
+
+.tooltipText
+{
+    visibility: hidden;
+    width: 14.375rem;
+    background-color: #3f68b0;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 5px;
+    border-color: #ffffff;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: -3.5rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+.formGroup:hover .tooltipText
+{
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.inputError
+{
+    border: 2px solid #d93025 !important; 
+    background-color: rgba(243, 128, 114, 0.74) !important;
+}
+
+/* added sumaryContent fuer Zusammenfassung (nicht vollstaendig) */
+
+
+/*
+.tabActive, .tab:hover
+{
+   /* formatierung für den link //
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+/*
+.tabs
+{
+    display: flex;
+    flex-wrap: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+}
+
+.tab
+{
+
+     //formatierung für den link //
+    text-decoration: none;
+    text-align: center;
+
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    padding: 0.7em 1.5em; 
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
+}
+*/
+@media (max-width: 1500px)
+{
+    .tabs
+    {
+        /* display: none */
+    }
+
+    .tabsDropdown
+    {
+        display:block;
+    }
+
     .loginContainer
     {
         padding: 1.2rem 0.6rem;
@@ -449,59 +683,15 @@ body, html
         min-width:0;
         margin-top: 2rem;
     }
+
+    @media (max-width: 860px) {
+  .formRow {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.3rem;
+  }
+  .formGroup {
+    margin-bottom: 1.3rem;
+  }
 }
-
-.form-group {
-    position: relative;
-    margin-bottom: 2.5rem;
-}
-
-
-.tooltip-text {
-    visibility: hidden;
-    width: 230px;
-    background-color: #3f68b0;
-    color: #ffffff;
-    text-align: left;
-    border-radius: 5px;
-    border-color: #ffffff;
-    padding: 8px;
-    position: absolute;
-    z-index: 10;
-    bottom: -3.5rem; /* Tooltip unter dem Eingabefeld */
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    font-size: 0.85rem;
-    line-height: 1.2;
-    pointer-events: none;
-}
-
-
-.form-group:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-}
-
-
-input.error {
-    border: 2px solid #d93025 !important;
-    background-color: rgba(181, 129, 125, 0.47) !important;
-}
-
-#wirtschaftlicher-bereich {
-    width: 220px;
-}
-
-#projekt-kostentraegernummer {
-    width: 220px;
-}
-
-#zeitraum-von {
-    width: 220px;
-}
-
-#zeitraum-bis {
-    width: 220px;
 }

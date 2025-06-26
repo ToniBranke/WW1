@@ -12,16 +12,8 @@
          <div class="logoutButtonContainer">
             <button class="logoutButton" id="logoutButton">Abmelden</button>
     </div>
-        <div class="tabs">
-
-        <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-            <button class="tab-active">Allgemeine Projektdaten</button>
-            <button class="tab">Personalkosten</button>
-            <button class="tab">Kosten für projektbezogene Leistungen</button>
-            <button class="tab" >Sachkosten</button>
-            <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-            <button class="tab">Kosten für Räume und Flächen</button>
-        -->
+    <div class="tabsContainer">
+        <div class="tabs" id="tabs">
             <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
             <a href="personalkosten.html" class="tab">Personalkosten</a>
             <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
@@ -29,13 +21,67 @@
             <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
             <a href="raeume.html" class="tabActive">Kosten für Räume und Flächen</a>
         </div>
+        <select class="tabsDropdown" id="tabsDropdown">
+            <option value="allgemein.html">Allgemeine Projektdaten</option>
+            <option value="personalkosten.html">Personalkosten</option>
+            <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+            <option value="sachkosten.html">Sachkosten</option>
+            <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+            <option value="raeume.html" selected>Kosten für Räume und Flächen</option>
+        </select>
+    </div>
+
+    <script>
+        const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
+
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
+
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    tabs.classList.remove('tabsHidden');
+                    dropdown.classList.add('dropdownHidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    dropdown.classList.add('dropdownHidden');
+                }
+
+                requestAnimationFrame(() => {
+                    tabs.classList.add('navTransition');
+                    dropdown.classList.add('navTransition');
+                });
+            });
+
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+    </script>
+
         <div class="mainContent">
             <form class="projectForm" id="raeumeForm" action="raeume.php" method="post" style="display: block;">
                 <div class="formRow" id="officeUsageFeeContainer" style="display: none;">
                     <div class="formGroup wide" >
                         <label for="officeUsageFee">Büronutzungsgebühr</label>
                         <input type="number" id="officeUsageFee" name="officeUsageFee" placeholder="0">
-                        <span class="tooltip-text">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
+                        <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
                     </div>
                 </div>
             <div id="LabUsageContainer" style="display: none;">
@@ -62,7 +108,7 @@
                     <div class="formGroup" id="LabUsageFeeHoursContainer">
                         <label for="labUsageFeeHours">Stunden pro Woche</label>
                         <input type="number" id="labUsageFeeHours" name="labUsageFeeHours" placeholder="0">
-                        <span class="tooltip-text">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
+                        <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
                     </div>
                 </div>
             </div>
@@ -83,7 +129,7 @@
                     <div class="formGroup" id="otherRoomRentContainer">
                         <label for="otherRoomRent"> mtl. Miete pro QM</label>
                         <input type="number" id="otherRoomRent" name="otherRoomRent" placeholder="0">
-                        <span class="tooltip-text">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
+                        <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
                     </div>
                     <div class="formGroup" id="otherRoomDurationContainer">
                         <label for="otherRoomDuration">Monate</label>
@@ -101,7 +147,7 @@
                             <option value="11">11 Monate</option>
                             <option value="12">12 Monate</option>
                         </select>
-                        <span class="tooltip-text">Anzahl der Monate, in denen Kosten anfallen</span>
+                        <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
                     </div>
                 </div>
             </div>
@@ -115,7 +161,7 @@
             </form>
             <aside class="sidebar">
                 <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
-                <button type="button" class="sidebarButton labor" id="addLaborButton">+ labor</button>
+                <button type="button" class="sidebarButton labor" id="addLaborButton">+ Labor</button>
                 <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
                 <div class="sidebarSummary">
                     <span class="summaryTitle">Summe der Nutzungskosten</span>
