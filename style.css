@@ -6,24 +6,26 @@ body, html {
     color: #222;
 }
 
-    .header-banner {
-        background-image: url('bilder/haus1.png');
-        background-size: cover;
-        background-position: center;
-        height: 200px;
-        display: flex;
-        align-items: flex-start;
-        padding: 20px;
-        color: white;
-        margin-bottom: 50px;
-    }
+.header-banner {
+    background-image: url('bilder/haus1.png');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    color: white;
+    margin-bottom: 50px;
+    position: relative;
+    justify-content: center;
+}
 
-    .header-banner h1 {
-        font-size: 2em;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 12px;
-        border-radius: 6px;
-    }
+.header-banner h1 {
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    border-radius: 6px;
+}
 
 /* Formatierung für einzelne Tabs */
 .tab, .tab-active { 
@@ -65,11 +67,15 @@ body, html {
 /* Formatierung für Tabbar  und Dropdown*/
 .tabs-container {
     width: 100%;
-    position: relative;
-    height: 120px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 10px;
+    z-index: 10;
 }
 
 .tabbar, .dropdown {
@@ -101,6 +107,7 @@ body, html {
     font-size: 16px;
     align-self: center;
     margin: 0 auto;
+    border: 1px solid #ccc;
 
     padding: 0.7em 1.5em;
     border-radius: 14px;

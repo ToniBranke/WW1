@@ -8,26 +8,31 @@
         <script defer src="script.js"></script>
     </head>
     <body class="task-main">
-        <!-- Tableiste -->
-        <div class="tabs-container">
-            <div class="tabbar" id="tabbar">
-                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                <a href="personalkosten.html" class="tab">Personalkosten</a>
-                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                <a href="sachkosten.html" class="tab">Sachkosten</a>
-                <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen</a>
-                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-            </div>
+        <header>
+            <div class="header-banner">
+                <h1>Kostenkalkulationstool</h1>
 
-            <select class="dropdown" id="dropdown">
-                <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option value="personalkosten.html">Personalkosten</option>
-                <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
-                <option value="sachkosten.html">Sachkosten</option>
-                <option value="abschreibungen.html" selected>Investitionen/Abschreibungen</option>
-                <option value="raeume.html">Kosten für Räume und Flächen</option>
-            </select>
-        </div>
+                <div class="tabs-container">
+                    <div class="tabbar" id="tabbar">
+                        <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                        <a href="personalkosten.html" class="tab">Personalkosten</a>
+                        <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                        <a href="sachkosten.html" class="tab">Sachkosten</a>
+                        <a href="abschreibungen.html" class="tab-active">Investitionen/Abschreibungen</a>
+                        <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+                    </div>
+
+                    <select class="dropdown" id="dropdown">
+                        <option value="allgemein.html">Allgemeine Projektdaten</option>
+                        <option value="personalkosten.html">Personalkosten</option>
+                        <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                        <option value="sachkosten.html">Sachkosten</option>
+                        <option value="abschreibungen.html" selected>Investitionen/Abschreibungen</option>
+                        <option value="raeume.html">Kosten für Räume und Flächen</option>
+                    </select>
+                </div>
+            </div>
+        </header>
 
         <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
         <script>

@@ -11,77 +11,73 @@
     <header>
         <div class="header-banner">
             <h1>Kostenkalkulationstool</h1>
-        </div>
 
-        
+            <div class="tabs-container">
+                <div class="tabbar" id="tabbar">
+                    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                    <a href="personalkosten.html" class="tab-active">Personalkosten</a>
+                    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                    <a href="sachkosten.html" class="tab">Sachkosten</a>
+                    <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+                    <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+                </div>
+
+                <select class="dropdown" id="dropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option value="personalkosten.html" selected>Personalkosten</option>
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html">Sachkosten</option>
+                    <option value="abschreibungen.html">Investitionen/Abschreibungen</option>
+                    <option value="raeume.html">Kosten für Räume und Flächen</option>
+                </select>
+            </div>
+        </div>
     </header>
 
-    <nav>
-        <div class="tabs-container">
-            <div class="tabbar" id="tabbar">
-                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                <a href="personalkosten.html" class="tab-active">Personalkosten</a>
-                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                <a href="sachkosten.html" class="tab">Sachkosten</a>
-                <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
-                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-            </div>
+    <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
+    <script>
+        const tabs = document.getElementById('tabbar');
+        const dropdown = document.getElementById('dropdown');
 
-            <select class="dropdown" id="dropdown">
-                <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option value="personalkosten.html" selected>Personalkosten</option>
-                <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
-                <option value="sachkosten.html">Sachkosten</option>
-                <option value="abschreibungen.html">Investitionen/Abschreibungen</option>
-                <option value="raeume.html">Kosten für Räume und Flächen</option>
-            </select>
-        </div>
+        const changeWidth = 1500;
+        let tooSmall = window.innerWidth <= changeWidth;
 
-        <!-- Animation für Wechsel zwischen Tabbar und Dropdown Menu -->
-        <script>
-            const tabs = document.getElementById('tabbar');
-            const dropdown = document.getElementById('dropdown');
+        function animateSwitch(showDropdown) {
+            if (showDropdown) {
+                tabs.classList.add('tabbar-hidden');
+                dropdown.classList.remove('dropdown-hidden');
+            } else {
+                tabs.classList.remove('tabbar-hidden');
+                dropdown.classList.add('dropdown-hidden');
+            }
+        }
 
-            const changeWidth = 1500;
-            let tooSmall = window.innerWidth <= changeWidth;
+        window.addEventListener('resize', () => {
+            const isSmall = window.innerWidth <= changeWidth;
+            if (isSmall !== tooSmall) {
+                animateSwitch(isSmall);
+                tooSmall = isSmall;
+            }
+        });
 
-            function animateSwitch(showDropdown) {
-                if (showDropdown) {
-                    tabs.classList.add('tabbar-hidden');
-                    dropdown.classList.remove('dropdown-hidden');
-                } else {
-                    tabs.classList.remove('tabbar-hidden');
-                    dropdown.classList.add('dropdown-hidden');
-                }
+        window.addEventListener('DOMContentLoaded', () => {
+            if (tooSmall) {
+                tabs.classList.add('tabbar-hidden');
+                dropdown.classList.remove('dropdown-hidden');
+            } else {
+                dropdown.classList.add('dropdown-hidden');
             }
 
-            window.addEventListener('resize', () => {
-                const isSmall = window.innerWidth <= changeWidth;
-                if (isSmall !== tooSmall) {
-                    animateSwitch(isSmall);
-                    tooSmall = isSmall;
-                }
+            requestAnimationFrame(() => {
+                tabs.classList.add('nav-transition');
+                dropdown.classList.add('nav-transition');
             });
+        });
 
-            window.addEventListener('DOMContentLoaded', () => {
-                if (tooSmall) {
-                    tabs.classList.add('tabbar-hidden');
-                    dropdown.classList.remove('dropdown-hidden');
-                } else {
-                    dropdown.classList.add('dropdown-hidden');
-                }
-
-                requestAnimationFrame(() => {
-                    tabs.classList.add('nav-transition');
-                    dropdown.classList.add('nav-transition');
-                });
-            });
-
-            dropdown.addEventListener('change', function () {
-                window.location.href = this.value;
-            });
-        </script>
-    </nav>
+        dropdown.addEventListener('change', function () {
+            window.location.href = this.value;
+        });
+    </script>
 
     <main>
         <div class="main-content">
