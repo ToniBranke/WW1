@@ -6,11 +6,30 @@ body, html
     background-color: #e6e6e6;
     color: #222;
 }
+/*Header Banner */
+    .header-banner {
+        background-image: url('bilder/haus1.png');
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+        display: flex;
+        align-items: flex-start;
+        padding: 20px;
+        color: white;
+        margin-bottom: 50px;
+    }
+
+    .header-banner h1 {
+        font-size: 2em;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 12px;
+        border-radius: 6px;
+    }
 
 /* Buttons */
 .selectButton, .newProjectButton, .createButton, .openButton
 {
-    padding: o.8rem, 2.1rem;
+    padding: 0.8rem, 2.1rem;
     background: #4069b1;
     color: #fff;
     font-size: 1.08rem;
@@ -53,14 +72,14 @@ body, html
 .logoutButton:hover, .addButton:hover, .weiterSelectButton:hover
 {
     background: #24406a;
-    transform: scale(1.1);
-    transition: transform 0.2s ease-out;
+    transform: scale(1.05);
+    transition: transform 0.4s ease-out;
 }
 
 .saveButton:hover, .buero:hover, .labor:hover, .anderes:hover
 {
-    transform: scale(1.1);
-    transform: transform o.2s ease-out
+    transform: scale(1.05);
+    transform: transform 0.4s ease-out
 }
 
 .selectionForm, .projectForm
@@ -493,18 +512,18 @@ body, html
     margin-top: 2rem;
     background: #6e6e6e;
     border: none;
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     font-size: 1rem;
     cursor: pointer;
     color: #ffffff;
     font-weight: 500;
     transition: background 0.15s, color 0.15s;
-    margin-bottom: -1px;
+    margin-bottom: 1px;
 }
 
 .tabActive
 {
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     margin-top: 2rem;
     background: #2b4572;
     color: #fff;
@@ -514,9 +533,9 @@ body, html
 {
     text-decoration: none;
     text-align: center;
-
+    transform: translateY(-3px);
     padding: 0.7em 1.5em;
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     margin-top: 2rem;
     background: #4069b1;
     color: #fff;
@@ -553,7 +572,7 @@ body, html
     margin: 0 auto;
 
     padding: 0.7em 1.5em;
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     margin-top: 2rem;
     background: #2b4572;
     color: #fff;
