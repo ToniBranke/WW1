@@ -15,9 +15,15 @@ body, html {
     align-items: flex-start;
     padding: 20px;
     color: white;
-    margin-bottom: 50px;
     position: relative;
     justify-content: center;
+
+    max-width: 1500px;
+    margin: 0 auto;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    overflow: hidden;
+
 }
 
 .header-banner h1 {
@@ -135,6 +141,7 @@ body, html {
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding-top: 50px;
 }
 
 .sidebar

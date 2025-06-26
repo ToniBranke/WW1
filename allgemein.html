@@ -79,60 +79,65 @@
             });
         </script>
     
-    <form class="projekt-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="projektname">Projekttitel:</label>
-                <input type="text" id="projekttitel" name="projekttitel" required>
-            </div>
-            <div class="form-group">
-                <label for="auftraggeber">Auftraggeber:</label>
-                <input type="text" id="auftraggeber" name="auftraggeber" required>
-            </div>
-            <div class="form-group">
-                <label for="fakultaet">Fakultät:</label>
-                <input type="text" id="fakultaet" name="fakultart" required>
-            </div>
+    <main>
+        <div class="main-content">
+            <form class="projekt-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projektname">Projekttitel:</label>
+                        <input type="text" id="projekttitel" name="projekttitel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="auftraggeber">Auftraggeber:</label>
+                        <input type="text" id="auftraggeber" name="auftraggeber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fakultaet">Fakultät:</label>
+                        <input type="text" id="fakultaet" name="fakultart" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="verantwortlicher">Verantwortlicher:</label>
+                        <input type="text" id="verantwortlicher" name="verantwortlicher" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kostenstelle">Kostenstelle:</label>
+                        <input type="text" id="kostenstelle" name="kostenstelle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weiterbildungstage">Anzahl Weiterbildungstage:</label>
+                        <input type="number" id="anzahl-weiterbildungstage" name="anzahl-weiterbildungstage" min="0" required>
+                    </div>
+                </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="zeitraum-von">Geplanter Zetraum von:</label>
+                            <input type="date" id="zeitraum-von" name="zeitraum-von" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zeitraum-bis">bis:</label>
+                            <input type="date" id="zeitraum-bis" name="zeitraum-bis" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wirtschaftlcher-bereich">Wirtschaftlicher Bereich:</label>
+                            <input type="text" id="wirtschaftlicher-bereich" name="wirtschaftlicher-bereich" required>
+                        </div>
+                    </div>
+                    <div class="form-row"> 
+                        <div class="form-group wide">
+                            <label for="projekt-kostentraegernummer">Projekt/<br> Kostenträgernummer:</label>
+                            <input type="text" id="projekt-kostentraegernummer" name="projekt-kostentraegernummer" required>
+                        </div>
+                    </div>
+                    <div class="form-row form-row-rigth">
+                        <button type="submit" class="weiter-button">Weiter</button>
+                    </div>
+                </div>     
+            </form>
         </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="verantwortlicher">Verantwortlicher:</label>
-                <input type="text" id="verantwortlicher" name="verantwortlicher" required>
-            </div>
-            <div class="form-group">
-                <label for="kostenstelle">Kostenstelle:</label>
-                <input type="text" id="kostenstelle" name="kostenstelle" required>
-            </div>
-            <div class="form-group">
-                <label for="weiterbildungstage">Anzahl Weiterbildungstage:</label>
-                <input type="number" id="anzahl-weiterbildungstage" name="anzahl-weiterbildungstage" min="0" required>
-            </div>
-        </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="zeitraum-von">Geplanter Zetraum von:</label>
-                    <input type="date" id="zeitraum-von" name="zeitraum-von" required>
-                </div>
-                <div class="form-group">
-                    <label for="zeitraum-bis">bis:</label>
-                    <input type="date" id="zeitraum-bis" name="zeitraum-bis" required>
-                </div>
-                <div class="form-group">
-                    <label for="wirtschaftlcher-bereich">Wirtschaftlicher Bereich:</label>
-                    <input type="text" id="wirtschaftlicher-bereich" name="wirtschaftlicher-bereich" required>
-                </div>
-            </div>
-            <div class="form-row"> 
-                <div class="form-group wide">
-                    <label for="projekt-kostentraegernummer">Projekt/<br> Kostenträgernummer:</label>
-                    <input type="text" id="projekt-kostentraegernummer" name="projekt-kostentraegernummer" required>
-                </div>
-            </div>
-            <div class="form-row form-row-rigth">
-                <button type="submit" class="weiter-button">Weiter</button>
-            </div>
-        </div>     
-    </form>
+    </main>
+    
 </body>
 
 </html>
