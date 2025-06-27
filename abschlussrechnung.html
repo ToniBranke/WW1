@@ -20,6 +20,8 @@
     </header>
     
     <main>
+        <!-- Das is von Chatgpt - muss nochmal angepasst werden-->
+
         <button type="button" class="calculationButton" id="startButton">Abrechnung starten</button>
 
         <div class="result" id="resultBox" style="display: none;">
@@ -39,7 +41,6 @@
 
                 const data = await response.json();
 
-                // Daten ins HTML schreiben
                 document.getElementById('endabrechnung').textContent = data.endabrechnung.toFixed(2);
                 document.getElementById('steuer').textContent = data.steuer.toFixed(2);
                 document.getElementById('netto').textContent = data.netto.toFixed(2);
@@ -54,6 +55,8 @@
             });
         </script>
 
+
+        <!-- Das ist das bevorzugte Layout-->
 
         <form class="projectForm">
             <div class="formRow">
