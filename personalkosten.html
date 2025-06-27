@@ -14,37 +14,30 @@
             <div class="header">
                 <h1>KostenKalkulationstool</h1>
             </div>
-            <nav>
-                <div class="logoutButtonContainer">
-                        <button class="logoutButton" id="logoutButton">Abmelden</button>
+            <div class="logoutButtonContainer">
+                    <button class="logoutButton" id="logoutButton">Abmelden</button>
+            </div>
+            <div class="tabsContainer">
+                <div class="tabs" id="tabs">
+                    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                    <a href="personalkosten.html" class="tabActive">Personalkosten</a>
+                    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                    <a href="sachkosten.html" class="tab">Sachkosten</a>
+                    <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+                    <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
                 </div>
-                <div class="tabsContainer">
-                    <div class="tabs" id="tabs">
-                    <!-- Buttons für demonstration auskommentiert und durch links ersetzt
-                        <button class="tab-active">Allgemeine Projektdaten</button>
-                        <button class="tab">Personalkosten</button>
-                        <button class="tab">Kosten für projektbezogene Leistungen</button>
-                        <button class="tab" >Sachkosten</button>
-                        <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
-                        <button class="tab">Kosten für Räume und Flächen</button>
-                    -->
-                        <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                        <a href="personalkosten.html" class="tabActive">Personalkosten</a>
-                        <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                        <a href="sachkosten.html" class="tab">Sachkosten</a>
-                        <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-                        <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-                    </div>
-                    <select class="tabsDropdown" id="tabsDropdown">
-                        <option value="allgemein.html">Allgemeine Projektdaten</option>
-                        <option vlaue="personalkosten.html">Personalkosten</option>
-                        <option value="leistungen.html"selected>Kosten für projektbezogene Leistungen</option>
-                        <option value="sachkosten.html">Sachkosten</option>
-                        <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
-                        <option value="raeume.html">Kosten für Räume und Flächen</option>
-                    </select>
-                </div>
-            </header>
+                <select class="tabsDropdown" id="tabsDropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option vlaue="personalkosten.html">Personalkosten</option>
+                    <option value="leistungen.html"selected>Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html">Sachkosten</option>
+                    <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                    <option value="raeume.html">Kosten für Räume und Flächen</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
             <script>
                 const tabs = document.getElementById('tabs');
                 const dropdown = document.getElementById('tabsDropdown');
@@ -88,176 +81,178 @@
                     window.location.href = this.value;
                 });
             </script>
-        </nav>
-        <div class="mainContent">
-            <form class="projektForm" id="personalForm" action="personal.php" method="post" style="display: none;">
-                
-                <!-- SHK/ WHK -->
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="hk">SHK/ WHK</label>
-                        <select id="hk" name="hk">
-                            <option value="SHK">Studentische Hilfskraft</option>
-                            <option value="WHK">Wissenschaftliche Hilfskraft</option>
-                        </select>
+
+            <div class="mainContent">
+                <form class="projektForm" id="personalForm" action="personal.php" method="post" style="display: none;">
+                    
+                    <!-- SHK/ WHK -->
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="hk">SHK/ WHK</label>
+                            <select id="hk" name="hk">
+                                <option value="SHK">Studentische Hilfskraft</option>
+                                <option value="WHK">Wissenschaftliche Hilfskraft</option>
+                            </select>
+                        </div>
                     </div>
+                    
+                    <!-- Entgeltgruppe -->
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="entgeltgr">Entgeltgruppe</label>
+                            <select id="entgeltgr" name="entgeltgr">
+                                <option value="E 01">E 01</option>
+                                <option value="E 02">E 02</option>
+                                <option value="E 03">E 03</option>
+                                <option value="E 04">E 04</option>
+                                <option value="E 05">E 05</option>
+                                <option value="E 06">E 06</option>
+                                <option value="E 07">E 07</option>
+                                <option value="E 08">E 08</option>
+                                <option value="E 09">E 09</option>
+                                <option value="E 10">E 10</option>
+                                <option value="E 11">E 11</option>
+                                <option value="E 12">E 12</option>
+                                <option value="E 13">E 13</option>
+                                <option value="E 14">E 14</option>
+                                <option value="E 15">E 15</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Stufe/ Std. satz -->
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="stufe">Stufe/ Std. satz</label>
+                            <input type="number" id="stufe" name="stufe">
+                        </div>
+                    </div>
+
+                    <!-- 2025, 2026, 2027 -->
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="jahr2025">2025</label>
+                            <input type="number" id="jahr2025" name="jahr2025">
+                        </div>
+                        <div class="formGroup">
+                            <label for="jahr2026">2026</label>
+                            <input type="number" id="jahr2026" name="jahr2026">
+                        </div>
+                        <div class="formGroup">
+                            <label for="jahr2027">2027</label>
+                            <input type="number" id="jahr2027" name="jahr2027">
+                        </div>
+                    </div>
+
+                    <!-- Wochenstunden im Projekt -->
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="wochenstunden">Wochenstunden im Projekt</label>
+                            <input type="number" id="wochenstunden" name="wochenstunden">
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="formRow formRowRigth">
+                        <button type="submit" class="weiterButton">Weiter</button>
+                    </div>
+                </form>
+
+
+                <!-- haushaltfinanz. Hochschul-Mitarbeiter -->
+                <form2 class="projektForm" id="personalForm2" action="personal.php" method="post" style="display: none;">
+                    
+                    <!-- Entgeltgruppe -->
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="entgeltgr">Entgeltgruppe</label>
+                            <select id="entgeltgr" name="entgeltgr">
+                                <option value="E 01 - 04">E 01 - 04</option>
+                                <option value="E 05 - 08">E 05 - 08</option>
+                                <option value="E 09 - 12">E 09 - 12</option>
+                                <option value="E 13 - 15">E 13 - 15</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 2025 -->
+                    <div class="formRow">
+                        <div>2025</div>
+                        <div class="formGroup">
+                            <label for="anzahlPersonen2025">Anzahl Personen</label>
+                            <input type="number" id="anzahlPersonen2025" name="anzahlPersonen2025">
+                        </div>
+                        <div class="formGroup">
+                            <label for="gesamtStunden2025">Stunden gesamt im Projekt</label>
+                            <input type="number" id="gesamtStunden2025" name="gesamtStunden2025">
+                        </div>
+                    </div>
+
+
+                    <!-- 2026 -->
+                    <div class="formRow">
+                        <div>2026</div>
+                        <div class="formGroup">
+                            <label for="anzahlPersonen2026">Anzahl Personen</label>
+                            <input type="number" id="anzahlPersonen2026" name="anzahlPersonen2026">
+                        </div>
+                        <div class="formGroup">
+                            <label for="gesamtStunden2026">Stunden gesamt im Projekt</label>
+                            <input type="number" id="gesamtStunden2026" name="gesamtStunden2026">
+                        </div>
+                    </div>
+
+                    <!-- 2027 -->
+                    <div class="formRow">
+                        <div>2027</div>
+                        <div class="formGroup">
+                            <label for="anzahlPersonen2027">Anzahl Personen</label>
+                            <input type="number" id="anzahlPersonen2027" name="anzahlPersonen2027">
+                        </div>
+                        <div class="formGroup">
+                            <label for="gesamtStunden2027">Stunden gesamt im Projekt</label>
+                            <input type="number" id="gesamtStunden2027" name="gesamtStunden2027">
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="formRow formRowRigth">
+                        <button type="submit" class="weiterButton">Weiter</button>
+                    </div>
+                </form2>
+
+
+        <!-- Sidebar mit den Buttons und zusammenfassung -->
+            <aside class="sidebar">
+                <button type="button" class="sidebarButton addButton" id="addButton">+ zu finanz. Mitarbeiter</button>
+                <button type="button" class="sidebarButton addButton" id="addButton2">+ haushaltfinanz. Mitarbeiter</button>
+                <button type="button" class="sidebarButton saveButton" id="saveButton">Mitarbeiter speichern</button>
+                <div class="sidebarSummary">
+                    <span class="summaryTitle">Summe der Personalkosten</span>
+                    <ul class="summaryList" id="summaryList">
                 </div>
-                
-                <!-- Entgeltgruppe -->
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="entgeltgr">Entgeltgruppe</label>
-                        <select id="entgeltgr" name="entgeltgr">
-                            <option value="E 01">E 01</option>
-                            <option value="E 02">E 02</option>
-                            <option value="E 03">E 03</option>
-                            <option value="E 04">E 04</option>
-                            <option value="E 05">E 05</option>
-                            <option value="E 06">E 06</option>
-                            <option value="E 07">E 07</option>
-                            <option value="E 08">E 08</option>
-                            <option value="E 09">E 09</option>
-                            <option value="E 10">E 10</option>
-                            <option value="E 11">E 11</option>
-                            <option value="E 12">E 12</option>
-                            <option value="E 13">E 13</option>
-                            <option value="E 14">E 14</option>
-                            <option value="E 15">E 15</option>
-                        </select>
-                    </div>
+                <div class="form-row form-row-rigth">
+                    <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
                 </div>
+            </aside>
+        <!-- <script>
+                // JavaScript für die Sidebar-Funktionalität
+                document.querySelector('.addButton').addEventListener('click', function() {
+                    // Logik zum Hinzufügen eines neuen Gegenstands
+                    alert('Neue Person hinzugefügt!');
+                });
 
-                <!-- Stufe/ Std. satz -->
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="stufe">Stufe/ Std. satz</label>
-                        <input type="number" id="stufe" name="stufe">
-                    </div>
-                </div>
-
-                <!-- 2025, 2026, 2027 -->
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="jahr2025">2025</label>
-                        <input type="number" id="jahr2025" name="jahr2025">
-                    </div>
-                    <div class="formGroup">
-                        <label for="jahr2026">2026</label>
-                        <input type="number" id="jahr2026" name="jahr2026">
-                    </div>
-                    <div class="formGroup">
-                        <label for="jahr2027">2027</label>
-                        <input type="number" id="jahr2027" name="jahr2027">
-                    </div>
-                </div>
-
-                <!-- Wochenstunden im Projekt -->
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="wochenstunden">Wochenstunden im Projekt</label>
-                        <input type="number" id="wochenstunden" name="wochenstunden">
-                    </div>
-                </div>
-
-                <!-- Submit -->
-                <div class="formRow formRowRigth">
-                    <button type="submit" class="weiterButton">Weiter</button>
-                </div>
-            </form>
-
-
-            <!-- haushaltfinanz. Hochschul-Mitarbeiter -->
-            <form2 class="projektForm" id="personalForm2" action="personal.php" method="post" style="display: none;">
-                
-                <!-- Entgeltgruppe -->
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="entgeltgr">Entgeltgruppe</label>
-                        <select id="entgeltgr" name="entgeltgr">
-                            <option value="E 01 - 04">E 01 - 04</option>
-                            <option value="E 05 - 08">E 05 - 08</option>
-                            <option value="E 09 - 12">E 09 - 12</option>
-                            <option value="E 13 - 15">E 13 - 15</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 2025 -->
-                <div class="formRow">
-                    <div>2025</div>
-                    <div class="formGroup">
-                        <label for="anzahlPersonen2025">Anzahl Personen</label>
-                        <input type="number" id="anzahlPersonen2025" name="anzahlPersonen2025">
-                    </div>
-                    <div class="formGroup">
-                        <label for="gesamtStunden2025">Stunden gesamt im Projekt</label>
-                        <input type="number" id="gesamtStunden2025" name="gesamtStunden2025">
-                    </div>
-                </div>
-
-
-                <!-- 2026 -->
-                <div class="formRow">
-                    <div>2026</div>
-                    <div class="formGroup">
-                        <label for="anzahlPersonen2026">Anzahl Personen</label>
-                        <input type="number" id="anzahlPersonen2026" name="anzahlPersonen2026">
-                    </div>
-                    <div class="formGroup">
-                        <label for="gesamtStunden2026">Stunden gesamt im Projekt</label>
-                        <input type="number" id="gesamtStunden2026" name="gesamtStunden2026">
-                    </div>
-                </div>
-
-                <!-- 2027 -->
-                <div class="formRow">
-                    <div>2027</div>
-                    <div class="formGroup">
-                        <label for="anzahlPersonen2027">Anzahl Personen</label>
-                        <input type="number" id="anzahlPersonen2027" name="anzahlPersonen2027">
-                    </div>
-                    <div class="formGroup">
-                        <label for="gesamtStunden2027">Stunden gesamt im Projekt</label>
-                        <input type="number" id="gesamtStunden2027" name="gesamtStunden2027">
-                    </div>
-                </div>
-
-                <!-- Submit -->
-                <div class="formRow formRowRigth">
-                    <button type="submit" class="weiterButton">Weiter</button>
-                </div>
-            </form2>
-
-
-    <!-- Sidebar mit den Buttons und zusammenfassung -->
-        <aside class="sidebar">
-            <button type="button" class="sidebarButton addButton" id="addButton">+ zu finanz. Mitarbeiter</button>
-            <button type="button" class="sidebarButton addButton" id="addButton2">+ haushaltfinanz. Mitarbeiter</button>
-            <button type="button" class="sidebarButton saveButton" id="saveButton">Mitarbeiter speichern</button>
-            <div class="sidebarSummary">
-                <span class="summaryTitle">Summe der Personalkosten</span>
-                <ul class="summaryList" id="summaryList">
+                document.querySelector('.saveButton').addEventListener('click', function() {
+                    // Logik zum Speichern des Gegenstands
+                    alert('Mitarbeiter gespeichert!');
+                });
+            </script>
+            -->
             </div>
-            <div class="form-row form-row-rigth">
-                <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
-            </div>
-        </aside>
-    <!-- <script>
-            // JavaScript für die Sidebar-Funktionalität
-            document.querySelector('.addButton').addEventListener('click', function() {
-                // Logik zum Hinzufügen eines neuen Gegenstands
-                alert('Neue Person hinzugefügt!');
-            });
-
-            document.querySelector('.saveButton').addEventListener('click', function() {
-                // Logik zum Speichern des Gegenstands
-                alert('Mitarbeiter gespeichert!');
-            });
-        </script>
-        -->
-        </div>
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2025 Hochschule Mittweida</p>
+        </footer>
     </body>
-    <footer class="footer">
-        <p>&copy; 2025 Hochschule Mittweida</p>
-    </footer>
 </html>

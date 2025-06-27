@@ -6,6 +6,11 @@ body, html
     background-color: #e6e6e6;
     color: #222;
 }
+
+main {
+    padding-top: 20px;
+}
+
 /*Header Banner */
     .headerBanner 
     {
@@ -37,7 +42,7 @@ body, html
     }
 
 /* Buttons */
-.selectButton, .newProjectButton, .createButton, .openButton
+.selectButton, .newProjectButton, .createButton, .openButton, .calculationButton
 {
     padding: 0.8rem, 2.1rem;
     background: #4069b1;

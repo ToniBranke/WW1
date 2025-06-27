@@ -13,173 +13,177 @@
             <h1>Kosten für Räume und Flächen</h1>
             <div class="logoutButtonContainer">
                 <button class="logoutButton" id="logoutButton">Abmelden</button>
-        </div>
-        <div class="tabsContainer">
-            <div class="tabs" id="tabs">
-                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                <a href="personalkosten.html" class="tab">Personalkosten</a>
-                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                <a href="sachkosten.html" class="tab">Sachkosten</a>
-                <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-                <a href="raeume.html" class="tabActive">Kosten für Räume und Flächen</a>
             </div>
-            <select class="tabsDropdown" id="tabsDropdown">
-                <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option value="personalkosten.html">Personalkosten</option>
-                <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
-                <option value="sachkosten.html">Sachkosten</option>
-                <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
-                <option value="raeume.html" selected>Kosten für Räume und Flächen</option>
-            </select>
-        </div>
+            <div class="tabsContainer">
+                <div class="tabs" id="tabs">
+                    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                    <a href="personalkosten.html" class="tab">Personalkosten</a>
+                    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                    <a href="sachkosten.html" class="tab">Sachkosten</a>
+                    <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+                    <a href="raeume.html" class="tabActive">Kosten für Räume und Flächen</a>
+                </div>
+                <select class="tabsDropdown" id="tabsDropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option value="personalkosten.html">Personalkosten</option>
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html">Sachkosten</option>
+                    <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                    <option value="raeume.html" selected>Kosten für Räume und Flächen</option>
+                </select>
+            </div>
         </header>
 
-    <script>
-        const tabs = document.getElementById('tabs');
-            const dropdown = document.getElementById('tabsDropdown');
+        <main>
+            <script>
+                const tabs = document.getElementById('tabs');
+                const dropdown = document.getElementById('tabsDropdown');
 
-            const changeWidth = 1500;
-            let tooSmall = window.innerWidth <= changeWidth;
+                const changeWidth = 1500;
+                let tooSmall = window.innerWidth <= changeWidth;
 
-            function animateSwitch(showDropdown) {
-                if (showDropdown) {
-                    tabs.classList.add('tabsHidden');
-                    dropdown.classList.remove('dropdownHidden');
-                } else {
-                    tabs.classList.remove('tabsHidden');
-                    dropdown.classList.add('dropdownHidden');
-                }
-            }
-
-            window.addEventListener('resize', () => {
-                const isSmall = window.innerWidth <= changeWidth;
-                if (isSmall !== tooSmall) {
-                    animateSwitch(isSmall);
-                    tooSmall = isSmall;
-                }
-            });
-
-            window.addEventListener('DOMContentLoaded', () => {
-                if (tooSmall) {
-                    tabs.classList.add('tabsHidden');
-                    dropdown.classList.remove('dropdownHidden');
-                } else {
-                    dropdown.classList.add('dropdownHidden');
+                function animateSwitch(showDropdown) {
+                    if (showDropdown) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        tabs.classList.remove('tabsHidden');
+                        dropdown.classList.add('dropdownHidden');
+                    }
                 }
 
-                requestAnimationFrame(() => {
-                    tabs.classList.add('navTransition');
-                    dropdown.classList.add('navTransition');
+                window.addEventListener('resize', () => {
+                    const isSmall = window.innerWidth <= changeWidth;
+                    if (isSmall !== tooSmall) {
+                        animateSwitch(isSmall);
+                        tooSmall = isSmall;
+                    }
                 });
-            });
 
-            dropdown.addEventListener('change', function () {
-                window.location.href = this.value;
-            });
-    </script>
+                window.addEventListener('DOMContentLoaded', () => {
+                    if (tooSmall) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        dropdown.classList.add('dropdownHidden');
+                    }
 
-        <div class="mainContent">
-            <form class="projectForm" id="raeumeForm" action="raeume.php" method="post" style="display: block;">
-                <div class="formRow" id="officeUsageFeeContainer" style="display: none;">
-                    <div class="formGroup wide" >
-                        <label for="officeUsageFee">Büronutzungsgebühr</label>
-                        <input type="number" id="officeUsageFee" name="officeUsageFee" placeholder="0">
-                        <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
+                    requestAnimationFrame(() => {
+                        tabs.classList.add('navTransition');
+                        dropdown.classList.add('navTransition');
+                    });
+                });
+
+                dropdown.addEventListener('change', function () {
+                    window.location.href = this.value;
+                });
+        </script>
+
+            <div class="mainContent">
+                <form class="projectForm" id="raeumeForm" action="raeume.php" method="post" style="display: block;">
+                    <div class="formRow" id="officeUsageFeeContainer" style="display: none;">
+                        <div class="formGroup wide" >
+                            <label for="officeUsageFee">Büronutzungsgebühr</label>
+                            <input type="number" id="officeUsageFee" name="officeUsageFee" placeholder="0">
+                            <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
+                        </div>
+                            <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
+                    </div>
+                <div id="LabUsageContainer" style="display: none;">
+                    <h3>Labornutzungsgebühr</h3>
+                    <div class="formRow" id="LabUsageFeeContainer">
+                        <div class="formGroup" id="LabNameContainer">
+                            <label for="LabName">Name</label>
+                            <input type="text" id="LabName" name="LabName">
+                        </div>
+                        <div class="formGroup" id="LabUsageFeeYearContainer">
+                            <label for="LabUsageFeeYear">Jahr</label>
+                            <select id="LabUsageFeeYear" name="LabUsageFeeYear">
+                                <option value="LabUsageFeeYear2025">2025</option>
+                                <option value="LabUsageFeeYear2026">2026</option>
+                                <option value="LabUsageFeeYear2027">2027</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow" id="LabUsageFeeTimeContainer">
+                        <div class="formGroup" id="labUsageFeeWeeksContainer">
+                            <label for="labUsageFeeWeeks">Anzahl der Wochen</label>
+                            <input type="number" id="labUsageFeeWeeksAmount" name="labUsageFeeWeeks" placeholder="0">
+                        </div>
+                        <div class="formGroup" id="LabUsageFeeHoursContainer">
+                            <label for="labUsageFeeHours">Stunden pro Woche</label>
+                            <input type="number" id="labUsageFeeHours" name="labUsageFeeHours" placeholder="0">
+                            <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
+                        </div>
                     </div>
                         <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
                 </div>
-            <div id="LabUsageContainer" style="display: none;">
-                <h3>Labornutzungsgebühr</h3>
-                <div class="formRow" id="LabUsageFeeContainer">
-                    <div class="formGroup" id="LabNameContainer">
-                        <label for="LabName">Name</label>
-                        <input type="text" id="LabName" name="LabName">
-                    </div>
-                    <div class="formGroup" id="LabUsageFeeYearContainer">
-                        <label for="LabUsageFeeYear">Jahr</label>
-                        <select id="LabUsageFeeYear" name="LabUsageFeeYear">
-                            <option value="LabUsageFeeYear2025">2025</option>
-                            <option value="LabUsageFeeYear2026">2026</option>
-                            <option value="LabUsageFeeYear2027">2027</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="formRow" id="LabUsageFeeTimeContainer">
-                    <div class="formGroup" id="labUsageFeeWeeksContainer">
-                        <label for="labUsageFeeWeeks">Anzahl der Wochen</label>
-                        <input type="number" id="labUsageFeeWeeksAmount" name="labUsageFeeWeeks" placeholder="0">
-                    </div>
-                    <div class="formGroup" id="LabUsageFeeHoursContainer">
-                        <label for="labUsageFeeHours">Stunden pro Woche</label>
-                        <input type="number" id="labUsageFeeHours" name="labUsageFeeHours" placeholder="0">
-                        <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
-                    </div>
-                </div>
-                    <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
-            </div>
 
-            <div id="otherRoomContainer" style="display: none;">
-                        <h3>Zusatzräume</h3>
-                <div class="formRow"  >
-                    <div class="formGroup" id="otherRoomNameContainer">
-                        <label for="otehrRoomName">Name</label>
-                        <input type="text" id="otherRoomName" name="otherRoomName">
+                <div id="otherRoomContainer" style="display: none;">
+                            <h3>Zusatzräume</h3>
+                    <div class="formRow"  >
+                        <div class="formGroup" id="otherRoomNameContainer">
+                            <label for="otehrRoomName">Name</label>
+                            <input type="text" id="otherRoomName" name="otherRoomName">
+                        </div>
+                        <div class="formGroup" id="otherRoomSizeContainer">
+                            <label for="otherRoomSize">QM</label>
+                            <input type="number" id="otherRoomSize" name="otherRoomSize" placeholder="0">
+                        </div>
                     </div>
-                    <div class="formGroup" id="otherRoomSizeContainer">
-                        <label for="otherRoomSize">QM</label>
-                        <input type="number" id="otherRoomSize" name="otherRoomSize" placeholder="0">
+                    <div class="formRow" >
+                        <div class="formGroup" id="otherRoomRentContainer">
+                            <label for="otherRoomRent"> mtl. Miete pro QM</label>
+                            <input type="number" id="otherRoomRent" name="otherRoomRent" placeholder="0">
+                            <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
+                        </div>
+                        <div class="formGroup" id="otherRoomDurationContainer">
+                            <label for="otherRoomDuration">Monate</label>
+                            <select id="otherRoomDuration" name="otherRoomDuration">
+                                <option value="1">1 Monate</option>
+                                <option value="2">2 Monate</option>
+                                <option value="3">3 Monate</option>
+                                <option value="4">4 Monate</option>
+                                <option value="5">5 Monate</option> 
+                                <option value="6">6 Monate</option>
+                                <option value="7">7 Monate</option>
+                                <option value="8">8 Monate</option>
+                                <option value="9">9 Monate</option>
+                                <option value="10">10 Monate</option>
+                                <option value="11">11 Monate</option>
+                                <option value="12">12 Monate</option>
+                            </select>
+                            <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
+                        </div>
+                        <!--<div class ="formRow formRowRight">
+                        </div>-->
+                        <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
                     </div>
                 </div>
-                <div class="formRow" >
-                    <div class="formGroup" id="otherRoomRentContainer">
-                        <label for="otherRoomRent"> mtl. Miete pro QM</label>
-                        <input type="number" id="otherRoomRent" name="otherRoomRent" placeholder="0">
-                        <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
-                    </div>
-                    <div class="formGroup" id="otherRoomDurationContainer">
-                        <label for="otherRoomDuration">Monate</label>
-                        <select id="otherRoomDuration" name="otherRoomDuration">
-                            <option value="1">1 Monate</option>
-                            <option value="2">2 Monate</option>
-                            <option value="3">3 Monate</option>
-                            <option value="4">4 Monate</option>
-                            <option value="5">5 Monate</option> 
-                            <option value="6">6 Monate</option>
-                            <option value="7">7 Monate</option>
-                            <option value="8">8 Monate</option>
-                            <option value="9">9 Monate</option>
-                            <option value="10">10 Monate</option>
-                            <option value="11">11 Monate</option>
-                            <option value="12">12 Monate</option>
-                        </select>
-                        <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
-                    </div>
-                    <!--<div class ="formRow formRowRight">
-                    </div>-->
-                    <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
-                </div>
-            </div>
 
-                <!--<div class="form-row form-row-rigth" >
-                    <button type="submit" class="weiter-button">Weiter</button>
-                </div> -->
-            </form>
-            <aside class="sidebar">
-                <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
-                <button type="button" class="sidebarButton labor" id="addLaborButton">+ Labor</button>
-                <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
-                <div class="sidebarSummary">
-                    <span class="summaryTitle">Summe der Nutzungskosten</span>
-                    <ul class="summaryList" id="raeumeSummaryList">
-                    </ul>
-                </div>
-                <div class="formRow formRowRigth">
-                    <button type="submit" class="weiterButton" id="submitButton" style="display: none;">Abschließen</button>
-                </div>
-            </aside>
-        </div>
+                    <!--<div class="form-row form-row-rigth" >
+                        <button type="submit" class="weiter-button">Weiter</button>
+                    </div> -->
+                </form>
+                <aside class="sidebar">
+                    <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
+                    <button type="button" class="sidebarButton labor" id="addLaborButton">+ Labor</button>
+                    <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
+                    <div class="sidebarSummary">
+                        <span class="summaryTitle">Summe der Nutzungskosten</span>
+                        <ul class="summaryList" id="raeumeSummaryList">
+                        </ul>
+                    </div>
+                    <div class="formRow formRowRigth">
+                        <button type="submit" class="weiterButton" id="submitButton" style="display: none;">Abschließen</button>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Hochschule Mittweida</p>
+        </footer>
+
     </body>
-    <footer class="footer">
-        <p>&copy; 2025 Hochschule Mittweida</p>
-    </footer>
 </html>
