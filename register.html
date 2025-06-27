@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrierung</title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="validation.js"></script>
+        <script defer src="buttonScript.js"></script>
+        <!-- Removed script.js -->
+    </head>
+    <body class="loginBody">
+        <div class="loginContainer">
+            <div class="registerLogo">
+                <img src="bilder/Logo-hsmw.svg.png" alt="Logo HSMW" class="logoImg">
+            </div>
+            <form class="registerForm" action="php/register.php" method="post">
+                <h1>Registrierung</h1>
+                <div class="formGroup">
+                    <label for="registerUsername">Benutzername</label>
+                    <input type="text" id="registerUsername" name="Benutzername" data-validate-regex="^[a-zA-Z0-9]+$" data-error-message="Benutzername darf nur Buchstaben und Zahlen enthalten" data-required="true">
+                    <span id="registerUsernameError" class="error-message"></span>
+                </div>
+                <div class="formGroup">
+                    <label for="registerEmail">E-Mail-Adresse</label>
+                    <input type="email" id="registerEmail" data-validate-regex= "^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+" 
+                        data-error-message="E-Mail muss ein @ und ein Punkt enthalten" name="E-Mail-Adresse" data-required="true">
+                    <span id="registerEmailError" class="error-message"></span>
+                </div>
+                <div class="formGroup">
+                    <label for="registerPassword">Passwort</label>
+                    <input type="password" id="registerPassword" data-validate-regex= "^[a-zA-Z0-9!?@.-_]{8,32}$" 
+                        data-error-message="das Passwort muss mindestens 8 Zeichen und maximal 32 Zeichen enthalten. Es dürfen Groß- und Kleinbuchstaben, Zahlen, !, ?, ., -, und _ verwendet werden." 
+                        name="Passwort" data-required="true">
+                    <span id="registerPasswordError" class="error-message"></span>
+                </div>
+                <div class="formGroup">
+                    <label for="registerConfirmPassword">Passwort bestätigen</label>
+                    <input type="password" id="registerConfirmPassword" data-error-message="das Passwort muss mindestens 8 Zeichen und maximal 32 Zeichen enthalten. Es dürfen Groß- und Kleinbuchstaben, Zahlen, !, ?, ., -, und _ verwendet werden." 
+                        name="Passwort bestätigen" data-match="registerPassword" data-required="true">
+                    <span id="registerConfirmPasswordError" class="error-message"></span>
+                </div>
+                <div class="formLinks">
+                    <a href="login.html" class="forgotLink">Zurück zum Login</a>
+                </div>
+                <button type="submit" class="weiterButton">Registrieren abschließen</button>
+            </form>
+        </div>
+    </body>
+    <div class="footerBox">
+        <footer class="footer">
+            <p>&copy; 2025 Hochschule Mittweida</p>
+        </footer>
+    </div>
+</html>

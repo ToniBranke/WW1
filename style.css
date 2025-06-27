@@ -1,0 +1,755 @@
+body, html
+{
+    height:100%;
+    margin:0;
+    font-family: 'Seorge UI', sans-serif;
+    background-color: #e6e6e6;
+    color: #222;
+}
+
+main {
+    padding-top: 20px;
+}
+
+/*Header Banner */
+    .headerBanner 
+    {
+        background-image: url('bilder/haus1.png');
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+        display: flex;
+        align-items: flex-start;
+        padding: 20px;
+        color: white;
+        position: relative;
+        justify-content: center;
+
+        max-width: 1500px;
+        margin: 0 auto;
+        border-bottom-left-radius: 14px;
+        border-bottom-right-radius: 14px;
+        overflow: hidden;
+
+    }
+
+    .headerBanner h1 
+    {
+        font-size: 2em;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+/* Buttons */
+.selectButton, .newProjectButton, .createButton, .openButton, .calculationButton
+{
+    padding: 0.8rem, 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 17.188rem;
+    height: 3.75rem;
+    justify-content: center;
+    transition: transform 0.4s ease-out;
+}
+
+/*
+.weiterSelectButton, .backButton
+{
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    margin: auto;
+    display: block;
+    width: 200px;
+    height: 60px;
+    justify-content: center;
+}
+*/
+
+.backButton:hover, .newProjectButton:hover, .selectButton:hover, 
+.createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, 
+.logoutButton:hover, .addButton:hover, .weiterSelectButton:hover
+{
+    background: #24406a;
+    transform: scale(1.05);
+    transition: transform 0.4s ease-out;
+}
+
+.saveButton:hover, .buero:hover, .labor:hover, .anderes:hover
+{
+    transform: scale(1.05);
+    transform: transform 0.4s ease-out
+}
+
+.selectionForm, .projectForm
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    align-items: center;
+}
+
+/* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
+.mainContent
+{
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 7.5rem;
+    margin: 0 auto;
+}
+
+.sidebar
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23pc rbga(70, 90, 120, 0.06);
+    padding: 1.2rem 1.2rem;
+    min-width: 230px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.2rem;
+    margin-top: 0.4rem;
+}
+
+.sidebarButton
+{
+    padding: 0.7rem 1rem;
+    background: #fff;
+    color: #222;
+    font-size: 1.01rem;
+    border: 1px solid #222;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.14s, color 0.14s;
+    margin-bottom: 0.2rem;
+}
+
+.sidebarButton.addButton
+{
+    background: #bcbcbc;
+    color: #000;
+    border: none;
+}
+
+.sidebarButton.addButton:hover
+{
+    background: #24406a;
+    color: #fff;
+}
+
+.sidebarButton.saveButton:hover
+{
+    background: #eee;
+}
+
+.sidebarSummary
+{
+    border: 1px solid #bcbcbc;
+    border-radius: 8px;
+    padding: 1em 0.8em;
+    background: #fff;
+}
+
+.summaryTitle
+{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.7em;
+    font-size: 1.07em;
+    color: #222;
+    text-align: center; 
+}
+
+.summaryList
+{
+    list-style: disc;
+    padding-left: 1.3em;
+    color: #4069b1;
+    margin: 0;
+}
+
+.projectForm
+{
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 23px rgba(70, 90, 120, 0.06);
+    padding: 2rem 2.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.formRow
+{
+    display: flex;
+    gap: 2rem; 
+    margin-bottom: 1.1rem;
+    
+}
+
+.formRowSelection
+{
+    display: flex;
+    gap: -30rem;
+    margin-bottom: 1.1rem;
+    margin: 0 auto;
+}
+
+.formGroup
+{
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.formRow .formGroup
+{
+    flex: 1 1 0; 
+    display: flex; 
+    flex-direction: column;
+}
+
+.formGroup label
+{
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color:#333;
+}
+
+.formGroup input
+{
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.formGroup input:focus
+{
+    border-color: #4069b1;
+    outline: none;
+}
+
+/* Kleine Felder (Personal Jahre) */
+
+.textBoxSmall
+{
+    display: flex;
+    flex-direction: row;;
+    gap: 0.7em;
+    align-items: center;;
+}
+
+.textBoxSmall label
+{
+    margin: 0 0.15em 0 0;
+    font-size: 0.97em;
+    color:#444;
+}
+
+.textBoxSmall input [type="number"]
+{
+    width: 1em;
+    padding: 0.4em 0.3em;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.formGroup.wide
+{
+    flex: 2 1 0;
+}
+
+.formRowRigth
+{
+    justify-content: flex-end;
+    margin-top: 2.4rem;
+}
+
+.weiterButton
+{
+    padding: 0.8rem 2.1rem;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.08rem;
+    border: none; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    transition: transform 0.4s ease-out, background 0.4s ease-out;
+}
+.weiterButton:hover 
+{
+    background: #24406a;
+    transition: background 0.5s ease-out;
+}
+
+/* Login Page Styles */
+
+.loginBody
+{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer
+{
+    background: #f8f8f8;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(70, 90, 120, 0.08);
+    width: 100%;
+    max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginLogo
+{
+    margin-bottom: 1.5rem;
+    right: 0;
+}
+
+.logoImg
+{
+    width: 120px;
+    max-width: 100%;
+}
+
+.loginForm
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.loginForm h1
+{
+    margin-bottom: 1.1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+.formGroup
+{
+    margin-bottom: 1.1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label
+{
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.formGroup select
+{
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.formGroup input
+{
+    padding: 0.75rem 0.9rem;
+    border: 1px solid #bcbcbc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.formGroup input:focus
+{
+    border-color: #4069b1;
+    outline: none;
+}
+
+.formLinks
+{
+    display: flex;
+    margin-top: 1rem;
+}
+
+.forgotLink 
+{
+    font-size: 0.95rem;
+    color: #4069b1;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.registerLink
+{
+    font-size: 0.95rem;
+    color: #4069b1;
+    text-decoration: none;
+    justify-content: flex-end;
+    transition: color 0.2s;
+    margin-left: auto;
+}
+
+
+.forgotLink:hover , .registerLink:hover
+{
+    color: #24406a;
+    text-decoration: underline;
+}
+
+.loginButton 
+{
+    padding: 0.8rem 0;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.09rem;
+    border: none; 
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+}
+
+.loginButton:hover, .logoutButton:hover
+{
+    background: #325493;
+}
+
+.logoutButtonContainer
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 0.9rem;
+}
+
+.logoutButton
+{
+    padding: 0.8rem ;
+    background: #4069b1;
+    color: #fff;
+    font-size: 1.09rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    justify-content: flex;
+    margin-right: 0.8rem;
+}
+
+.footer
+{
+    position : bottom;
+    bottom: 0rem;
+    justify-content: bottom;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 100%;
+    padding: 0.8rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.01rem;
+}
+
+.loginFooter
+{
+    position: fixed;
+    bottom: 0;
+ 
+}
+
+/* Tabs */
+.tabsContainer
+{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    z-index: 10;
+}
+
+.tab, .tabActive
+{
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0.7em 1.5em;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: 300ms cubic-bezier(0.65, 0.05, 0.36, 1);
+    border-radius: 14px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1px;
+    font-weight: 500;
+}
+
+.tab
+{
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 1px;
+    transition: transform 0.4s ease-out;
+}
+
+.tabActive
+{
+    border-radius: 14px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+}
+
+.tab:hover
+{
+    text-decoration: none;
+    text-align: center;
+    transform: translateY(-3px);
+    padding: 0.7em 1.5em;
+    border-radius: 14px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+    transition: transform 0.4s ease-out;
+}
+
+.tabs, .tabsDropdown {
+    opacity: 1;
+    position: relative;
+
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+    overflow-x: auto;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 100%;
+}
+
+.tabs.navTransition, .tabsDropdown.navTransition {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tabsDropdown {
+    width: 80%;
+    font-size: 16px;
+    align-self: center;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+
+    padding: 0.7em 1.5em;
+    border-radius: 14px;
+    margin-top: 2rem;
+    background: #2b4572;
+    color: #fff;
+
+}
+
+.tabsHidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50px);
+    pointer-events: none;
+}
+
+.dropdownHidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(50px);
+    pointer-events: none;
+}
+
+/* Tooltips */
+
+.tooltipText
+{
+    visibility: hidden;
+    width: 14.375rem;
+    background-color: #3f68b0;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 5px;
+    border-color: #ffffff;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: -3.5rem;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+.formGroup:hover .tooltipText
+{
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.inputError
+{
+    border: 2px solid #d93025 !important; 
+    background-color: rgba(243, 128, 114, 0.74) !important;
+}
+
+/*Fehlermeldungen*/
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+/* added sumaryContent fuer Zusammenfassung (nicht vollstaendig) */
+
+
+/*
+.tabActive, .tab:hover
+{
+   /* formatierung für den link //
+    text-decoration: none;
+    text-align: center;
+
+    padding: 0.7em 1.5em;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: 2rem;
+    background: #4069b1;
+    color: #fff;
+}
+/*
+.tabs
+{
+    display: flex;
+    flex-wrap: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-content: center;
+}
+
+.tab
+{
+
+     //formatierung für den link //
+    text-decoration: none;
+    text-align: center;
+
+    margin-top: 2rem;
+    background: #6e6e6e;
+    border: none;
+    border-radius: 8px 8px 4px 4px;
+    padding: 0.7em 1.5em; 
+    font-size: 1rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: -1px;
+}
+*/
+@media (max-width: 1500px)
+{
+    .tabs
+    {
+        /* display: none */
+    }
+
+    .tabsDropdown
+    {
+        display:block;
+    }
+
+    .loginContainer
+    {
+        padding: 1.2rem 0.6rem;
+        max-width: 99vw;
+    }
+    .mainContent
+    {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sidebar
+    {
+        max-width: 100%;
+        min-width:0;
+        margin-top: 2rem;
+    }
+
+    @media (max-width: 860px) {
+  .formRow {
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.3rem;
+  }
+  .formGroup {
+    margin-bottom: 1.3rem;
+  }
+}
+}

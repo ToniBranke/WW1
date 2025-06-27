@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachkosten</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="validation.js"></script>
+    <script src="script.js"></script>
+    <script src="buttonScript.js"></script>
+    <script src="redBackground.js"></script>
+</head>
+<body class="taskMain">
+    <header class="headerBanner">
+        <h1>Sachkosten</h1>
+        <div class="logoutButtonContainer">
+        <button class="logoutButton" id="logoutButton">Abmelden</button>
+        </div>
+        <div class="tabsContainer">
+            <div class="tabs" id="tabs">
+                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                <a href="personalkosten.html" class="tab">Personalkosten</a>
+                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                <a href="sachkosten.html" class="tabActive">Sachkosten</a>
+                <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+            </div>
+            <select class="tabsDropdown" id="tabsDropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option vlaue="personalkosten.html">Personalkosten</option>
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html"selected>Sachkosten</option>
+                    <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                    <option value="raeume.html">Kosten für Räume und Flächen</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <script>
+                const tabs = document.getElementById('tabs');
+                const dropdown = document.getElementById('tabsDropdown');
+
+                const changeWidth = 1500;
+                let tooSmall = window.innerWidth <= changeWidth;
+
+                function animateSwitch(showDropdown) {
+                    if (showDropdown) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        tabs.classList.remove('tabsHidden');
+                        dropdown.classList.add('dropdownHidden');
+                    }
+                }
+
+                window.addEventListener('resize', () => {
+                    const isSmall = window.innerWidth <= changeWidth;
+                    if (isSmall !== tooSmall) {
+                        animateSwitch(isSmall);
+                        tooSmall = isSmall;
+                    }
+                });
+
+                window.addEventListener('DOMContentLoaded', () => {
+                    if (tooSmall) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        dropdown.classList.add('dropdownHidden');
+                    }
+
+                    requestAnimationFrame(() => {
+                        tabs.classList.add('navTransition');
+                        dropdown.classList.add('navTransition');
+                    });
+                });
+
+                dropdown.addEventListener('change', function () {
+                    window.location.href = this.value;
+                });
+            </script>
+
+            <form class="projectForm" action="abschreibungen.html" method="post">
+                <div class="formRow">
+                    <div class="loginForm">
+                        <h1>Geschäftsbedarf</h1>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="officeSupplies">Büromaterial</label>
+                        <input type="numbers" id="officeSupplies" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Büromaterial" placeholder="0">
+                        <span id="officeSuppliesError" class="error-message"></span>
+                        <span class="tooltipText">Verbrauchsmaterialien für den täglichen Bürobedarf</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="softwareLicenses">Software / Lizenzen</label>
+                        <input type="numbers" id="softwareLicenses" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Software / Lizenzen" placeholder="0">
+                        <span id="softwareLicensesError" class="error-message"></span>
+                        <span class="tooltipText">Kosten für Softwarekäufe oder Lizenzgebühren</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="advertisingCost">Werbekosten</label>
+                        <input type="numbers" id="advertisingCost" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werbekosten" placeholder="0">
+                        <span id="advertisingCostError" class="error-message"></span>
+                        <span class="tooltipText">Ausgaben für Werbung, Flyer, Anzeigen oder Online-Marketing</span>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="PostagePhoneComm">Porto / Telefon / Kommunikation</label>
+                        <input type="numbers" id="PostagePhoneComm" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Porto / Telefon / Kommunikation" placeholder="0">
+                        <span id="PostagePhoneCommError" class="error-message"></span>
+                        <span class="tooltipText">Kosten für Postversand, Telefonate oder Internetnutzung</span>
+                    </div>
+                    <div class="formGroup">
+                        <lable for="storageDevices">Speichermedien</lable>
+                        <input type="numbers" id="storageDevices" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Speichermedien" placeholder="0">
+                        <span id="storageDevicesError" class="error-message"></span>
+                        <span class="tooltipText">USB-Sticks, externe Festplatten oder SD-Karten</span>
+                    </div>
+                    <div class="formGroup">
+                        <lable for="maintenance">Instandhaltung</lable>
+                        <input type="numbers" id="maintenance" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Instandhaltung" placeholder="0">
+                        <span id="maintenanceError" class="error-message"></span>
+                        <span class="tooltipText">Wartung oder kleinere Reparaturen von Geräten/Ausstattung</span>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="devicesBelow150">Geräte / Ausstattung < 150 </label>
+                        <input type="numbers" id="devicesBelow150" data-validate-regex= "^(?:[0-9]|[1-9][0-9]|1[0-4][0-9])$" data-error-message="nur Zahlen zwischen 0 und 150 erlaubt" name="Geräte / Ausstattung" placeholder="0" max="150">
+                        <span id="devicesBelow150Error" class="error-message"></span>
+                        <span class="tooltipText">Kleingeräte und Ausstattungen unter 150€ netto pro Stück</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="magazinesLiterature">Literatur / Zeitschriften</label>
+                        <input type="numbers" id="magazinesLiterature" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Literatur / Zeitschriften" placeholder="0" required>
+                        <span id="magazinesLiteratureError" class="error-message"></span>
+                        <span class="tooltipText">Fachbücher, Journale oder abonnierte Zeitschriften</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="materials">Materialien(Roh-, Hilfs-, Betriebsstoffe)</label>
+                        <input type="numbers" id="materials" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Materialien" placeholder="0" required>
+                        <span id="materialsError" class="error-message"></span>
+                        <span class="tooltipText">Projektbezogene Materialien, z.B. Papier, Chemikalien, Farbe</span>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup wide">
+                        <label for="travelCost"><h2>Reisekosten</h2></label>
+                        <input type="numbers" id="travelCost" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Reisekosten" placeholder="0"required>
+                        <span id="travelCostError" class="error-message"></span>
+                        <span class="tooltipText">Fahrt-, Übernachtungs- oder Verpflegungskosten auf Dienstreisen</span>
+                    </div>
+                </div>
+                <div class="formRow">    
+                    <div class="formGroup wide">
+                        <label for="otherExpenses"><h2>Sonstige Aufwendungen</h2></label>
+                        <input type="numbers" id="otherExpenses" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="sonstige Aufwendungen" placeholder="0"required>
+                        <span id="otherExpensesError" class="error-message"></span>
+                        <span class="tooltipText">Alle übrigen Kosten, die keiner anderen Kategorie zuzuordnen sind</span>
+                    </div>
+                </div>
+                <div class="formRow formRowRigth">
+                    <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Hochschule Mittweida</p>
+        </footer>
+    
+    </body>
+</html>

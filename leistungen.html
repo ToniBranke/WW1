@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sachkosten</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="validation.js"></script>
+        <script src="script.js"></script>
+        <script src="buttonScript.js"></script>
+    </head>
+    <body class="taskMain">
+        <header class="headerBanner">
+            <h1>Kosten für projektbezogene Leistungen</h1>
+            <div class="logoutButtonContainer">
+                    <button class="logoutButton" id="logoutButton">Abmelden</button>
+            </div>
+            <div class="tabsContainer">
+                <div class="tabs" id="tabs">
+                    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                    <a href="personalkosten.html" class="tab">Personalkosten</a>
+                    <a href="leistungen.html" class="tabActive">Kosten für projektbezogene Leistungen</a>
+                    <a href="sachkosten.html" class="tab">Sachkosten</a>
+                    <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+                    <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+                </div>
+                <select class="tabsDropdown" id="tabsDropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option vlaue="personalkosten.html">Personalkosten</option>
+                    <option value="leistungen.html" selected>Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html">Sachkosten</option>
+                    <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                    <option value="raeume.html">Kosten für Räume und Flächen</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <script>
+                const tabs = document.getElementById('tabs');
+                const dropdown = document.getElementById('tabsDropdown');
+
+                const changeWidth = 1500;
+                let tooSmall = window.innerWidth <= changeWidth;
+
+                function animateSwitch(showDropdown) {
+                    if (showDropdown) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        tabs.classList.remove('tabsHidden');
+                        dropdown.classList.add('dropdownHidden');
+                    }
+                }
+
+                window.addEventListener('resize', () => {
+                    const isSmall = window.innerWidth <= changeWidth;
+                    if (isSmall !== tooSmall) {
+                        animateSwitch(isSmall);
+                        tooSmall = isSmall;
+                    }
+                });
+
+                window.addEventListener('DOMContentLoaded', () => {
+                    if (tooSmall) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        dropdown.classList.add('dropdownHidden');
+                    }
+
+                    requestAnimationFrame(() => {
+                        tabs.classList.add('navTransition');
+                        dropdown.classList.add('navTransition');
+                    });
+                });
+
+                dropdown.addEventListener('change', function () {
+                    window.location.href = this.value;
+                });
+            </script>
+        
+            <form class="projectForm" action="abschreibungen.html" method="post">
+                <div>
+                    <p>Werkvertäge</p>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="workContract25">2025</label>
+                        <input type="numbers" id="workContract25" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werkvetrag 2025" placeholder="0">
+                        <span id="workContract25Error" class="error-message"></span>
+                        <span class="tooltipText">Auftragverhältnisse mit externen zur Erbringung klar definierter Leistungen</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="workContract26">2026</label>
+                        <input type="numbers" id="workContract26" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werkvertrag 2026" placeholder="0">
+                        <span id="workContract26Error" class="error-message"></span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="workContract27">2027</label>
+                        <input type="numbers" id="workContract27" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werkvertrag 2027" placeholder="0">
+                        <span id="workContract27Error" class="error-message"></span>
+                    </div>
+                </div>
+                <div>
+                    <p>Wissenschaftliche Dienstleistungen</p>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="scientificService25">2025</label>
+                        <input type="numbers" id="scientificService25" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="scientificService25" placeholder="0">
+                        <span id="scientificService25Error" class="error-message"></span>
+                        <span class="tooltipText">Externe Dienstleistungen mit wissenschaftlichem Bezug</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="scientificService26">2026</label>
+                        <input type="numbers" id="scientificService26" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="scientificService26" placeholder="0">
+                        <span id="scientificService26Error" class="error-message"></span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="scientificService27">2027</label>
+                        <input type="numbers" id="scientificService27" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="scientificService27" placeholder="0">
+                        <span id="scientificService27Error" class="error-message"></span>
+                    </div>
+                </div>
+                <div>
+                    <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="thirdPartyServices25">2025</label>
+                        <input type="numbers" id="thirdPartyService25" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="thirdPartyService25" placeholder="0">
+                        <span id="thirdPartyService25Error" class="error-message"></span>
+                        <span class="tooltipText">Dienste externer Anbieter, keine physischen Produkte oder Geräte.</span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="thirdPartyService26">2026</label>
+                        <input type="numbers" id="thirdPartyService26" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="thirdPartyService26" placeholder="0">
+                        <span id="thirdPartyService26Error" class="error-message"></span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="thirdPartyService27">2027</label>
+                        <input type="numbers" id="thirdPartyService27" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="thirdPartyService27" placeholder="0">
+                        <span id="thirdPartyService27Error" class="error-message"></span>
+                    </div>
+                </div>
+                <div class="formRow formRowRigth">
+                    <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
+                </div>
+            </form>
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; 2025 Hochschule Mittweida</p>
+        </footer>
+        
+    </body>
+</html>
