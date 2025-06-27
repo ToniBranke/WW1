@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sachkosten</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-        <script src="buttonScript.js"></script>
-    </head>
-    <body class="taskMain">
-        <div class="logoutButtonContainer">
-                <button class="logoutButton" id="logoutButton">Abmelden</button>
-        </div>
-        <div class="tabsContainer">
-            <div class="tabs" id="tabs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sachkosten</title>
+    <link rel="stylesheet" href="style.css">
+    <!--<script src="script.js"></script>-->
+    <script src="buttonScript.js"></script>
+</head>
+
+<body class="taskMain">
+    <div class="logoutButtonContainer">
+        <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
+    <div class="tabsContainer">
+        <div class="tabs" id="tabs">
 
             <!-- Buttons für demonstration auskommentiert und durch links ersetzt
                 <button class="tab-active">Allgemeine Projektdaten</button>
@@ -23,126 +25,229 @@
                 <button class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</button>
                 <button class="tab">Kosten für Räume und Flächen</button>
             -->
-                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                <a href="personalkosten.html" class="tab">Personalkosten</a>
-                <a href="leistungen.html" class="tabActive">Kosten für projektbezogene Leistungen</a>
-                <a href="sachkosten.html" class="tab">Sachkosten</a>
-                <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
-                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-            </div>
-            <select class="tabsDropdown" id="tabsDropdown">
-                <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option vlaue="personalkosten.html">Personalkosten</option>
-                <option value="leistungen.html" selected>Kosten für projektbezogene Leistungen</option>
-                <option value="sachkosten.html">Sachkosten</option>
-                <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
-                <option value="raeume.html">Kosten für Räume und Flächen</option>
-            </select>
+            <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+            <a href="personalkosten.html" class="tab">Personalkosten</a>
+            <a href="leistungen.html" class="tabActive">Kosten für projektbezogene Leistungen</a>
+            <a href="sachkosten.html" class="tab">Sachkosten</a>
+            <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen auf Geräte und Ausstattung</a>
+            <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
         </div>
-        <script>
-            const tabs = document.getElementById('tabs');
-            const dropdown = document.getElementById('tabsDropdown');
+        <select class="tabsDropdown" id="tabsDropdown">
+            <option value="allgemein.html">Allgemeine Projektdaten</option>
+            <option vlaue="personalkosten.html">Personalkosten</option>
+            <option value="leistungen.html" selected>Kosten für projektbezogene Leistungen</option>
+            <option value="sachkosten.html">Sachkosten</option>
+            <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+            <option value="raeume.html">Kosten für Räume und Flächen</option>
+        </select>
+    </div>
+    <script>
+        const tabs = document.getElementById('tabs');
+        const dropdown = document.getElementById('tabsDropdown');
 
-            const changeWidth = 1500;
-            let tooSmall = window.innerWidth <= changeWidth;
+        const changeWidth = 1500;
+        let tooSmall = window.innerWidth <= changeWidth;
 
-            function animateSwitch(showDropdown) {
-                if (showDropdown) {
-                    tabs.classList.add('tabsHidden');
-                    dropdown.classList.remove('dropdownHidden');
-                } else {
-                    tabs.classList.remove('tabsHidden');
-                    dropdown.classList.add('dropdownHidden');
+        function animateSwitch(showDropdown) {
+            if (showDropdown) {
+                tabs.classList.add('tabsHidden');
+                dropdown.classList.remove('dropdownHidden');
+            } else {
+                tabs.classList.remove('tabsHidden');
+                dropdown.classList.add('dropdownHidden');
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            const isSmall = window.innerWidth <= changeWidth;
+            if (isSmall !== tooSmall) {
+                animateSwitch(isSmall);
+                tooSmall = isSmall;
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (tooSmall) {
+                tabs.classList.add('tabsHidden');
+                dropdown.classList.remove('dropdownHidden');
+            } else {
+                dropdown.classList.add('dropdownHidden');
+            }
+
+            requestAnimationFrame(() => {
+                tabs.classList.add('navTransition');
+                dropdown.classList.add('navTransition');
+            });
+        });
+
+        dropdown.addEventListener('change', function () {
+            window.location.href = this.value;
+        });
+    </script>
+    <form class="projectForm" action="abschreibungen.html" method="post">
+        <div>
+            <p>Werkvertäge</p>
+        </div>
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="workContract25">2025</label>
+                <input type="number" id="workContract25" name="workContract25" placeholder="0">
+                <span class="tooltipText">Auftragverhältnisse mit externen zur Erbringung klar definierter
+                    Leistungen</span>
+            </div>
+            <div class="formGroup">
+                <label for="workContract26">2026</label>
+                <input type="number" id="workContract26" name="workContract26" placeholder="0">
+            </div>
+            <div class="formGroup">
+                <label for="workContract27">2027</label>
+                <input type="number" id="workContract27" name="workContract27" placeholder="0">
+            </div>
+        </div>
+        <div>
+            <p>Wissenschaftliche Dienstleistungen</p>
+        </div>
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="scientificService25">2025</label>
+                <input type="number" id="scientificService25" name="scientificService25" placeholder="0">
+                <span class="tooltipText">Externe Dienstleistungen mit wissenschaftlichem Bezug</span>
+            </div>
+            <div class="formGroup">
+                <label for="scientificService26">2026</label>
+                <input type="number" id="scientificService26" name="scientificService26" placeholder="0">
+            </div>
+            <div class="formGroup">
+                <label for="scientificService27">2027</label>
+                <input type="number" id="scientificService27" name="scientificService27" placeholder="0">
+            </div>
+        </div>
+        <div>
+            <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
+        </div>
+        <div class="formRow">
+            <div class="formGroup">
+                <label for="thirdPartyServices25">2025</label>
+                <input type="number" id="thirdPartyService25" name="thirdPartyService25" placeholder="0">
+                <span class="tooltipText">Dienste externer Anbieter, keine physischen Produkte oder Geräte.</span>
+            </div>
+            <div class="formGroup">
+                <label for="thirdPartyService26">2026</label>
+                <input type="number" id="thirdPartyService26" name="thirdPartyService26" placeholder="0">
+            </div>
+            <div class="formGroup">
+                <label for="thirdPartyService27">2027</label>
+                <input type="number" id="thirdPartyService27" name="thirdPartyService27" placeholder="0">
+            </div>
+        </div>
+        <div class="formRow formRowRigth">
+            <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
+        </div>
+    </form>
+</body>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        let projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
+
+        if (!projectId) {
+            console.warn("Kein projectId vorhanden.");
+            return;
+        }
+
+        localStorage.setItem("projectId", projectId);
+
+        fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler beim Laden: " + data.error);
+                    return;
+                }
+
+                // Automatically populate matching input fields by ID
+                Object.entries(data).forEach(([key, value]) => {
+                    const el = document.getElementById(mapField(key));
+                    if (el) {
+                        el.value = value;
+                    }
+                });
+            })
+            .catch(err => {
+                console.error("Fehler beim Laden:", err);
+                alert("Projekt konnte nicht geladen werden.");
+            });
+
+        function mapField(dbKey) {
+            const fieldMap = {
+                "C_workContract25": "workContract25",
+                "C_workContract26": "workContract26",
+                "C_workContract27": "workContract27",
+                "C_scientificService25": "scientificService25",
+                "C_scientificService26": "scientificService26",
+                "C_scientificService27": "scientificService27",
+                "C_thirdPartyServices25": "thirdPartyServices25",
+                "C_thirdPartyServices26": "thirdPartyServices26",
+                "C_thirdPartyServices27": "thirdPartyServices27"
+            };
+            return fieldMap[dbKey] || dbKey; // fallback to same name
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.projectForm');
+        const submitButton = document.getElementById('submitButton');
+        const fieldMap = {
+            workContract25: "C_workContract25",
+            workContract26: "C_workContract26",
+            workContract27: "C_workContract27",
+            scientificService25: "C_scientificService25",
+            scientificService26: "C_scientificService26",
+            scientificService27: "C_scientificService27",
+            thirdPartyServices25: "C_thirdPartyServices25",
+            thirdPartyServices26: "C_thirdPartyServices26",
+            thirdPartyServices27: "C_thirdPartyServices27",
+        };
+
+        if (!form || !submitButton) return;
+
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent normal form submission
+
+
+            const projectId = localStorage.getItem("projectId");
+            if (!projectId) {
+                alert("Projekt-ID fehlt.");
+                return;
+            }
+
+            const formData = new FormData();
+            for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
+                const field = document.getElementById(htmlId);
+                if (field) {
+                    formData.append(dbColumn, field.value);
                 }
             }
 
-            window.addEventListener('resize', () => {
-                const isSmall = window.innerWidth <= changeWidth;
-                if (isSmall !== tooSmall) {
-                    animateSwitch(isSmall);
-                    tooSmall = isSmall;
-                }
-            });
-
-            window.addEventListener('DOMContentLoaded', () => {
-                if (tooSmall) {
-                    tabs.classList.add('tabsHidden');
-                    dropdown.classList.remove('dropdownHidden');
-                } else {
-                    dropdown.classList.add('dropdownHidden');
-                }
-
-                requestAnimationFrame(() => {
-                    tabs.classList.add('navTransition');
-                    dropdown.classList.add('navTransition');
+            formData.append("projectId", projectId);
+            fetch("php/saveProject.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.text())
+                .then(result => {
+                    console.log("Server response:", result);
+                    window.location.href = "leistungen.html";
+                })
+                .catch(err => {
+                    console.error("Fehler beim Speichern:", err);
+                    alert("Speichern fehlgeschlagen.");
                 });
-            });
+        });
+    });
+</script>
+<footer class="footer">
+    <p>&copy; 2025 Hochschule Mittweida</p>
+</footer>
 
-            dropdown.addEventListener('change', function () {
-                window.location.href = this.value;
-            });
-        </script>
-        <form class="projectForm" action="abschreibungen.html" method="post">
-            <div>
-                <p>Werkvertäge</p>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="workContract25">2025</label>
-                    <input type="number" id="workContract25" name="workContract25" placeholder="0">
-                    <span class="tooltipText">Auftragverhältnisse mit externen zur Erbringung klar definierter Leistungen</span>
-                </div>
-                <div class="formGroup">
-                    <label for="workContract26">2026</label>
-                    <input type="number" id="workContract26" name="workContract26" placeholder="0">
-                </div>
-                <div class="formGroup">
-                    <label for="workContract27">2027</label>
-                    <input type="number" id="workContract27" name="workContract27" placeholder="0">
-                </div>
-            </div>
-            <div>
-                <p>Wissenschaftliche Dienstleistungen</p>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="scientificService25">2025</label>
-                    <input type="number" id="scientificService25" name="scientificService25" placeholder="0">
-                    <span class="tooltipText">Externe Dienstleistungen mit wissenschaftlichem Bezug</span>
-                </div>
-                <div class="formGroup">
-                    <label for="scientificService26">2026</label>
-                    <input type="number" id="scientificService26" name="scientificService26" placeholder="0">
-                </div>
-                <div class="formGroup">
-                    <label for="scientificService27">2027</label>
-                    <input type="number" id="scientificService27" name="scientificService27" placeholder="0">
-                </div>
-            </div>
-            <div>
-                <p>Sonstige Fremdleistungen (keine Lieferungen)</p>
-            </div>
-            <div class="formRow">
-                <div class="formGroup">
-                    <label for="thirdPartyServices25">2025</label>
-                    <input type="number" id="thirdPartyService25" name="thirdPartyService25" placeholder="0">
-                    <span class="tooltipText">Dienste externer Anbieter, keine physischen Produkte oder Geräte.</span>
-                </div>
-                <div class="formGroup">
-                    <label for="thirdPartyService26">2026</label>
-                    <input type="number" id="thirdPartyService26" name="thirdPartyService26" placeholder="0">
-                </div>
-                <div class="formGroup">
-                    <label for="thirdPartyService27">2027</label>
-                    <input type="number" id="thirdPartyService27" name="thirdPartyService27" placeholder="0">
-                </div>
-            </div>
-            <div class="formRow formRowRigth">
-                <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
-            </div>
-        </form>
-    </body>
-    <footer class="footer">
-        <p>&copy; 2025 Hochschule Mittweida</p>
-    </footer>
 </html>

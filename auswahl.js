@@ -32,10 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Event Listener
     selectButton.addEventListener("click", () => showOnly(selectForm));
-    newProjectButton.addEventListener("click", () => showOnly(newProjectForm));
+    newProjectButton.addEventListener("click", () => showOnly(newProjectForm));    
     backButton.addEventListener("click", showButtons);
 });
 
+/*
 document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("existingProject");
     const newProjectForm = document.getElementById("newProjectForm");
@@ -61,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Neues Projekt anlegen
+    
+    
     newProjectForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const projectName = projectNameInput.value.trim();
@@ -78,6 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     loadProjects(); // Beim Laden direkt aktualisieren
+    
 });
+*/
 
 /* SPEICHERORT UND DIE OPTIONEN UEBERARBEITEN*/

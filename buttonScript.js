@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     : null;
 
     //(e) zu () machen und preventDefault entfernen wegen post (weiterleitung muss dann auch mit php gemacht werden)
+    /*
     submitButton.addEventListener('click', function(e)
     {
         e.preventDefault();
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Daten erfolgreich gespeichert!');    
         }
     });
+    */
 
     const abmelden = document.getElementById('logoutButton');
     abmelden.addEventListener('click', function(e) {

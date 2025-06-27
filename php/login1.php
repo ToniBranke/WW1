@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $user['benutzername'];
             $_SESSION['name'] = $user['name'];
 
-            // Weiterleitung zu allgemein.html
+            // Weiterleitung zu auswahl.html
             header("Location: ../auswahl.html");
 
         exit();
