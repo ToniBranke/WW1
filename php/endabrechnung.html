@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Endabrechnung</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .block { margin-bottom: 1.5rem; }
+    .label { font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Endabrechnung</h1>
+
+  <button onclick="ladeEndabrechnung()">Berechnung starten</button>
+
+  <div id="ergebnisse" style="margin-top: 2rem;">
+    <!-- Ergebnisse werden hier angezeigt -->
+  </div>
+
+  <script>
+    async function ladeEndabrechnung() {
+      const response = await fetch('endabrechnung.php');
+      if (!response.ok) {
+        document.getElementById('ergebnisse').innerHTML = "Fehler beim Abrufen der Daten.";
+        return;
+      }
+
+      const daten = await response.json();
+
+      // Ausgabe bauen
+      const html = `
+        <div class="block"><span class="label">Bruttosumme (endabrechnung):</span> ${daten.endabrechnung.toFixed(2)} €</div>
+        <div class="block"><span class="label">Netto ohne Steuer:</span> ${daten.netto.toFixed(2)} €</div>
+        <div class="block"><span class="label">Umsatzsteuer (19%):</span> ${daten.steuer.toFixed(2)} €</div>
+        <div class="block"><span class="label">Geplanter Gewinn:</span> ${daten.gewinn.toFixed(2)} €</div>
+        <div class="block"><span class="label">Zentral-GKZ (19.32%):</span> ${daten.zentralGKZ.toFixed(2)} €</div>
+        <div class="block"><span class="label">Dezentral-GKZ (5.64%):</span> ${daten.dezentralGKZ.toFixed(2)} €</div>
+      `;
+
+      document.getElementById('ergebnisse').innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
