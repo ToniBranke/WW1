@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Personalkosten</title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
+        <!--<script src="script.js"></script>-->
         <script src="buttonScript.js"></script>
         <script src="neuerMitarbeiter.js"></script>
     </head>
@@ -28,8 +28,8 @@
                 </div>
                 <select class="tabsDropdown" id="tabsDropdown">
                     <option value="allgemein.html">Allgemeine Projektdaten</option>
-                    <option vlaue="personalkosten.html">Personalkosten</option>
-                    <option value="leistungen.html"selected>Kosten für projektbezogene Leistungen</option>
+                    <option vlaue="personalkosten.html"selected>Personalkosten</option>
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
                     <option value="sachkosten.html">Sachkosten</option>
                     <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
                     <option value="raeume.html">Kosten für Räume und Flächen</option>
@@ -83,7 +83,7 @@
             </script>
 
             <div class="mainContent">
-                <form class="projektForm" id="personalForm" action="personal.php" method="post" style="display: none;">
+                <form class="projectForm" id="personalForm" action="personal.php" method="post" style="display: none;">
                     
                     <!-- SHK/ WHK -->
                     <div class="formRow">
@@ -160,7 +160,7 @@
 
 
                 <!-- haushaltfinanz. Hochschul-Mitarbeiter -->
-                <form2 class="projektForm" id="personalForm2" action="personal.php" method="post" style="display: none;">
+                <form2 class="projectForm" id="personalForm2" action="personal.php" method="post" style="display: none;">
                     
                     <!-- Entgeltgruppe -->
                     <div class="formRow">
