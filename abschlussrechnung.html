@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endabrechnung</title>
+    <style>
+        .result { margin-top: 20px; font-size: 1.1em; }
+        .result span { display: block; margin-bottom: 5px; }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="headerBanner">
+         <h1>Endabrechnung</h1>
+        <div class="logoutButtonContainer">
+                <button class="logoutButton" id="logoutButton">Abmelden</button>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Das is von Chatgpt - muss nochmal angepasst werden-->
+
+        <button type="button" class="calculationButton" id="startButton">Abrechnung starten</button>
+
+        <div class="result" id="resultBox" style="display: none;">
+            <span><strong>Endabrechnung:</strong> <span id="endabrechnung"></span> €</span>
+            <span><strong>Steuer:</strong> <span id="steuer"></span> €</span>
+            <span><strong>Netto:</strong> <span id="netto"></span> €</span>
+            <span><strong>Gewinn:</strong> <span id="gewinn"></span> €</span>
+            <span><strong>Zentral-GKZ:</strong> <span id="zentralGKZ"></span> €</span>
+            <span><strong>Dezentral-GKZ:</strong> <span id="dezentralGKZ"></span> €</span>
+        </div>
+
+        <script>
+            document.getElementById('startButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('endabrechnung.php');
+                if (!response.ok) throw new Error('Fehler beim Laden der Daten');
+
+                const data = await response.json();
+
+                document.getElementById('endabrechnung').textContent = data.endabrechnung.toFixed(2);
+                document.getElementById('steuer').textContent = data.steuer.toFixed(2);
+                document.getElementById('netto').textContent = data.netto.toFixed(2);
+                document.getElementById('gewinn').textContent = data.gewinn.toFixed(2);
+                document.getElementById('zentralGKZ').textContent = data.zentralGKZ.toFixed(2);
+                document.getElementById('dezentralGKZ').textContent = data.dezentralGKZ.toFixed(2);
+
+                document.getElementById('resultBox').style.display = 'block';
+            } catch (error) {
+                alert('Es gab ein Problem bei der Abrechnung: ' + error.message);
+            }
+            });
+        </script>
+
+
+        <!-- Das ist das bevorzugte Layout-->
+
+        <form class="projectForm">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="endabrechnung">Endabrechnung:</label>
+                    <output type="text" id="endabrechnung" name="endabrechnung" required>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="steuer">Steuer:</label>
+                    <output type="text" id="steuer" name="steuer" required>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="netto">Netto:</label>
+                    <output type="text" id="netto" name="netto" required>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="gewinn">Gewinn:</label>
+                    <output type="text" id="gewinn" name="gewinn" required>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="zentralGKZ">zentralGKZ:</label>
+                    <output type="text" id="zentralGKZ" name="zentralGKZ" required>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="dezentralGKZ">dezentralGKZ:</label>
+                    <output type="text" id="dezentralGKZ" name="dezentralGKZ" required>
+                </div>
+            </div>
+        </form>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
+</body>
+</html>

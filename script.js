@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function()
     const addButton = document.getElementById('addButton');
     const form = document.getElementById('abschreibungForm');
     const saveButton = document.getElementById('saveButton');
-    const summaryList = document.getElementById('summaryList');
+    const summaryList = document.getElementById('summaryListDepreciation');
     const submitButton = document.getElementById('submitButton');
 
     // beim Seite öffnen Formular verborgen
@@ -17,18 +17,24 @@ document.addEventListener('DOMContentLoaded', function()
         submitButton.style.display = 'none';
     });
     
-    // klick auf Spichern Button in Liste übertragen
+    // klick auf Speichern Button in Liste übertragen
     saveButton.addEventListener('click', function(e)
     {
         e.preventDefault();
+
+        let validationPassed = validateInput(); // Validierung für abschreibungen.html
+        if(!validationPassed) {
+            console.log("Validierung fehlgeschlagen");
+            return;
+        }
         
 
         // holt die Eingegebenen werte aus dem Formular
-        const bezeichnung = document.getElementById('bezeichnung').value;
-        const kaufpreis = parseFloat(document.getElementById('kaufpreis').value) || 0;
-        const ueberProjekt = parseFloat(document.getElementById('ueberProjektfinanzierung').value) || 0;
-        const restbetrag = parseFloat(document.getElementById('restbetrag').value) || 0;
-        const folgekosten = parseFloat(document.getElementById('finanzierungRestbetragFolgekosten').value) || 0;
+        const bezeichnung = document.getElementById('labelBezeichnung').value;
+        const kaufpreis = parseFloat(document.getElementById('purchasePrice').value) || 0;
+        const ueberProjekt = parseFloat(document.getElementById('projectFinancing').value) || 0;
+        const restbetrag = parseFloat(document.getElementById('remainingAmount').value) || 0;
+        const folgekosten = parseFloat(document.getElementById('financingRemainingAmount').value) || 0;
 
         // alert falls keine werte eingegeben wurden
         if (!bezeichnung &&( kaufpreis+ restbetrag + folgekosten === 0))

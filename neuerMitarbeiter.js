@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', function()
     saveButton.addEventListener('click', function(e)
     {
         e.preventDefault();
+
+        let validationPassed = validateInput();
+
+        if(!validationPassed) { // wenn Validierung fehlgeschlagen
+            return;
+        }
         
 
         // holt die Eingegebenen werte aus dem Formular

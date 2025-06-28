@@ -7,10 +7,49 @@ body, html
     color: #222;
 }
 
+main {
+    padding-top: 20px;
+}
+
+/*Header Banner */
+    .headerBanner 
+    {
+        background-image: url('bilder/haus1.png');
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        color: white;
+        position: relative;
+        justify-content: center;
+
+        max-width: 1500px;
+        margin: 0 auto;
+        border-bottom-left-radius: 14px;
+        border-bottom-right-radius: 14px;
+        overflow: hidden;
+
+    }
+
+    .headerBanner h1 
+    {
+        font-size: clamp(1em, 4vw, 2em);
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 12px;
+        border-radius: 6px;
+        margin: 0.4em, 0;
+        margin-bottom: 5rem;
+        text-align: center;
+        line-height: 1.1;
+        text-wrap: balance;
+    }
+
 /* Buttons */
-.selectButton, .newProjectButton, .createButton, .openButton
+.selectButton, .newProjectButton, .createButton, .openButton, .calculationButton
 {
-    padding: o.8rem, 2.1rem;
+    padding: 0.8rem, 2.1rem;
     background: #4069b1;
     color: #fff;
     font-size: 1.08rem;
@@ -25,6 +64,7 @@ body, html
     width: 17.188rem;
     height: 3.75rem;
     justify-content: center;
+    transition: transform 0.4s ease-out;
 }
 
 /*
@@ -53,14 +93,14 @@ body, html
 .logoutButton:hover, .addButton:hover, .weiterSelectButton:hover
 {
     background: #24406a;
-    transform: scale(1.1);
-    transition: transform 0.2s ease-out;
+    transform: scale(1.05);
+    transition: transform 0.4s ease-out;
 }
 
 .saveButton:hover, .buero:hover, .labor:hover, .anderes:hover
 {
-    transform: scale(1.1);
-    transform: transform o.2s ease-out
+    transform: scale(1.05);
+    transform: transform 0.4s ease-out
 }
 
 .selectionForm, .projectForm
@@ -81,7 +121,7 @@ body, html
     justify-content: center;
     align-items: flex-start;
     gap: 2rem;
-    max-width: 7,5rem;
+    max-width: 7.5rem;
     margin: 0 auto;
 }
 
@@ -89,7 +129,7 @@ body, html
 {
     background: #f8f8f8;
     border-radius: 10px;
-    box-shadow: 0 4px 23pc rbga(70, 90, 120, 0.06);
+    box-shadow: 0 4px 23px rbga(70, 90, 120, 0.06);
     padding: 1.2rem 1.2rem;
     min-width: 230px;
     max-width: 260px;
@@ -110,7 +150,7 @@ body, html
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    transition: background 0.14s, color 0.14s;
+    transition: background 0.4s, color 0.4s, transform 0.4s ease-out;
     margin-bottom: 0.2rem;
 }
 
@@ -119,17 +159,20 @@ body, html
     background: #bcbcbc;
     color: #000;
     border: none;
+    transition: background 0.4s, transform 0.4s ease-out, color 0.5s ease-out;
 }
 
 .sidebarButton.addButton:hover
 {
     background: #24406a;
     color: #fff;
+    transition: background 0.4s ease-in-out, color 0.4s ease-in-out, transform 0.4s ease-out;
 }
 
 .sidebarButton.saveButton:hover
 {
     background: #eee;
+    transition: transform 0.4s ease-out, background 0.4s ease-in-out;
 }
 
 .sidebarSummary
@@ -268,11 +311,12 @@ body, html
     transition: background 0.18s;
     font-weight: 500;
     letter-spacing: 0.02rem;
-
+    transition: transform 0.4s ease-out, background 0.4s ease-out;
 }
 .weiterButton:hover 
 {
     background: #24406a;
+    transition: background 0.5s ease-out;
 }
 
 /* Login Page Styles */
@@ -413,6 +457,7 @@ body, html
 .loginButton:hover, .logoutButton:hover
 {
     background: #325493;
+    transition: background 0.4s;
 }
 
 .logoutButtonContainer
@@ -420,7 +465,11 @@ body, html
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-top: 0.9rem;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    z-index: 2;
+
 }
 
 .logoutButton
@@ -437,13 +486,15 @@ body, html
     letter-spacing: 0.02rem;
     justify-content: flex;
     margin-right: 0.8rem;
+    transition: background 0.4s, transform 0.4s ease-out;
+
 }
 
 .footer
 {
     position : bottom;
-    bottom: 0;
-    justify-content: flex;
+    bottom: 0rem;
+    justify-content: bottom;
     margin-left: auto;
     margin-right: auto; 
     width: 100%;
@@ -469,11 +520,15 @@ body, html
 .tabsContainer
 {
     width: 100%;
-    position: relative;
-    height: 7.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 10px;
+    z-index: 10;
 }
 
 .tab, .tabActive
@@ -486,6 +541,12 @@ body, html
     background-color: #f4f4f4;
     white-space: nowrap;
     box-sizing: border-box;
+    transition: 300ms cubic-bezier(0.65, 0.05, 0.36, 1);
+    border-radius: 14px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1px;
+    font-weight: 500;
 }
 
 .tab
@@ -493,18 +554,19 @@ body, html
     margin-top: 2rem;
     background: #6e6e6e;
     border: none;
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     font-size: 1rem;
     cursor: pointer;
     color: #ffffff;
     font-weight: 500;
     transition: background 0.15s, color 0.15s;
-    margin-bottom: -1px;
+    margin-bottom: 1px;
+    transition: transform 0.4s ease-out;
 }
 
 .tabActive
 {
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     margin-top: 2rem;
     background: #2b4572;
     color: #fff;
@@ -514,12 +576,13 @@ body, html
 {
     text-decoration: none;
     text-align: center;
-
+    transform: translateY(-3px);
     padding: 0.7em 1.5em;
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     margin-top: 2rem;
     background: #4069b1;
     color: #fff;
+    transition: transform 0.4s ease-out;
 }
 
 .tabs, .tabsDropdown {
@@ -551,12 +614,14 @@ body, html
     font-size: 16px;
     align-self: center;
     margin: 0 auto;
+    border: 1px solid #ccc;
 
     padding: 0.7em 1.5em;
-    border-radius: 8px 8px 4px 4px;
+    border-radius: 14px;
     margin-top: 2rem;
     background: #2b4572;
     color: #fff;
+
 }
 
 .tabsHidden {
@@ -604,6 +669,13 @@ body, html
 {
     border: 2px solid #d93025 !important; 
     background-color: rgba(243, 128, 114, 0.74) !important;
+}
+
+.error-message
+{
+    color:red;
+    font-size: 0.9rem;
+    margin-left: 5px;
 }
 
 /* added sumaryContent fuer Zusammenfassung (nicht vollstaendig) */
@@ -674,24 +746,48 @@ body, html
     .mainContent
     {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.3rem;
+        max-width: 99vw;
+       
     }
+    .sidebar, .sidebarSummary, .projectForm
+    {
+        flex-direction: column;
+        
+        align-self: center;
+    }
+}
 
+@media (max-width: 860px) 
+{
+    .projectForm
+    {
+        width: 85vw;
+ 
+    }
+    .formRow 
+    {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1.3rem;
+    }
+    .formGroup 
+    {
+        margin-bottom: 1.3rem;
+    }
     .sidebar
     {
-        max-width: 100%;
-        min-width:0;
-        margin-top: 2rem;
+        align-items: stretch;
+        flex-direction: column;
+        width: auto;
+        min-width: unset;
+        max-width: 95vw;
     }
 
-    @media (max-width: 860px) {
-  .formRow {
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.3rem;
-  }
-  .formGroup {
-    margin-bottom: 1.3rem;
-  }
-}
+    .mainContent
+    {
+        padding: 0 0.5em;
+    }
 }

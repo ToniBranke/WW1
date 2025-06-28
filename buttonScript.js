@@ -7,11 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
     ? tabOrder[currentIndex + 1] 
     : null;
 
+    const submitButton = document.querySelector('button[type="submit"]');
     //(e) zu () machen und preventDefault entfernen wegen post (weiterleitung muss dann auch mit php gemacht werden)
     /*
     submitButton.addEventListener('click', function(e)
     {
         e.preventDefault();
+
+        let validationPassed = validateInput();
+        if(!validationPassed) { // wenn Validierung fehlgeschlagen
+            console.log("Validierung fehlgeschlagen"); // Debug-Ausgabe
+            return;
+        }
+
         if (nextPage)
         {
             window.location.href = nextPage;
@@ -22,6 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     */
+
+    const saveButton = document.querySelectorAll('.weiterButton');
+    saveButton.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            let validationPassed = validateInput();
+            if(!validationPassed) { // wenn Validierung fehlgeschlagen
+                return;
+            }
+        });
+    });
 
     const abmelden = document.getElementById('logoutButton');
     abmelden.addEventListener('click', function(e) {
