@@ -17,10 +17,16 @@ document.addEventListener('DOMContentLoaded', function()
         submitButton.style.display = 'none';
     });
     
-    // klick auf Spichern Button in Liste übertragen
+    // klick auf Speichern Button in Liste übertragen
     saveButton.addEventListener('click', function(e)
     {
         e.preventDefault();
+
+        let validationPassed = validateInput(); // Validierung für abschreibungen.html
+        if(!validationPassed) {
+            console.log("Validierung fehlgeschlagen");
+            return;
+        }
         
 
         // holt die Eingegebenen werte aus dem Formular

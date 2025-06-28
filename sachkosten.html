@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sachkosten</title>
     <link rel="stylesheet" href="style.css">
+    <script src="validation.js"></script>
     <script src="script.js"></script>
     <script src="buttonScript.js"></script>
     <script src="redBackground.js"></script>
@@ -83,71 +84,82 @@
             <form class="projectForm" action="abschreibungen.html" method="post">
                 <div class="formRow">
                     <div class="loginForm">
-                        <h2>Geschäftsbedarf</h2>
+                        <h1>Geschäftsbedarf</h1>
                     </div>
                 </div>
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="officeSupplies">Büromaterial</label>
-                        <input type="number" id="officeSupplies" name="officeSupplies" placeholder="0">
+                        <input type="numbers" id="officeSupplies" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Büromaterial" placeholder="0">
+                        <span id="officeSuppliesError" class="error-message"></span>
                         <span class="tooltipText">Verbrauchsmaterialien für den täglichen Bürobedarf</span>
                     </div>
                     <div class="formGroup">
                         <label for="softwareLicenses">Software / Lizenzen</label>
-                        <input type="number" id="softwareLicenses" name="softwareLicenses" placeholder="0">
+                        <input type="numbers" id="softwareLicenses" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Software / Lizenzen" placeholder="0">
+                        <span id="softwareLicensesError" class="error-message"></span>
                         <span class="tooltipText">Kosten für Softwarekäufe oder Lizenzgebühren</span>
                     </div>
                     <div class="formGroup">
                         <label for="advertisingCost">Werbekosten</label>
-                        <input type="number" id="advertisingCost" name="advertisingCost" placeholder="0">
+                        <input type="numbers" id="advertisingCost" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werbekosten" placeholder="0">
+                        <span id="advertisingCostError" class="error-message"></span>
                         <span class="tooltipText">Ausgaben für Werbung, Flyer, Anzeigen oder Online-Marketing</span>
                     </div>
                 </div>
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="PostagePhoneComm">Porto / Telefon / Kommunikation</label>
-                        <input type="number" id="PostagePhoneComm" name="PostagePhoneComm" placeholder="0">
+                        <input type="numbers" id="PostagePhoneComm" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Porto / Telefon / Kommunikation" placeholder="0">
+                        <span id="PostagePhoneCommError" class="error-message"></span>
                         <span class="tooltipText">Kosten für Postversand, Telefonate oder Internetnutzung</span>
                     </div>
                     <div class="formGroup">
                         <lable for="storageDevices">Speichermedien</lable>
-                        <input type="number" id="storageDevices" name="storageDevices" placeholder="0">
+                        <input type="numbers" id="storageDevices" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Speichermedien" placeholder="0">
+                        <span id="storageDevicesError" class="error-message"></span>
                         <span class="tooltipText">USB-Sticks, externe Festplatten oder SD-Karten</span>
                     </div>
                     <div class="formGroup">
                         <lable for="maintenance">Instandhaltung</lable>
-                        <input type="number" id="maintenance" name="maintenance" placeholder="0">
+                        <input type="numbers" id="maintenance" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Instandhaltung" placeholder="0">
+                        <span id="maintenanceError" class="error-message"></span>
                         <span class="tooltipText">Wartung oder kleinere Reparaturen von Geräten/Ausstattung</span>
                     </div>
                 </div>
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="devicesBelow150">Geräte / Ausstattung < 150 </label>
-                        <input type="number" id="devicesBelow150" name="devicesBelow150" placeholder="0" max="150">
+                        <input type="numbers" id="devicesBelow150" data-validate-regex= "^(?:[0-9]|[1-9][0-9]|1[0-4][0-9])$" data-error-message="nur Zahlen zwischen 0 und 150 erlaubt" name="Geräte / Ausstattung" placeholder="0" max="150">
+                        <span id="devicesBelow150Error" class="error-message"></span>
                         <span class="tooltipText">Kleingeräte und Ausstattungen unter 150€ netto pro Stück</span>
                     </div>
                     <div class="formGroup">
                         <label for="magazinesLiterature">Literatur / Zeitschriften</label>
-                        <input type="number" id="magazinesLiterature" name="magazinesLiterature" placeholder="0" required>
+                        <input type="numbers" id="magazinesLiterature" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Literatur / Zeitschriften" placeholder="0" required>
+                        <span id="magazinesLiteratureError" class="error-message"></span>
                         <span class="tooltipText">Fachbücher, Journale oder abonnierte Zeitschriften</span>
                     </div>
                     <div class="formGroup">
                         <label for="materials">Materialien(Roh-, Hilfs-, Betriebsstoffe)</label>
-                        <input type="number" id="materials" name="materials" placeholder="0" required>
+                        <input type="numbers" id="materials" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Materialien" placeholder="0" required>
+                        <span id="materialsError" class="error-message"></span>
                         <span class="tooltipText">Projektbezogene Materialien, z.B. Papier, Chemikalien, Farbe</span>
                     </div>
                 </div>
                 <div class="formRow">
                     <div class="formGroup wide">
                         <label for="travelCost"><h2>Reisekosten</h2></label>
-                        <input type="number" id="travelCost" name="travelCost" placeholder="0"required>
+                        <input type="numbers" id="travelCost" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Reisekosten" placeholder="0"required>
+                        <span id="travelCostError" class="error-message"></span>
                         <span class="tooltipText">Fahrt-, Übernachtungs- oder Verpflegungskosten auf Dienstreisen</span>
                     </div>
                 </div>
                 <div class="formRow">    
                     <div class="formGroup wide">
                         <label for="otherExpenses"><h2>Sonstige Aufwendungen</h2></label>
-                        <input type="number" id="otherExpenses" name="otherExpenses" placeholder="0"required>
+                        <input type="numbers" id="otherExpenses" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="sonstige Aufwendungen" placeholder="0"required>
+                        <span id="otherExpensesError" class="error-message"></span>
                         <span class="tooltipText">Alle übrigen Kosten, die keiner anderen Kategorie zuzuordnen sind</span>
                     </div>
                 </div>

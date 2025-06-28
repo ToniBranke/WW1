@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Passwort vergessen</title>
         <link rel="stylesheet" href="style.css">
+        <script defer src="validation.js"></script>
         <script defer src="script.js"></script>
     </head>
     <body class="loginBody">
@@ -16,7 +17,9 @@
                 <h1>Passwort zurücksetzen</h1>
                 <div class="formGroup">
                     <label for="email">E-Mail-Adresse</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" data-validate-regex= "^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+" 
+                        data-error-message="E-Mail muss ein @ und ein Punkt enthalten" name="E-Mail-Adresse" data-required="true">
+                    <span id="emailError" class="error-message"></span>
                 </div>
                 <div class="formLinks">
                     <a href="login.html" class="forgotLink">Zurück zum Login</a>
@@ -27,6 +30,13 @@
         <script>
             document.getElementById('PasswortZuruecksetzenButton').addEventListener('click', function(event) {
                 event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+
+                let validationPassed = validateInput();
+                    if(!validationPassed) {
+                        console.log("Validierung fehlgeschlagen");
+                        return;
+                    }
+                    
                 alert('Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail-Adresse gesendet.');
                 window.location.href = 'login.html';
             });

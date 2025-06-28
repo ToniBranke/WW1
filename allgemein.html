@@ -5,11 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Allgemeine Projektdaten</title>
         <link rel="stylesheet" href="style.css">
-        
+        <script defer src="validation.js"></script>
         <script defer src="buttonScript.js"></script>
-        
     </head>
-    <body class="taskMain">
         <header class="headerBanner">
             <h1>Allgemeine Projektdaten</h1>
             <div class="logoutButtonContainer">
@@ -34,6 +32,7 @@
                 </select>
             </div>
         </header>
+    <body class="taskMain">
 
         <main>
             <script>
@@ -83,32 +82,38 @@
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="projectName">Projekttitel:</label>
-                        <input type="text" id="projectName" name="projectName" required>
+                        <input type="text" id="projectName" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Projekttitel" required>
+                        <span id="projectNameError" class="error-message"></span>
                     </div>
                     <div class="formGroup">
                         <label for="sponsor">Auftraggeber:</label>
-                        <input type="text" id="sponsor" name="sponsor" required>
+                        <input type="text" id="sponsor" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Auftraggeber" required>
+                        <span id="sponsorError" class="error-message"></span>
                         <span class="tooltipText">Name der Institution oder Person, die das projekt initialisiert oder finanziert. </span>
                     </div>
                     <div class="formGroup">
                         <label for="faculty">Fakultät:</label>
-                        <input type="text" id="faculty" name="faculty" required>
+                        <input type="text" id="faculty" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Fakultät" required>
+                        <span id="facultyError" class="error-message"></span>
                     </div>
                 </div>
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="responsible">Verantwortlicher:</label>
-                        <input type="text" id="responsible" name="responsible" required>
+                        <input type="text" id="responsible" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Verantwortlicher" required>
+                        <span id="responsibleError" class="error-message"></span>
                         <span class="tooltipText">Name der hauptverantwortlichen Person (z.b. Projektleitung).</span>
                     </div>
                     <div class="formGroup">
                         <label for="costCenter">Kostenstelle:</label>
-                        <input type="number" id="costCenter" name="costCenter" required>
+                        <input type="numbers" id="costCenter" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Kostenstelle" required>
+                        <span id="costCenterError" class="error-message"></span>
                         <span class="tooltipText">Nummer der Kostenstelle gemäß Finanzsystem.</span>
                     </div>
                     <div class="formGroup">
                         <label for="trainingDays">Anzahl Weiterbildungstage:</label>
-                        <input type="number" id="trainingDays" name="trainingDays" min="0" required>
+                        <input type="numbers" id="trainingDays" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Anzahl Weiterbildungstage" min="0" required>
+                        <span id="trainingDaysError" class="error-message"></span>
                     </div>
                 </div>
                     <div class="formRow">
@@ -122,14 +127,16 @@
                         </div>
                         <div class="formGroup">
                             <label for="economicArea">Wirtschaftlicher Bereich:</label>
-                            <input type="text" id="economicArea" name="economicArea" required>
+                            <input type="text" id="economicArea" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Wirtschaftlicher Bereich" required>
+                            <span id="economicAreaError" class="error-message"></span>
                             <span class="tooltipText">Organisatorischer Bereich oder Einheit, die wirtschaftlich zuständig ist.</span>
                         </div>
                     </div>
                     <div class="formRow"> 
                         <div class="formGroup wide">
                             <label for="projectCostObjectNumber">Projekt / Kostenträgernummer:</label>
-                            <input type="number" id="projectCostObjectNumber" name="projectCostObjectNumber" required>
+                            <input type="numbers" id="projectCostObjectNumber" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Projekt / Kostenträgernummer" required>
+                            <span id="projectCostObjectNumberError" class="error-message"></span>
                             <span class="tooltipText">Interne oder externe Projektnummer zur Zuordnung.</span>
                         </div>
                     </div>
@@ -139,10 +146,8 @@
                 </div>     
             </form>
         </main>
-        
         <footer class="footer">
             <p>&copy; 2025 Hochschule Mittweida</p>
         </footer>
-        
     </body>
 </html>

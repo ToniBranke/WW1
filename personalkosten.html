@@ -1,3 +1,13 @@
+        <!--<script src="script.js"></script>-->
+                <select class="tabsDropdown" id="tabsDropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option vlaue="personalkosten.html"selected>Personalkosten</option>
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html">Sachkosten</option>
+                    <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                    <option value="raeume.html">Kosten für Räume und Flächen</option>
+            </div>
+        </header>
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -5,7 +15,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Personalkosten</title>
         <link rel="stylesheet" href="style.css">
-        <!--<script src="script.js"></script>-->
+        <script src="validation.js"></script>
+        <script src="script.js"></script>
         <script src="buttonScript.js"></script>
         <script src="neuerMitarbeiter.js"></script>
     </head>
@@ -28,8 +39,8 @@
                 </div>
                 <select class="tabsDropdown" id="tabsDropdown">
                     <option value="allgemein.html">Allgemeine Projektdaten</option>
-                    <option vlaue="personalkosten.html"selected>Personalkosten</option>
-                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option vlaue="personalkosten.html">Personalkosten</option>
+                    <option value="leistungen.html"selected>Kosten für projektbezogene Leistungen</option>
                     <option value="sachkosten.html">Sachkosten</option>
                     <option value="abschreibungen.html" >Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
                     <option value="raeume.html">Kosten für Räume und Flächen</option>
@@ -83,7 +94,7 @@
             </script>
 
             <div class="mainContent">
-                <form class="projectForm" id="personalForm" action="personal.php" method="post" style="display: none;">
+                <form class="projektForm" id="personalForm" action="personal.php" method="post" style="display: none;">
                     
                     <!-- SHK/ WHK -->
                     <div class="formRow">
@@ -124,7 +135,8 @@
                     <div class="formRow">
                         <div class="formGroup">
                             <label for="stufe">Stufe/ Std. satz</label>
-                            <input type="number" id="stufe" name="stufe">
+                            <input type="numbers" id="stufe" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stufe">
+                            <span id="stufeError" class="error-message"></span>
                         </div>
                     </div>
 
@@ -132,15 +144,18 @@
                     <div class="formRow">
                         <div class="formGroup">
                             <label for="jahr2025">2025</label>
-                            <input type="number" id="jahr2025" name="jahr2025">
+                            <input type="numbers" id="jahr2025" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Jahr 2025">
+                            <span id="jahr2025Error" class="error-message"></span>
                         </div>
                         <div class="formGroup">
                             <label for="jahr2026">2026</label>
-                            <input type="number" id="jahr2026" name="jahr2026">
+                            <input type="numbers" id="jahr2026" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Jahr 2026">
+                            <span id="jahr2026Error" class="error-message"></span>
                         </div>
                         <div class="formGroup">
                             <label for="jahr2027">2027</label>
-                            <input type="number" id="jahr2027" name="jahr2027">
+                            <input type="numbers" id="jahr2027" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Jahr 2027">
+                            <span id="jahr2027Error" class="error-message"></span>
                         </div>
                     </div>
 
@@ -148,19 +163,20 @@
                     <div class="formRow">
                         <div class="formGroup">
                             <label for="wochenstunden">Wochenstunden im Projekt</label>
-                            <input type="number" id="wochenstunden" name="wochenstunden">
+                            <input type="numbers" id="wochenstunden" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Wochenstunden">
+                            <span id="wochenstundenError" class="error-message"></span>
                         </div>
                     </div>
 
                     <!-- Submit -->
                     <div class="formRow formRowRigth">
-                        <button type="submit" class="weiterButton">Weiter</button>
+                        <button type="submit" class="weiterButton" id="saveButton">Weiter</button>
                     </div>
                 </form>
 
 
                 <!-- haushaltfinanz. Hochschul-Mitarbeiter -->
-                <form2 class="projectForm" id="personalForm2" action="personal.php" method="post" style="display: none;">
+                <form2 class="projektForm" id="personalForm2" action="personal.php" method="post" style="display: none;">
                     
                     <!-- Entgeltgruppe -->
                     <div class="formRow">
@@ -180,11 +196,13 @@
                         <div>2025</div>
                         <div class="formGroup">
                             <label for="anzahlPersonen2025">Anzahl Personen</label>
-                            <input type="number" id="anzahlPersonen2025" name="anzahlPersonen2025">
+                            <input type="numbers" id="anzahlPersonen2025" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Anzahl Personen 2025">
+                            <span id="anzahlPersonen2025Error" class="error-message"></span>
                         </div>
                         <div class="formGroup">
                             <label for="gesamtStunden2025">Stunden gesamt im Projekt</label>
-                            <input type="number" id="gesamtStunden2025" name="gesamtStunden2025">
+                            <input type="numbers" id="gesamtStunden2025" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="gesamt Stunden 2025">
+                            <span id="gesamtStunden2025Error" class="error-message"></span>
                         </div>
                     </div>
 
@@ -194,11 +212,13 @@
                         <div>2026</div>
                         <div class="formGroup">
                             <label for="anzahlPersonen2026">Anzahl Personen</label>
-                            <input type="number" id="anzahlPersonen2026" name="anzahlPersonen2026">
+                            <input type="numbers" id="anzahlPersonen2026" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Anzahl Personen 2026">
+                            <span id="anzahlPersonen2026Error" class="error-message"></span>
                         </div>
                         <div class="formGroup">
                             <label for="gesamtStunden2026">Stunden gesamt im Projekt</label>
-                            <input type="number" id="gesamtStunden2026" name="gesamtStunden2026">
+                            <input type="numbers" id="gesamtStunden2026" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="gesamt Stunden 2026">
+                            <span id="gesamtStunden2026Error" class="error-message"></span>
                         </div>
                     </div>
 
@@ -207,17 +227,19 @@
                         <div>2027</div>
                         <div class="formGroup">
                             <label for="anzahlPersonen2027">Anzahl Personen</label>
-                            <input type="number" id="anzahlPersonen2027" name="anzahlPersonen2027">
+                            <input type="numbers" id="anzahlPersonen2027" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Anzahl Personen 2027">
+                            <span id="anzahlPersonen2027Error" class="error-message"></span>
                         </div>
                         <div class="formGroup">
                             <label for="gesamtStunden2027">Stunden gesamt im Projekt</label>
-                            <input type="number" id="gesamtStunden2027" name="gesamtStunden2027">
+                            <input type="numbers" id="gesamtStunden2027" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="gesamt Stunden 2027">
+                            <span id="gesamtStunden2027Error" class="error-message"></span>
                         </div>
                     </div>
 
                     <!-- Submit -->
                     <div class="formRow formRowRigth">
-                        <button type="submit" class="weiterButton">Weiter</button>
+                        <button type="submit" class="weiterButton" id="saveButton">Weiter</button> <!-- save hinzugefügt-->
                     </div>
                 </form2>
 
@@ -226,13 +248,13 @@
             <aside class="sidebar">
                 <button type="button" class="sidebarButton addButton" id="addButton">+ zu finanz. Mitarbeiter</button>
                 <button type="button" class="sidebarButton addButton" id="addButton2">+ haushaltfinanz. Mitarbeiter</button>
-                <button type="button" class="sidebarButton saveButton" id="saveButton">Mitarbeiter speichern</button>
+                <button type="button" class="sidebarButton saveButton" id="saveButton">Mitarbeiter speichern</button> <!-- Mitarbeiter speichern geht hier nicht-->
                 <div class="sidebarSummary">
                     <span class="summaryTitle">Summe der Personalkosten</span>
                     <ul class="summaryList" id="summaryList">
                 </div>
                 <div class="formRow formRowRigth">
-                    <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
+                    <button type="submit" class="weiterButton" id="saveButton" style="display: block;">Weiter</button> <!-- save hinzugefügt-->
                 </div>
             </aside>
         <!-- <script>

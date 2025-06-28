@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sachkosten</title>
         <link rel="stylesheet" href="style.css">
+        <title>Sachkosten</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <script src="validation.js"></script>
         <!--<script src="script.js"></script>-->
         <script src="buttonScript.js"></script>
     </head>
@@ -78,7 +79,6 @@
                     window.location.href = this.value;
                 });
             </script>
-        
             <form class="projectForm" action="abschreibungen.html" method="post">
                 <div>
                     <p>Werkvertäge</p>
@@ -86,16 +86,19 @@
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="workContract25">2025</label>
-                        <input type="number" id="workContract25" name="workContract25" placeholder="0">
+                        <input type="numbers" id="workContract25" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werkvetrag 2025" placeholder="0">
+                        <span id="workContract25Error" class="error-message"></span>
                         <span class="tooltipText">Auftragverhältnisse mit externen zur Erbringung klar definierter Leistungen</span>
                     </div>
                     <div class="formGroup">
                         <label for="workContract26">2026</label>
-                        <input type="number" id="workContract26" name="workContract26" placeholder="0">
+                        <input type="numbers" id="workContract26" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werkvertrag 2026" placeholder="0">
+                        <span id="workContract26Error" class="error-message"></span>
                     </div>
                     <div class="formGroup">
                         <label for="workContract27">2027</label>
-                        <input type="number" id="workContract27" name="workContract27" placeholder="0">
+                        <input type="numbers" id="workContract27" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Werkvertrag 2027" placeholder="0">
+                        <span id="workContract27Error" class="error-message"></span>
                     </div>
                 </div>
                 <div>
@@ -104,16 +107,19 @@
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="scientificService25">2025</label>
-                        <input type="number" id="scientificService25" name="scientificService25" placeholder="0">
+                        <input type="numbers" id="scientificService25" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="scientificService25" placeholder="0">
+                        <span id="scientificService25Error" class="error-message"></span>
                         <span class="tooltipText">Externe Dienstleistungen mit wissenschaftlichem Bezug</span>
                     </div>
                     <div class="formGroup">
                         <label for="scientificService26">2026</label>
-                        <input type="number" id="scientificService26" name="scientificService26" placeholder="0">
+                        <input type="numbers" id="scientificService26" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="scientificService26" placeholder="0">
+                        <span id="scientificService26Error" class="error-message"></span>
                     </div>
                     <div class="formGroup">
                         <label for="scientificService27">2027</label>
-                        <input type="number" id="scientificService27" name="scientificService27" placeholder="0">
+                        <input type="numbers" id="scientificService27" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="scientificService27" placeholder="0">
+                        <span id="scientificService27Error" class="error-message"></span>
                     </div>
                 </div>
                 <div>
@@ -122,16 +128,19 @@
                 <div class="formRow">
                     <div class="formGroup">
                         <label for="thirdPartyServices25">2025</label>
-                        <input type="number" id="thirdPartyService25" name="thirdPartyService25" placeholder="0">
+                        <input type="numbers" id="thirdPartyService25" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="thirdPartyService25" placeholder="0">
+                        <span id="thirdPartyService25Error" class="error-message"></span>
                         <span class="tooltipText">Dienste externer Anbieter, keine physischen Produkte oder Geräte.</span>
                     </div>
                     <div class="formGroup">
                         <label for="thirdPartyService26">2026</label>
-                        <input type="number" id="thirdPartyService26" name="thirdPartyService26" placeholder="0">
+                        <input type="numbers" id="thirdPartyService26" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="thirdPartyService26" placeholder="0">
+                        <span id="thirdPartyService26Error" class="error-message"></span>
                     </div>
                     <div class="formGroup">
                         <label for="thirdPartyService27">2027</label>
-                        <input type="number" id="thirdPartyService27" name="thirdPartyService27" placeholder="0">
+                        <input type="numbers" id="thirdPartyService27" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="thirdPartyService27" placeholder="0">
+                        <span id="thirdPartyService27Error" class="error-message"></span>
                     </div>
                 </div>
                 <div class="formRow formRowRigth">
@@ -139,10 +148,8 @@
                 </div>
             </form>
         </main>
-        
         <footer class="footer">
             <p>&copy; 2025 Hochschule Mittweida</p>
         </footer>
-        
     </body>
 </html>

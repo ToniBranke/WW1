@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kosten für Räume und Flächen</title>
         <link rel="stylesheet" href="style.css">
+        <script defer src="validation.js"></script>
         <script defer src="raeumeScript.js"></script>
         <script defer src="buttonScript.js"></script>
     </head>
@@ -84,7 +85,8 @@
                     <div class="formRow" id="officeUsageFeeContainer" style="display: none;">
                         <div class="formGroup wide" >
                             <label for="officeUsageFee">Büronutzungsgebühr</label>
-                            <input type="number" id="officeUsageFee" name="officeUsageFee" placeholder="0">
+                            <input type="numbers" id="officeUsageFee" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Büronutzungsgebühr" placeholder="0">
+                            <span id="officeUsageFeeError" class="error-message"></span>
                             <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
                         </div>
                             <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
@@ -94,7 +96,8 @@
                     <div class="formRow" id="LabUsageFeeContainer">
                         <div class="formGroup" id="LabNameContainer">
                             <label for="LabName">Name</label>
-                            <input type="text" id="LabName" name="LabName">
+                            <input type="text" id="LabName" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Name">
+                            <span id="LabNameError" class="error-message"></span>
                         </div>
                         <div class="formGroup" id="LabUsageFeeYearContainer">
                             <label for="LabUsageFeeYear">Jahr</label>
@@ -108,11 +111,13 @@
                     <div class="formRow" id="LabUsageFeeTimeContainer">
                         <div class="formGroup" id="labUsageFeeWeeksContainer">
                             <label for="labUsageFeeWeeks">Anzahl der Wochen</label>
-                            <input type="number" id="labUsageFeeWeeksAmount" name="labUsageFeeWeeks" placeholder="0">
+                            <input type="numbers" id="labUsageFeeWeeksAmount" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Anzahl der Wochen" placeholder="0">
+                            <span id="labUsageFeeWeeksAmountError" class="error-message"></span>
                         </div>
                         <div class="formGroup" id="LabUsageFeeHoursContainer">
                             <label for="labUsageFeeHours">Stunden pro Woche</label>
-                            <input type="number" id="labUsageFeeHours" name="labUsageFeeHours" placeholder="0">
+                            <input type="numbers" id="labUsageFeeHours" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stunden pro Woche" placeholder="0">
+                            <span id="labUsageFeeHoursError" class="error-message"></span>
                             <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
                         </div>
                     </div>
@@ -123,18 +128,21 @@
                             <h3>Zusatzräume</h3>
                     <div class="formRow"  >
                         <div class="formGroup" id="otherRoomNameContainer">
-                            <label for="otehrRoomName">Name</label>
-                            <input type="text" id="otherRoomName" name="otherRoomName">
+                            <label for="otherRoomName">Name</label>
+                            <input type="text" id="otherRoomName" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Name">
+                            <span id="otherRoomNameError" class="error-message"></span>
                         </div>
                         <div class="formGroup" id="otherRoomSizeContainer">
                             <label for="otherRoomSize">QM</label>
-                            <input type="number" id="otherRoomSize" name="otherRoomSize" placeholder="0">
+                            <input type="numbers" id="otherRoomSize" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="QM" placeholder="0">
+                            <span id="otherRoomSizeError" class="error-message"></span>
                         </div>
                     </div>
                     <div class="formRow" >
                         <div class="formGroup" id="otherRoomRentContainer">
                             <label for="otherRoomRent"> mtl. Miete pro QM</label>
-                            <input type="number" id="otherRoomRent" name="otherRoomRent" placeholder="0">
+                            <input type="numbers" id="otherRoomRent" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="mtl. Miete" name="otherRoomRent" placeholder="0">
+                            <span id="otherRoomRentError" class="error-message"></span>
                             <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
                         </div>
                         <div class="formGroup" id="otherRoomDurationContainer">
@@ -156,11 +164,10 @@
                             <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
                         </div>
                     </div>
-                        <div class="formRow" id="saveButtonContainer">
-                            <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
-                        </div>
+                    <div class="formRow" id="saveButtonContainer">
+                        <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
                     </div>
-                
+                </div>
 
                     <!--<div class="form-row form-row-rigth" >
                         <button type="submit" class="weiter-button">Weiter</button>

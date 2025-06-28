@@ -55,6 +55,11 @@ document.addEventListener('DOMContentLoaded', function()
     {
         e.preventDefault();
         
+        let validationPassed = validateInput(); // Validierung für raeume.html
+        if(!validationPassed) {
+            console.log("Validierung fehlgeschlagen");
+            return;
+        }
 
 
         const LaborNamme = document.getElementById('LabName').value;
