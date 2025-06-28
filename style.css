@@ -19,7 +19,7 @@ main {
         background-position: center;
         height: 200px;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         padding: 20px;
         color: white;
         position: relative;
@@ -35,10 +35,15 @@ main {
 
     .headerBanner h1 
     {
-        font-size: 2em;
-        background-color: rgba(0, 0, 0, 0.5);
+        font-size: clamp(1em, 4vw, 2em);
+        background-color: rgba(0, 0, 0, 0.3);
         padding: 12px;
         border-radius: 6px;
+        margin: 0.4em, 0;
+        margin-bottom: 5rem;
+        text-align: center;
+        line-height: 1.1;
+        text-wrap: balance;
     }
 
 /* Buttons */
@@ -124,7 +129,7 @@ main {
 {
     background: #f8f8f8;
     border-radius: 10px;
-    box-shadow: 0 4px 23pc rbga(70, 90, 120, 0.06);
+    box-shadow: 0 4px 23px rbga(70, 90, 120, 0.06);
     padding: 1.2rem 1.2rem;
     min-width: 230px;
     max-width: 260px;
@@ -145,7 +150,7 @@ main {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    transition: background 0.14s, color 0.14s;
+    transition: background 0.4s, color 0.4s, transform 0.4s ease-out;
     margin-bottom: 0.2rem;
 }
 
@@ -154,17 +159,20 @@ main {
     background: #bcbcbc;
     color: #000;
     border: none;
+    transition: background 0.4s, transform 0.4s ease-out, color 0.5s ease-out;
 }
 
 .sidebarButton.addButton:hover
 {
     background: #24406a;
     color: #fff;
+    transition: background 0.4s ease-in-out, color 0.4s ease-in-out, transform 0.4s ease-out;
 }
 
 .sidebarButton.saveButton:hover
 {
     background: #eee;
+    transition: transform 0.4s ease-out, background 0.4s ease-in-out;
 }
 
 .sidebarSummary
@@ -449,6 +457,7 @@ main {
 .loginButton:hover, .logoutButton:hover
 {
     background: #325493;
+    transition: background 0.4s;
 }
 
 .logoutButtonContainer
@@ -456,7 +465,11 @@ main {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-top: 0.9rem;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    z-index: 2;
+
 }
 
 .logoutButton
@@ -473,6 +486,8 @@ main {
     letter-spacing: 0.02rem;
     justify-content: flex;
     margin-right: 0.8rem;
+    transition: background 0.4s, transform 0.4s ease-out;
+
 }
 
 .footer
@@ -724,36 +739,48 @@ main {
     .mainContent
     {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
         gap: 0.8rem;
         margin-bottom: 1.3rem;
+        max-width: 99vw;
        
     }
     .sidebar, .sidebarSummary, .projectForm
     {
         flex-direction: column;
-        align-items: stretch;
+        
         align-self: center;
     }
 }
 
-    @media (max-width: 860px) 
+@media (max-width: 860px) 
+{
+    .projectForm
     {
-        .formRow 
-        {
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 1.3rem;
-        }
-        .formGroup 
-        {
-            margin-bottom: 1.3rem;
-        }
-        .sidebar
-        {
-            align-items: center;
-            flex-direction: column;
-            align-items: center;
-            width: auto;
-        }
+        width: 85vw;
+ 
     }
+    .formRow 
+    {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1.3rem;
+    }
+    .formGroup 
+    {
+        margin-bottom: 1.3rem;
+    }
+    .sidebar
+    {
+        align-items: stretch;
+        flex-direction: column;
+        width: auto;
+        min-width: unset;
+        max-width: 95vw;
+    }
+
+    .mainContent
+    {
+        padding: 0 0.5em;
+    }
+}
