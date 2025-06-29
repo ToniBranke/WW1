@@ -12,6 +12,7 @@
         <script src="buttonScript.js"></script>
         <script src="neuerMitarbeiter.js"></script>
         <script defer src="particles.js"></script>
+        <script src="neuerMitarbeiter2.js"></script>
     </head>
     <body class="taskMain">
         <header class="headerBanner">
@@ -128,10 +129,18 @@
                     <div class="formRow">
                         <div class="formGroup">
                             <label for="stufe">Stufe/ Std. satz</label>
-                            <input type="numbers" id="stufe" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stufe">
-                            <span id="stufeError" class="error-message"></span>
+                            <select id="stufe" name="stufe">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                           <!-- <input type="numbers" id="stufe" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stufe">
+                            <span id="stufeError" class="error-message"></span>-->
                         </div>
                     </div>
+
 
                     <!-- 2025, 2026, 2027 -->
                     <div class="formRow">
