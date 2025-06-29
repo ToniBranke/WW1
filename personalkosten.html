@@ -166,11 +166,11 @@
                     </div>
                 </div>
 
-                    <!-- Submit -->
-                    <div class="formRow formRowRigth">
-                        <button type="button" class="weiterButton" id="saveButton1">Hinzufügen</button>
-                    </div>
-                </form>
+                <!-- Submit -->
+                <div class="formRow formRowRigth">
+                    <button type="button" class="weiterButton" id="saveButton1">Hinzufügen</button>
+                </div>
+            </form>
 
 
             <!-- haushaltfinanz. Hochschul-Mitarbeiter -->
@@ -241,11 +241,12 @@
                     </div>
                 </div>
 
-                    <!-- Submit -->
-                    <div class="formRow formRowRigth">
-                        <button type="button" class="weiterButton" id="saveButton2">Hinzufügen</button> <!-- save hinzugefügt-->
-                    </div>
-                </form2>
+                <!-- Submit -->
+                <div class="formRow formRowRigth">
+                    <button type="button" class="weiterButton" id="saveButton2">Hinzufügen</button>
+                    <!-- save hinzugefügt-->
+                </div>
+            </form2>
 
 
             <!-- Sidebar mit den Buttons und zusammenfassung -->
@@ -277,15 +278,15 @@
                 });
             </script>
             -->
-            </div>
-        </main>
-        
-        <footer class="footer">
-            <p>&copy; 2025 Hochschule Mittweida</p>
-            <canvas id="canvas"></canvas>
-        </footer>
-    </body>
-    <script>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+        <canvas id="canvas"></canvas>
+    </footer>
+</body>
+<script>
     window.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
@@ -349,6 +350,18 @@
             if (summaryList) {
                 const items = Array.from(summaryList.querySelectorAll("li")).map(li => li.textContent.trim());
                 formData.append("B_summaryList", JSON.stringify(items));
+                let totalSum = 0;
+                items.forEach(itemText => {
+                    const match = itemText.match(/([\d.,]+)/);
+                    if (match) {
+                        let cleaned = match[1].replace(',', '.');
+                        let num = parseFloat(cleaned);
+                        if (!isNaN(num)) {
+                            totalSum += num;
+                        }
+                    }
+                });
+                formData.append("G_sumPersonalkosten", totalSum);
             }
             formData.append("projectId", projectId);
             fetch("php/saveProject.php", {
@@ -394,4 +407,5 @@
 
 
 </script>
+
 </html>
