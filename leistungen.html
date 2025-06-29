@@ -8,6 +8,7 @@
         <script src="validation.js"></script>
         <!--<script src="script.js"></script>-->
         <script src="buttonScript.js"></script>
+        <script defer src="particles.js"></script>
     </head>
     <body class="taskMain">
         <header class="headerBanner">
@@ -79,6 +80,7 @@
                     window.location.href = this.value;
                 });
             </script>
+
             <form class="projectForm" action="abschreibungen.html" method="post">
                 <div>
                     <p>Werkvertäge</p>
@@ -147,9 +149,11 @@
                     <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
                 </div>
             </form>
+            
         </main>
         <footer class="footer">
             <p>&copy; 2025 Hochschule Mittweida</p>
+            <canvas id="canvas"></canvas>
         </footer>
     </body>
     <script>

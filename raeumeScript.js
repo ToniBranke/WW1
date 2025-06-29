@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function()
     const addAnderesButton = document.getElementById('addAnderesButton');
     const saveButton = document.getElementById('saveButton');
     const submitButton = document.getElementById('submitButton');
+    const backButton = document.getElementById('backButton');
 
     const bueroForm = document.getElementById('officeUsageFeeContainer');
     const laborForm = document.getElementById('LabUsageContainer');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function()
     anderesForm.style.display = 'none';
     raeumeForm.style.display = 'none';
     submitButton.style.display = 'block';
+    backButton.style.display = 'none';
 
     addbueroButton.addEventListener('click', function()
     {
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function()
         laborForm.style.display = 'none';
         anderesForm.style.display = 'none';
         submitButton.style.display = 'none';
+        backButton.style.display = 'block';
     });
 
     addLaborButton.addEventListener('click', function()
@@ -38,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function()
         bueroForm.style.display = 'none';
         anderesForm.style.display = 'none';
         submitButton.style.display = 'none';
+        backButton.style.display = 'block';
     });
 
     addAnderesButton.addEventListener('click', function()
@@ -48,6 +52,17 @@ document.addEventListener('DOMContentLoaded', function()
         bueroForm.style.display = 'none';
         laborForm.style.display = 'none';
         submitButton.style.display = 'none';
+        backButton.style.display = 'block';
+    });
+
+    backButton.addEventListener('click', function()
+    {
+        bueroForm.style.display = 'none';
+        laborForm.style.display = 'none';
+        anderesForm.style.display = 'none';
+        raeumeForm.style.display = 'none';
+        submitButton.style.display = 'block';
+        backButton.style.display = 'none';
     });
         
 
@@ -116,5 +131,6 @@ document.addEventListener('DOMContentLoaded', function()
         raeumeForm.reset();
         raeumeForm.style.display = 'none';
         submitButton.style.display = 'block';
+        backButton.style.display = 'none';
     });
 })
