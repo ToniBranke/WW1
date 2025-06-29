@@ -293,7 +293,7 @@
             return;
         }
 
-        localStorage.setItem("projectId", projectId);
+        //localStorage.setItem("projectId", projectId);
 
         fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
             .then(response => response.json())
@@ -330,7 +330,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         const form = document.querySelector('form.projectForm');
         const submitButton = document.getElementById('submitButton');
-
         if (!form || !submitButton) return;
 
         submitButton.addEventListener('click', function (e) {
@@ -364,6 +363,34 @@
                 });
         });
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlProjectId = urlParams.get('projectId');
+        const localProjectId = localStorage.getItem("projectId");
+
+        if (urlProjectId) {
+            localStorage.setItem("projectId", urlProjectId);
+        }
+
+        const projectId = urlProjectId || localProjectId;
+
+        if (!projectId) {
+            console.warn("Keine projectId gefunden");
+            return;
+        }
+
+        // Tabs updaten
+        const links = document.querySelectorAll('.tabs a');
+        links.forEach(link => {
+            const url = new URL(link.href, window.location.origin);
+            url.searchParams.set('projectId', projectId);
+            link.href = url.toString();
+        });
+    });
+
+
+
 </script>
 
 </html>

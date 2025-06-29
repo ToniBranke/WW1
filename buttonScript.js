@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-
     const saveButton = document.querySelectorAll('.weiterButton');
     saveButton.forEach(button => {
         button.addEventListener('click', function(e) {

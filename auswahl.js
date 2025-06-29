@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const selectedId = existingProjectSelect.value;
         if (selectedId) {
+            localStorage.setItem("projectId", selectedId);
             window.location.href = `allgemein.html?projectId=${encodeURIComponent(selectedId)}`;
         }
     });

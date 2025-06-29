@@ -46,7 +46,7 @@ $projektdauer = 6; // z. B. 6 Monate, später dynamisch
 $kosten_intern = $db->querySingle("SELECT SUM(monatsgehalt) FROM mitarbeiter WHERE status = 'intern' AND projekt_id IS NOT NULL") * $projektdauer;
 $kosten_extern = $db->querySingle("SELECT SUM(monatsgehalt) FROM mitarbeiter WHERE status = 'extern'") * $projektdauer;
 
-
+?>
 personalkostenanzeige.html
 
 <!DOCTYPE html>

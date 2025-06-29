@@ -42,7 +42,9 @@ try {
         D_travelCost REAL,
         D_otherExpenses REAL,
         E_summaryList TEXT,
-        F_summaryList TEXT
+        F_summaryList TEXT,
+        G_sumLeistungen REAL,
+        G_sumSachkosten REAL
     )");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['projectName'])) {
@@ -80,7 +82,9 @@ try {
             'D_travelCost' => $_POST['travelCost'] ?? null,
             'D_otherExpenses' => $_POST['otherExpenses'] ?? null,
             'E_summaryList' => $_POST['summaryList'] ?? null,
-            'F_summaryList' => $_POST['raeumeSummaryList'] ?? null
+            'F_summaryList' => $_POST['raeumeSummaryList'] ?? null,
+            'G_sumLeistungen' => $_POST['sumLeistungen'] ?? null,
+            'G_sumSachkosten' => $_POST['sumSachkosten'] ?? null
         ];
 
         // Prepare the insert statement dynamically
