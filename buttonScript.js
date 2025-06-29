@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    const tabOrder = ["login.html", "allgemein.html", "personalkosten.html", "leistungen.html", "sachkosten.html", "abschreibungen.html", "raeume.html", "zusammenfassung.html"];
+    const tabOrder = ["login.html", "allgemein.html", "personalkosten.html", "leistungen.html", "sachkosten.html", "abschreibungen.html", "raeume.html", "abschlussrechnung.html"];
     const currentPath = window.location.pathname.split("/").pop();
     const currentIndex = tabOrder.indexOf(currentPath);
     const nextPage = (currentIndex >= 0 && currentIndex < tabOrder.length -1) 
