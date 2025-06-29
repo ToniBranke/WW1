@@ -5,12 +5,11 @@ body, html
     font-family: 'Seorge UI', sans-serif;
    /*background-color: #e6e6e6;*/
     color: #222;
-    z-index: 1;
 }
 
 canvas
 {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -21,8 +20,7 @@ canvas
 
 main {
     padding-top: 20px;
-
-}
+    }
 
 /*Header Banner */
     .headerBanner 
@@ -44,7 +42,6 @@ main {
         border-bottom-right-radius: 14px;
         overflow: hidden;
         z-index: 1;
-
     }
 
     .headerBanner h1 
@@ -796,6 +793,12 @@ main {
     {
         margin-bottom: 1.3rem;
     }
+
+    body, html
+    {
+        background-color: #e6e6e6;
+    }
+
     .sidebar
     {
         align-items: stretch;

@@ -5,11 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kosten für Räume und Flächen</title>
         <link rel="stylesheet" href="style.css">
+        <script defer src="particles.js"></script>
         <script defer src="validation.js"></script>
         <script defer src="raeumeScript.js"></script>
         <script defer src="buttonScript.js"></script>
+        
     </head>
     <body class="taskMain">
+        <canvas id="canvas"></canvas>
         <header class="headerBanner">
             <h1>Kosten für Räume und Flächen</h1>
             <div class="logoutButtonContainer">
@@ -89,7 +92,7 @@
                             <span id="officeUsageFeeError" class="error-message"></span>
                             <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
                         </div>
-                            <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
+                            <button type="button" class="weiterButton" id="bueroSaveButton">Gegenstand speichern</button>
                     </div>
                 <div id="LabUsageContainer" style="display: none;">
                     <h3>Labornutzungsgebühr</h3>
@@ -121,7 +124,7 @@
                             <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
                         </div>
                     </div>
-                        <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
+                        <button type="button" class="weiterButton" id="labSaveButton">Gegenstand speichern</button>
                 </div>
 
                 <div id="otherRoomContainer" style="display: none;">
@@ -165,7 +168,7 @@
                         </div>
                     </div>
                     <div class="formRow" id="saveButtonContainer">
-                        <button type="button" class="weiterButton" id="saveButton">Gegenstand speichern</button>
+                        <button type="button" class="weiterButton" id="andereSaveButton">Gegenstand speichern</button>
                     </div>
                 </div>
 
@@ -192,6 +195,7 @@
 
         <footer class="footer">
             <p>&copy; 2025 Hochschule Mittweida</p>
+            
         </footer>
 
     </body>
