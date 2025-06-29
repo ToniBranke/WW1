@@ -1,6 +1,6 @@
 
 function validateInput(event) {
-    console.log("validateInput called, event: ", event); //Debug-Ausgabe
+    //console.log("validateInput called, event: ", event); //Debug-Ausgabe
 
     let isValid = true; //Validierung wird gespeichert
     const errors = {}; // error messages speichern
