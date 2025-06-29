@@ -274,8 +274,22 @@
             if (summaryList) {
                 const items = Array.from(summaryList.querySelectorAll("li")).map(li => li.textContent.trim());
                 formData.append("F_summaryList", JSON.stringify(items));
+                
+                let totalSum = 0;
+                items.forEach(itemText => {
+                    const match = itemText.match(/([\d.,]+)/);
+                    if (match) {
+                        let cleaned = match[1].replace(',', '.');
+                        let num = parseFloat(cleaned);
+                        if (!isNaN(num)) {
+                            totalSum += num;
+                        }
+                    }
+                });
+
+                formData.append("sumRaeume", totalSum);
             }
-            console.log("FormData:", Object.fromEntries(formData.entries()));
+
             formData.append("projectId", projectId);
             fetch("php/saveProject.php", {
                 method: "POST",
