@@ -63,5 +63,6 @@ document.addEventListener('DOMContentLoaded', function()
         form.reset();
         form.style.display = 'none';
         submitButton.style.display = 'block';
+        backButton.style.display = 'none';
     });
 });

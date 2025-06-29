@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function()
     const addbueroButton = document.getElementById('addBueroButton');  
     const addLaborButton = document.getElementById('addLaborButton');
     const addAnderesButton = document.getElementById('addAnderesButton');
-    const saveButton = document.getElementById('saveButton');
+    //const saveButton = document.getElementById('saveButton');
     const submitButton = document.getElementById('submitButton');
     const backButton = document.getElementById('backButton');
 
@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function()
     const laborForm = document.getElementById('LabUsageContainer');
     const anderesForm = document.getElementById('otherRoomContainer');
     const raeumeForm = document.getElementById('raeumeForm');
+
+    //save buttons 
+    const saveBueroButton = document.getElementById('bueroSaveButton');
+    const saveLabButton = document.getElementById('labSaveButton');
+    const saveOtherButton = document.getElementById('andereSaveButton');
 
     const raeumeList = document.getElementById('raeumeSummaryList');
 
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function()
     });
         
 
-    saveButton.addEventListener('click', function(e)
+    /*saveButton.addEventListener('click', function(e)
     {
         e.preventDefault();
         
@@ -80,6 +85,11 @@ document.addEventListener('DOMContentLoaded', function()
         const LaborNamme = document.getElementById('LabName').value;
         const anderesName = document.getElementById('otherRoomName').value;
         const bueroNutzungsGebuehrName = "büro";
+
+        //save buttons
+        const bueroSaveButton = document.getElementById('bueroSaveButton');
+        const labSaveButton = document.getElementById('labSaveButton');
+        const andereSaveButton = document.getElementById('andereSaveButton');
 
         // holt die Eingegebenen werte aus dem Formular
         const bueroNutzungsGebuehr = parseFloat(document.getElementById('officeUsageFee').value) || 0;
@@ -99,21 +109,23 @@ document.addEventListener('DOMContentLoaded', function()
             alert('Bitte geben Sie einen Wert ein.');
             return;
         } */
+         
 
-        // berechung Gesamtbetrag
+
+        /* berechung Gesamtbetrag
         let betrag = 0;
         let bezeichnung = " ";
 
         if (bueroForm.style.display === 'block') 
-            {
-                bezeichnung = bueroNutzungsGebuehrName;
-                betrag = bueroNutzungsGebuehr;
+        {
+        bezeichnung = bueroNutzungsGebuehrName;
+        betrag = bueroNutzungsGebuehr;
             }
         else if (laborForm.style.display === 'block')
         {
             bezeichnung = LaborNamme;
 
-            betrag = laborNutzungWochen * laborNutzungStunden;
+            betrag = laborNutzungWochen * laborNutzungStunden *2,18;
         }
         else if (anderesForm.style.display === 'block')
         {
@@ -129,6 +141,57 @@ document.addEventListener('DOMContentLoaded', function()
         raeumeList.appendChild(li);
 
         raeumeForm.reset();
+        raeumeForm.style.display = 'none';
+        submitButton.style.display = 'block';
+        backButton.style.display = 'none';
+    });
+*/
+
+// Büro speichern
+    saveBueroButton.addEventListener('click', function() {
+        const gebuehr = parseFloat(document.getElementById('officeUsageFee').value) || 0;
+        if (gebuehr > 0) {
+            const li = document.createElement('li');
+            li.textContent = `Büro: ${gebuehr.toFixed(2)} €`;
+            raeumeList.appendChild(li);
+        }
+        raeumeForm.reset();
+        raeumeForm.style.display = 'none';
+        submitButton.style.display = 'block';
+        backButton.style.display = 'none';
+    });
+
+    // Labor speichern
+    saveLabButton.addEventListener('click', function() {
+        const name = document.getElementById('LabName').value;
+        const wochen = parseFloat(document.getElementById('labUsageFeeWeeksAmount').value) || 0;
+        const stunden = parseFloat(document.getElementById('labUsageFeeHours').value) || 0;
+        const betrag = wochen * stunden * 2.18;
+        if (name && betrag > 0) {
+            const li = document.createElement('li');
+            li.textContent = `${name} (Labor): ${betrag.toFixed(2)} €`;
+            raeumeList.appendChild(li);
+        }
+        raeumeForm.reset();
+        raeumeForm.style.display = 'none';
+        submitButton.style.display = 'block';
+        backButton.style.display = 'none';
+    });
+
+    // Anderes speichern
+    saveOtherButton.addEventListener('click', function() {
+        const name = document.getElementById('otherRoomName').value;
+        const qm = parseFloat(document.getElementById('otherRoomSize').value) || 0;
+        const miete = parseFloat(document.getElementById('otherRoomRent').value) || 0;
+        const dauer = parseFloat(document.getElementById('otherRoomDuration').value) || 0;
+        const betrag = qm * miete * dauer;
+        if (name && betrag > 0) 
+            {
+            const li = document.createElement('li');
+            li.textContent = `${name} (Anderes): ${betrag.toFixed(2)} €`;
+            raeumeList.appendChild(li);
+        }
+                raeumeForm.reset();
         raeumeForm.style.display = 'none';
         submitButton.style.display = 'block';
         backButton.style.display = 'none';
