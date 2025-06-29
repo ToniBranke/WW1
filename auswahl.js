@@ -86,3 +86,41 @@ document.addEventListener("DOMContentLoaded", () => {
 */
 
 /* SPEICHERORT UND DIE OPTIONEN UEBERARBEITEN*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    const selectForm = document.getElementById('selectForm');
+    const selectButton = document.getElementById('selectButton');
+    const existingProjectSelect = document.getElementById('existingProject');
+
+    // Button "Projektauswahl" zeigt das Formular an
+    selectButton?.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectForm.style.display = 'block';
+        document.getElementById('newProjectForm').style.display = 'none';
+    });
+
+    // Projekte aus DB laden
+    fetch('php/getProjects.php')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project.id; // ID als value
+                option.textContent = project.A_projectName; // Name anzeigen
+                existingProjectSelect.appendChild(option);
+            });
+        })
+        .catch(err => {
+            console.error('Fehler beim Laden der Projekte:', err);
+            alert('Projekte konnten nicht geladen werden.');
+        });
+
+    // Formular "Öffnen" — redirect mit projectId
+    selectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedId = existingProjectSelect.value;
+        if (selectedId) {
+            window.location.href = `allgemein.html?projectId=${encodeURIComponent(selectedId)}`;
+        }
+    });
+});
