@@ -8,12 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     : null;
 
     const submitButton = document.querySelector('button[type="submit"]');
-    //(e) zu () machen und preventDefault entfernen wegen post (weiterleitung muss dann auch mit php gemacht werden)
-    /*
     submitButton.addEventListener('click', function(e)
     {
-        e.preventDefault();
-
         let validationPassed = validateInput();
         if(!validationPassed) { // wenn Validierung fehlgeschlagen
             console.log("Validierung fehlgeschlagen"); // Debug-Ausgabe
@@ -22,14 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (nextPage)
         {
-            window.location.href = nextPage;
-        }
-        if(currentPath !== "login.html")
-        {
-            alert('Daten erfolgreich gespeichert!');    
+            window.location.href = nextPage + "?projectId=" + new URLSearchParams(window.location.search).get("projectId");
         }
     });
-    */
+    
 
     const saveButton = document.querySelectorAll('.weiterButton');
     saveButton.forEach(button => {

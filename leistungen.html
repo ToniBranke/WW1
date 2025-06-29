@@ -172,7 +172,6 @@
                     return;
                 }
 
-                // Automatically populate matching input fields by ID
                 Object.entries(data).forEach(([key, value]) => {
                     const el = document.getElementById(mapField(key));
                     if (el) {
@@ -193,11 +192,11 @@
                 "C_scientificService25": "scientificService25",
                 "C_scientificService26": "scientificService26",
                 "C_scientificService27": "scientificService27",
-                "C_thirdPartyServices25": "thirdPartyServices25",
-                "C_thirdPartyServices26": "thirdPartyServices26",
-                "C_thirdPartyServices27": "thirdPartyServices27"
+                "C_thirdPartyService25": "thirdPartyService25",
+                "C_thirdPartyService26": "thirdPartyService26",
+                "C_thirdPartyService27": "thirdPartyService27"
             };
-            return fieldMap[dbKey] || dbKey; // fallback to same name
+            return fieldMap[dbKey] || dbKey;
         }
     });
 
@@ -211,15 +210,15 @@
             scientificService25: "C_scientificService25",
             scientificService26: "C_scientificService26",
             scientificService27: "C_scientificService27",
-            thirdPartyServices25: "C_thirdPartyServices25",
-            thirdPartyServices26: "C_thirdPartyServices26",
-            thirdPartyServices27: "C_thirdPartyServices27",
+            thirdPartyService25: "C_thirdPartyService25",
+            thirdPartyService26: "C_thirdPartyService26",
+            thirdPartyService27: "C_thirdPartyService27",
         };
 
         if (!form || !submitButton) return;
 
         submitButton.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent normal form submission
+            e.preventDefault();
 
 
             const projectId = localStorage.getItem("projectId");
@@ -244,7 +243,6 @@
                 .then(res => res.text())
                 .then(result => {
                     console.log("Server response:", result);
-                    window.location.href = "leistungen.html";
                 })
                 .catch(err => {
                     console.error("Fehler beim Speichern:", err);

@@ -81,7 +81,7 @@
                 });
             </script>
 
-            <form class="projectForm" action="abschreibungen.html" method="post">
+            <form class="projectForm" action="sachkosten.html" method="post">
                 <div class="formRow">
                     <div class="loginForm">
                         <h1>Geschäftsbedarf</h1>
@@ -174,4 +174,107 @@
         </footer>
     
     </body>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        let projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
+
+        if (!projectId) {
+            console.warn("Kein projectId vorhanden.");
+            return;
+        }
+
+        localStorage.setItem("projectId", projectId);
+
+        fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler beim Laden: " + data.error);
+                    return;
+                }
+
+                Object.entries(data).forEach(([key, value]) => {
+                    const el = document.getElementById(mapField(key));
+                    if (el) {
+                        el.value = value;
+                    }
+                });
+            })
+            .catch(err => {
+                console.error("Fehler beim Laden:", err);
+                alert("Projekt konnte nicht geladen werden.");
+            });
+
+        function mapField(dbKey) {
+            const fieldMap = {
+                "D_officeSupplies": "officeSupplies",
+                "D_softwareLicenses": "softwareLicenses",
+                "D_advertisingCost": "advertisingCost",
+                "D_postagePhoneComm": "PostagePhoneComm",
+                "D_storageDevices": "storageDevices",
+                "D_maintenance": "maintenance",
+                "D_devicesBelow150": "devicesBelow150",
+                "D_magazinesLiterature": "magazinesLiterature",
+                "D_materials": "materials",
+                "D_travelCost": "travelCost",
+                "D_otherExpenses": "otherExpenses"
+            };
+            return fieldMap[dbKey] || dbKey;
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.projectForm');
+        const submitButton = document.getElementById('submitButton');
+        const fieldMap = {
+            officeSupplies: "D_officeSupplies",
+            softwareLicenses: "D_softwareLicenses",
+            advertisingCost: "D_advertisingCost",
+            PostagePhoneComm: "D_postagePhoneComm",
+            storageDevices: "D_storageDevices",
+            maintenance: "D_maintenance",
+            devicesBelow150: "D_devicesBelow150",
+            magazinesLiterature: "D_magazinesLiterature",
+            materials: "D_materials",
+            travelCost: "D_travelCost",
+            otherExpenses: "D_otherExpenses"
+        };
+
+        if (!form || !submitButton) return;
+
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+
+            const projectId = localStorage.getItem("projectId");
+            if (!projectId) {
+                alert("Projekt-ID fehlt.");
+                return;
+            }
+
+            const formData = new FormData();
+            for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
+                const field = document.getElementById(htmlId);
+                if (field) {
+                    formData.append(dbColumn, field.value);
+                }
+            }
+            
+            formData.append("projectId", projectId);
+            fetch("php/saveProject.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.text())
+                .then(result => {
+                    console.log("Server response:", result);
+                })
+                .catch(err => {
+                    console.error("Fehler beim Speichern:", err);
+                    alert("Speichern fehlgeschlagen.");
+                });
+        });
+    });
+</script>
 </html>

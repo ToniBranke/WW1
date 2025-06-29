@@ -194,4 +194,87 @@
         </footer>
 
     </body>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
+
+        if (!projectId) {
+            console.warn("Kein projectId vorhanden.");
+            return;
+        }
+
+        localStorage.setItem("projectId", projectId);
+
+        fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler beim Laden: " + data.error);
+                    return;
+                }
+
+                const summaryListElement = document.getElementById("raeumeSummaryList");
+                if (summaryListElement && data.F_summaryList) {
+                    let items = [];
+                    try {
+                        items = JSON.parse(data.F_summaryList);
+                    } catch (e) {
+                        console.error("Fehler beim Parsen der Listendaten:", e);
+                    }
+
+                    summaryListElement.innerHTML = "";
+
+                    items.forEach(itemText => {
+                        const li = document.createElement("li");
+                        li.textContent = itemText;
+                        summaryListElement.appendChild(li);
+                    });
+                }
+            })
+            .catch(err => {
+                console.error("Fehler beim Laden:", err);
+                alert("Projekt konnte nicht geladen werden.");
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.projectForm');
+        const submitButton = document.getElementById('submitButton');
+
+        if (!form || !submitButton) return;
+
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault(); 
+
+
+            const projectId = localStorage.getItem("projectId");
+            if (!projectId) {
+                alert("Projekt-ID fehlt.");
+                return;
+            }
+
+            const formData = new FormData();
+            const summaryList = document.getElementById("raeumeSummaryList");
+            if (summaryList) {
+                const items = Array.from(summaryList.querySelectorAll("li")).map(li => li.textContent.trim());
+                formData.append("F_summaryList", JSON.stringify(items));
+            }
+            console.log("FormData:", Object.fromEntries(formData.entries()));
+            formData.append("projectId", projectId);
+            fetch("php/saveProject.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.text())
+                .then(result => {
+                    console.log("Server response:", result);
+                })
+                .catch(err => {
+                    console.error("Fehler beim Speichern:", err);
+                    alert("Speichern fehlgeschlagen.");
+                });
+        });
+    });
+</script>
 </html>

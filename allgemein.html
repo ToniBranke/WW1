@@ -1,256 +1,268 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Allgemeine Projektdaten</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="validation.js"></script>
-        <script defer src="buttonScript.js"></script>
-    </head>
-        <header class="headerBanner">
-            <h1>Allgemeine Projektdaten</h1>
-            <div class="logoutButtonContainer">
-                    <button class="logoutButton" id="logoutButton">Abmelden</button>
-            </div>
-            <div class="tabsContainer">
-                <div class="tabs" id="tabs">
-                    <a href="allgemein.html" class="tabActive">Allgemeine Projektdaten</a>
-                    <a href="personalkosten.html" class="tab">Personalkosten</a>
-                    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                    <a href="sachkosten.html" class="tab">Sachkosten</a>
-                    <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
-                    <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-                </div>
-                <select class="tabsDropdown" id="tabsDropdown">
-                    <option value="allgemein.html" selected>Allgemeine Projektdaten</option>
-                    <option value="personalkosten.html">Personalkosten</option>
-                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
-                    <option value="sachkosten.html">Sachkosten</option>
-                    <option value="abschreibungen.html">Investitionen/Abschreibungen</option>
-                    <option value="raeume.html">Kosten für Räume und Flächen</option>
-                </select>
-            </div>
-        </header>
-    <body class="taskMain">
 
-        <main>
-            <script>
-                const tabs = document.getElementById('tabs');
-                const dropdown = document.getElementById('tabsDropdown');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allgemeine Projektdaten</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="validation.js"></script>
+    <script defer src="buttonScript.js"></script>
+</head>
+<header class="headerBanner">
+    <h1>Allgemeine Projektdaten</h1>
+    <div class="logoutButtonContainer">
+        <button class="logoutButton" id="logoutButton">Abmelden</button>
+    </div>
+    <div class="tabsContainer">
+        <div class="tabs" id="tabs">
+            <a href="allgemein.html" class="tabActive">Allgemeine Projektdaten</a>
+            <a href="personalkosten.html" class="tab">Personalkosten</a>
+            <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+            <a href="sachkosten.html" class="tab">Sachkosten</a>
+            <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+            <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+        </div>
+        <select class="tabsDropdown" id="tabsDropdown">
+            <option value="allgemein.html" selected>Allgemeine Projektdaten</option>
+            <option value="personalkosten.html">Personalkosten</option>
+            <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+            <option value="sachkosten.html">Sachkosten</option>
+            <option value="abschreibungen.html">Investitionen/Abschreibungen</option>
+            <option value="raeume.html">Kosten für Räume und Flächen</option>
+        </select>
+    </div>
+</header>
 
-                const changeWidth = 1500;
-                let tooSmall = window.innerWidth <= changeWidth;
+<body class="taskMain">
 
-                function animateSwitch(showDropdown) {
-                    if (showDropdown) {
-                        tabs.classList.add('tabsHidden');
-                        dropdown.classList.remove('dropdownHidden');
-                    } else {
-                        tabs.classList.remove('tabsHidden');
-                        dropdown.classList.add('dropdownHidden');
-                    }
+    <main>
+        <script>
+            const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
+
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
+
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    tabs.classList.remove('tabsHidden');
+                    dropdown.classList.add('dropdownHidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    dropdown.classList.add('dropdownHidden');
                 }
 
-                window.addEventListener('resize', () => {
-                    const isSmall = window.innerWidth <= changeWidth;
-                    if (isSmall !== tooSmall) {
-                        animateSwitch(isSmall);
-                        tooSmall = isSmall;
-                    }
+                requestAnimationFrame(() => {
+                    tabs.classList.add('navTransition');
+                    dropdown.classList.add('navTransition');
                 });
+            });
 
-                window.addEventListener('DOMContentLoaded', () => {
-                    if (tooSmall) {
-                        tabs.classList.add('tabsHidden');
-                        dropdown.classList.remove('dropdownHidden');
-                    } else {
-                        dropdown.classList.add('dropdownHidden');
-                    }
-
-                    requestAnimationFrame(() => {
-                        tabs.classList.add('navTransition');
-                        dropdown.classList.add('navTransition');
-                    });
-                });
-
-                dropdown.addEventListener('change', function () {
-                    window.location.href = this.value;
-                });
-            </script>
-            <form class="projectForm">
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="projectName">Projekttitel:</label>
-                        <input type="text" id="projectName" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Projekttitel" required>
-                        <span id="projectNameError" class="error-message"></span>
-                    </div>
-                    <div class="formGroup">
-                        <label for="sponsor">Auftraggeber:</label>
-                        <input type="text" id="sponsor" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Auftraggeber" required>
-                        <span id="sponsorError" class="error-message"></span>
-                        <span class="tooltipText">Name der Institution oder Person, die das projekt initialisiert oder finanziert. </span>
-                    </div>
-                    <div class="formGroup">
-                        <label for="faculty">Fakultät:</label>
-                        <input type="text" id="faculty" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Fakultät" required>
-                        <span id="facultyError" class="error-message"></span>
-                    </div>
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        </script>
+        <form class="projectForm">
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="projectName">Projekttitel:</label>
+                    <input type="text" id="projectName" data-validate-regex="^[A-Za-z]+$"
+                        data-error-message="nur Buchstaben erlaubt" name="Projekttitel" required>
+                    <span id="projectNameError" class="error-message"></span>
                 </div>
-                <div class="formRow">
-                    <div class="formGroup">
-                        <label for="responsible">Verantwortlicher:</label>
-                        <input type="text" id="responsible" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Verantwortlicher" required>
-                        <span id="responsibleError" class="error-message"></span>
-                        <span class="tooltipText">Name der hauptverantwortlichen Person (z.b. Projektleitung).</span>
-                    </div>
-                    <div class="formGroup">
-                        <label for="costCenter">Kostenstelle:</label>
-                        <input type="numbers" id="costCenter" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Kostenstelle" required>
-                        <span id="costCenterError" class="error-message"></span>
-                        <span class="tooltipText">Nummer der Kostenstelle gemäß Finanzsystem.</span>
-                    </div>
-                    <div class="formGroup">
-                        <label for="trainingDays">Anzahl Weiterbildungstage:</label>
-                        <input type="numbers" id="trainingDays" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Anzahl Weiterbildungstage" min="0" required>
-                        <span id="trainingDaysError" class="error-message"></span>
-                    </div>
+                <div class="formGroup">
+                    <label for="sponsor">Auftraggeber:</label>
+                    <input type="text" id="sponsor" data-validate-regex="^[A-Za-z]+$"
+                        data-error-message="nur Buchstaben erlaubt" name="Auftraggeber" required>
+                    <span id="sponsorError" class="error-message"></span>
+                    <span class="tooltipText">Name der Institution oder Person, die das projekt initialisiert oder
+                        finanziert. </span>
                 </div>
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <label for="timeframeFrom">Geplanter Zetraum von:</label>
-                            <input type="date" id="timeframeFrom" name="timeframeFrom" required>
-                        </div>
-                        <div class="formGroup">
-                            <label for="timeframeUntil">bis:</label>
-                            <input type="date" id="timeframeUnitl" name="timeframeUntil" required>
-                        </div>
-                        <div class="formGroup">
-                            <label for="economicArea">Wirtschaftlicher Bereich:</label>
-                            <input type="text" id="economicArea" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Wirtschaftlicher Bereich" required>
-                            <span id="economicAreaError" class="error-message"></span>
-                            <span class="tooltipText">Organisatorischer Bereich oder Einheit, die wirtschaftlich zuständig ist.</span>
-                        </div>
-                    </div>
-                    <div class="formRow"> 
-                        <div class="formGroup wide">
-                            <label for="projectCostObjectNumber">Projekt / Kostenträgernummer:</label>
-                            <input type="numbers" id="projectCostObjectNumber" data-validate-regex= "^\d+$" data-error-message="nur ganze Zahlen erlaubt" name="Projekt / Kostenträgernummer" required>
-                            <span id="projectCostObjectNumberError" class="error-message"></span>
-                            <span class="tooltipText">Interne oder externe Projektnummer zur Zuordnung.</span>
-                        </div>
-                    </div>
-                    <div class="formRow formRowRigth">
-                        <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
-                    </div>
-                </div>     
-            </form>
-        </main>
-        <footer class="footer">
-            <p>&copy; 2025 Hochschule Mittweida</p>
-        </footer>
-    </body>
-        <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            let projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
+                <div class="formGroup">
+                    <label for="faculty">Fakultät:</label>
+                    <input type="text" id="faculty" data-validate-regex="^[A-Za-z]+$"
+                        data-error-message="nur Buchstaben erlaubt" name="Fakultät" required>
+                    <span id="facultyError" class="error-message"></span>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="responsible">Verantwortlicher:</label>
+                    <input type="text" id="responsible" data-validate-regex="^[A-Za-z]+$"
+                        data-error-message="nur Buchstaben erlaubt" name="Verantwortlicher" required>
+                    <span id="responsibleError" class="error-message"></span>
+                    <span class="tooltipText">Name der hauptverantwortlichen Person (z.b. Projektleitung).</span>
+                </div>
+                <div class="formGroup">
+                    <label for="costCenter">Kostenstelle:</label>
+                    <input type="numbers" id="costCenter" data-validate-regex="^\d+$"
+                        data-error-message="nur ganze Zahlen erlaubt" name="Kostenstelle" required>
+                    <span id="costCenterError" class="error-message"></span>
+                    <span class="tooltipText">Nummer der Kostenstelle gemäß Finanzsystem.</span>
+                </div>
+                <div class="formGroup">
+                    <label for="trainingDays">Anzahl Weiterbildungstage:</label>
+                    <input type="numbers" id="trainingDays" data-validate-regex="^\d+$"
+                        data-error-message="nur ganze Zahlen erlaubt" name="Anzahl Weiterbildungstage" min="0" required>
+                    <span id="trainingDaysError" class="error-message"></span>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup">
+                    <label for="timeframeFrom">Geplanter Zetraum von:</label>
+                    <input type="date" id="timeframeFrom" name="timeframeFrom" required>
+                </div>
+                <div class="formGroup">
+                    <label for="timeframeUntil">bis:</label>
+                    <input type="date" id="timeframeUntil" name="timeframeUntil" required>
+                </div>
+                <div class="formGroup">
+                    <label for="economicArea">Wirtschaftlicher Bereich:</label>
+                    <input type="text" id="economicArea" data-validate-regex="^[A-Za-z]+$"
+                        data-error-message="nur Buchstaben erlaubt" name="Wirtschaftlicher Bereich" required>
+                    <span id="economicAreaError" class="error-message"></span>
+                    <span class="tooltipText">Organisatorischer Bereich oder Einheit, die wirtschaftlich zuständig
+                        ist.</span>
+                </div>
+            </div>
+            <div class="formRow">
+                <div class="formGroup wide">
+                    <label for="projectCostObjectNumber">Projekt / Kostenträgernummer:</label>
+                    <input type="numbers" id="projectCostObjectNumber" data-validate-regex="^\d+$"
+                        data-error-message="nur ganze Zahlen erlaubt" name="Projekt / Kostenträgernummer" required>
+                    <span id="projectCostObjectNumberError" class="error-message"></span>
+                    <span class="tooltipText">Interne oder externe Projektnummer zur Zuordnung.</span>
+                </div>
+            </div>
+            <div class="formRow formRowRigth">
+                <button type="submit" class="weiterButton" id="submitButton">Weiter</button>
+            </div>
+            </div>
+        </form>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
+</body>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        let projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
 
-            if (!projectId) {
-                console.warn("Kein projectId vorhanden.");
-                return;
-            }
+        if (!projectId) {
+            console.warn("Kein projectId vorhanden.");
+            return;
+        }
 
-            localStorage.setItem("projectId", projectId);
+        localStorage.setItem("projectId", projectId);
 
-            fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        alert("Fehler beim Laden: " + data.error);
-                        return;
-                    }
-
-                    // Automatically populate matching input fields by ID
-                    Object.entries(data).forEach(([key, value]) => {
-                        const el = document.getElementById(mapField(key));
-                        if (el) {
-                            el.value = value;
-                        }
-                    });
-                })
-                .catch(err => {
-                    console.error("Fehler beim Laden:", err);
-                    alert("Projekt konnte nicht geladen werden.");
-                });
-
-            function mapField(dbKey) {
-                const fieldMap = {
-                    "A_projectName": "projectName",
-                    "A_sponsor": "sponsor",
-                    "A_faculty": "faculty",
-                    "A_responsible": "responsible",
-                    "A_costCenter": "costCenter",
-                    "A_trainingDays": "trainingDays",
-                    "A_timeframeFrom": "timeframeFrom",
-                    "A_timeframeUntil": "timeframeUntil",
-                    "A_economicArea": "economicArea",
-                    "A_projectCostObjectNumber": "projectCostObjectNumber"
-                };
-                return fieldMap[dbKey] || dbKey; // fallback to same name
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form.projectForm');
-            const submitButton = document.getElementById('submitButton');
-            const fieldMap = {
-                projectName: 'A_projectName',
-                sponsor: 'A_sponsor',
-                faculty: 'A_faculty',
-                responsible: 'A_responsible',
-                costCenter: 'A_costCenter',
-                trainingDays: 'A_trainingDays',
-                timeframeFrom: 'A_timeframeFrom',
-                timeframeUntil: 'A_timeframeUntil',
-                economicArea: 'A_economicArea',
-                projectCostObjectNumber: 'A_projectCostObjectNumber'
-            };
-
-            if (!form || !submitButton) return;
-
-            submitButton.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevent normal form submission
-
-
-                const projectId = localStorage.getItem("projectId");
-                if (!projectId) {
-                    alert("Projekt-ID fehlt.");
+        fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler beim Laden: " + data.error);
                     return;
                 }
 
-                const formData = new FormData();
-                for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
-                    const field = document.getElementById(htmlId);
-                    if (field) {
-                        formData.append(dbColumn, field.value);
+                // Automatically populate matching input fields by ID
+                Object.entries(data).forEach(([key, value]) => {
+                    const el = document.getElementById(mapField(key));
+                    if (el) {
+                        el.value = value;
                     }
-                }
-
-                formData.append("projectId", projectId);
-                fetch("php/saveProject.php", {
-                    method: "POST",
-                    body: formData
-                })
-                    .then(res => res.text())
-                    .then(result => {
-                        console.log("Server response:", result);
-                        window.location.href = "personalkosten.html?projectId=" + encodeURIComponent(projectId);
-                    })
-                    .catch(err => {
-                        console.error("Fehler beim Speichern:", err);
-                        alert("Speichern fehlgeschlagen.");
-                    });
+                });
+            })
+            .catch(err => {
+                console.error("Fehler beim Laden:", err);
+                alert("Projekt konnte nicht geladen werden.");
             });
+
+        function mapField(dbKey) {
+            const fieldMap = {
+                "A_projectName": "projectName",
+                "A_sponsor": "sponsor",
+                "A_faculty": "faculty",
+                "A_responsible": "responsible",
+                "A_costCenter": "costCenter",
+                "A_trainingDays": "trainingDays",
+                "A_timeframeFrom": "timeframeFrom",
+                "A_timeframeUntil": "timeframeUntil",
+                "A_economicArea": "economicArea",
+                "A_projectCostObjectNumber": "projectCostObjectNumber"
+            };
+            return fieldMap[dbKey] || dbKey;
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.projectForm');
+        const submitButton = document.getElementById('submitButton');
+        const fieldMap = {
+            projectName: 'A_projectName',
+            sponsor: 'A_sponsor',
+            faculty: 'A_faculty',
+            responsible: 'A_responsible',
+            costCenter: 'A_costCenter',
+            trainingDays: 'A_trainingDays',
+            timeframeFrom: 'A_timeframeFrom',
+            timeframeUntil: 'A_timeframeUntil',
+            economicArea: 'A_economicArea',
+            projectCostObjectNumber: 'A_projectCostObjectNumber'
+        };
+
+        if (!form || !submitButton) return;
+
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+
+            const projectId = localStorage.getItem("projectId");
+            if (!projectId) {
+                alert("Projekt-ID fehlt.");
+                return;
+            }
+
+            const formData = new FormData();
+            for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
+                const field = document.getElementById(htmlId);
+                if (field) {
+                    formData.append(dbColumn, field.value);
+                }
+            }
+
+            formData.append("projectId", projectId);
+            fetch("php/saveProject.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.text())
+                .then(result => {
+                    console.log("Server response:", result);
+                })
+                .catch(err => {
+                    console.error("Fehler beim Speichern:", err);
+                    alert("Speichern fehlgeschlagen.");
+                });
         });
-    </script>
+    });
+</script>
+
 </html>

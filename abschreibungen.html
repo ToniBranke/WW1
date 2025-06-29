@@ -1,156 +1,251 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="validation.js"></script>
-        <script defer src="script.js"></script>
-        <script defer src="buttonScript.js"></script>
-    </head>
-    <body class="taskMain">
-        <header class="headerBanner">
-            <h1>Investitionen / Abschreibungen auf Geräte und Ausstattung</h1>
-            <div class="logoutButtonContainer">
-                <button class="logoutButton" id="logoutButton">Abmelden</button>
-            </div>
-            <div class="tabsContainer">
-                <div class="tabs" id="tabs">
-                    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                    <a href="personalkosten.html" class="tab">Personalkosten</a>
-                    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                    <option vlaue="personalkosten.html">Personalkosten</option>
-                    <option value="raeume.html">Kosten für Räume und Flächen</option>
-                    <a href="sachkosten.html" class="tab">Sachkosten</a>
-                    <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen</a>
-                    <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="validation.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="buttonScript.js"></script>
+</head>
+
+<body class="taskMain">
+    <header class="headerBanner">
+        <h1>Investitionen / Abschreibungen auf Geräte und Ausstattung</h1>
+        <div class="logoutButtonContainer">
+            <button class="logoutButton" id="logoutButton">Abmelden</button>
+        </div>
+        <div class="tabsContainer">
+            <div class="tabs" id="tabs">
+                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                <a href="personalkosten.html" class="tab">Personalkosten</a>
+                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                <option vlaue="personalkosten.html">Personalkosten</option>
+                <option value="raeume.html">Kosten für Räume und Flächen</option>
+                <a href="sachkosten.html" class="tab">Sachkosten</a>
+                <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen</a>
+                <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
                 <select class="tabsDropdown" id="tabsDropdown">
-                </div>
-                    <option value="allgemein.html">Allgemeine Projektdaten</option>
-                    <option value="sachkosten.html">Sachkosten</option>
-                    <option value="abschreibungen.html" selected>Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
-                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
-                </select>
-        </header>
             </div>
+            <option value="allgemein.html">Allgemeine Projektdaten</option>
+            <option value="sachkosten.html">Sachkosten</option>
+            <option value="abschreibungen.html" selected>Investitionen/Abschreibungen auf Geräte und Ausstattung
+            </option>
+            <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+            </select>
+    </header>
+    </div>
 
-        <main>
-            <script>
-                const tabs = document.getElementById('tabs');
-                const dropdown = document.getElementById('tabsDropdown');
+    <main>
+        <script>
+            const tabs = document.getElementById('tabs');
+            const dropdown = document.getElementById('tabsDropdown');
 
-                const changeWidth = 1500;
-                let tooSmall = window.innerWidth <= changeWidth;
+            const changeWidth = 1500;
+            let tooSmall = window.innerWidth <= changeWidth;
 
-                function animateSwitch(showDropdown) {
-                    if (showDropdown) {
-                        tabs.classList.add('tabsHidden');
-                        dropdown.classList.remove('dropdownHidden');
-                    } else {
-                        tabs.classList.remove('tabsHidden');
-                        dropdown.classList.add('dropdownHidden');
-                    }
+            function animateSwitch(showDropdown) {
+                if (showDropdown) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    tabs.classList.remove('tabsHidden');
+                    dropdown.classList.add('dropdownHidden');
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const isSmall = window.innerWidth <= changeWidth;
+                if (isSmall !== tooSmall) {
+                    animateSwitch(isSmall);
+                    tooSmall = isSmall;
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (tooSmall) {
+                    tabs.classList.add('tabsHidden');
+                    dropdown.classList.remove('dropdownHidden');
+                } else {
+                    dropdown.classList.add('dropdownHidden');
                 }
 
-                window.addEventListener('resize', () => {
-                    const isSmall = window.innerWidth <= changeWidth;
-                    if (isSmall !== tooSmall) {
-                        animateSwitch(isSmall);
-                        tooSmall = isSmall;
-                    }
+                requestAnimationFrame(() => {
+                    tabs.classList.add('navTransition');
+                    dropdown.classList.add('navTransition');
                 });
+            });
 
-                window.addEventListener('DOMContentLoaded', () => {
-                    if (tooSmall) {
-                        tabs.classList.add('tabsHidden');
-                        dropdown.classList.remove('dropdownHidden');
-                    } else {
-                        dropdown.classList.add('dropdownHidden');
+            dropdown.addEventListener('change', function () {
+                window.location.href = this.value;
+            });
+        </script>
+        <div class="mainContent">
+            <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post"
+                style="display: none;">
+                <div class="formRow">
+                    <div class="formGroup">
+                        <!-- Anschaffungskosten drop down menü -->
+                        <label for="acquisitionCost">Anschaffungskosten</label>
+                        <select id="acquisitionCost" name="acquisitionCost">
+                            <option value="150-1000">150-1.000 €</option>
+                            <option value="from1000">ab 1.000 €</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="labelBezeichnung">Bezeichnung</label>
+                        <input type="text" id="labelBezeichnung" data-validate-regex="^[A-Za-z]+$"
+                            data-error-message="nur Buchstaben erlaubt" name="Bezeichnung">
+                        <span id="labelBezeichnungError" class="error-message"></span>
+                    </div>
+                    <div class="formGroup">
+                        <label for="purchasePrice">Kaufpreis</label>
+                        <input type="numbers" id="purchasePrice" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                            data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Kaufpreis"
+                            placeholder="0">
+                        <span id="purchasePriceError" class="error-message"></span>
+                        <span class="tooltipText">Reiner Kaufpreis, ohne Rabatte oder Förderungen.</span>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="projectFinanzing">über Projektfinanzierung</label>
+                        <input type="numbers" id="projectFinancing" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                            data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt"
+                            name="über Projektfinanzierung" placeholder="0">
+                        <span id="projectFinancingError" class="error-message"></span>
+                        <span class="tooltipText">Anteil der Investition, der über das Projektbudget gedeckt
+                            wird.</span>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="remainingAmount">zu finanzierender Restbetrag</label>
+                        <input type="numbers" id="remainingAmount" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                            data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt"
+                            name="zu finanzierender Restbetrag" placeholder="0">
+                        <span id="remainingAmountError" class="error-message"></span>
+                        <span class="tooltipText">verbleibende Summe, die extern oder intern zu decken ist.</span>
+                    </div>
+                </div>
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="financingRamainingAmount">Finanzierung Restbetrag und Folgekosten durch</label>
+                        <input type="text" id="financingRemainingAmount" data-validate-regex="^[A-Za-z]+$"
+                            data-error-message="nur Buchstaben erlaubt" name="Finanzierung Restbetrag und Folgekosten">
+                        <span id="financingRamainingAmountError" class="error-message"></span>
+                        <span class="tooltipText">Quelle für Restfinanzierung und spätere Kosten (z.B. Wartung)</span>
+                    </div>
+                </div>
+                <div class="formRow formRowRigth">
+                    <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
+                </div>
+            </form>
+            <!-- Sidebar mit den Buttons und zusammenfassung -->
+            <aside class="sidebar">
+                <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
+
+                <div class="sidebarSummary">
+                    <span class="summaryTitle">Summe der Anschaffungskosten</span>
+                    <ul class="summaryList" id="summaryListDepreciation">
+                </div>
+                <div class="formRow formRowRigth">
+                    <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Hochschule Mittweida</p>
+    </footer>
+
+</body>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
+
+        if (!projectId) {
+            console.warn("Kein projectId vorhanden.");
+            return;
+        }
+
+        localStorage.setItem("projectId", projectId);
+
+        fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert("Fehler beim Laden: " + data.error);
+                    return;
+                }
+
+                const summaryListElement = document.getElementById("summaryListDepreciation");
+                if (summaryListElement && data.E_summaryList) {
+                    let items = [];
+                    try {
+                        items = JSON.parse(data.E_summaryList);
+                    } catch (e) {
+                        console.error("Fehler beim Parsen der Listendaten:", e);
                     }
 
-                    requestAnimationFrame(() => {
-                        tabs.classList.add('navTransition');
-                        dropdown.classList.add('navTransition');
+                    summaryListElement.innerHTML = "";
+
+                    items.forEach(itemText => {
+                        const li = document.createElement("li");
+                        li.textContent = itemText;
+                        summaryListElement.appendChild(li);
                     });
+                }
+            })
+            .catch(err => {
+                console.error("Fehler beim Laden:", err);
+                alert("Projekt konnte nicht geladen werden.");
+            });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form.projectForm');
+        const submitButton = document.getElementById('submitButton');
+
+        if (!form || !submitButton) return;
+
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+
+            const projectId = localStorage.getItem("projectId");
+            if (!projectId) {
+                alert("Projekt-ID fehlt.");
+                return;
+            }
+
+            const formData = new FormData();
+            const summaryList = document.getElementById("summaryListDepreciation");
+            if (summaryList) {
+                const items = Array.from(summaryList.querySelectorAll("li")).map(li => li.textContent.trim());
+                formData.append("E_summaryList", JSON.stringify(items));
+            }
+
+            formData.append("projectId", projectId);
+            fetch("php/saveProject.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.text())
+                .then(result => {
+                    console.log("Server response:", result);
+                })
+                .catch(err => {
+                    console.error("Fehler beim Speichern:", err);
+                    alert("Speichern fehlgeschlagen.");
                 });
+        });
+    });
+</script>
 
-                dropdown.addEventListener('change', function () {
-                    window.location.href = this.value;
-                });
-            </script>
-            <div class="mainContent">
-                <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <!-- Anschaffungskosten drop down menü -->
-                            <label for="acquisitionCost">Anschaffungskosten</label>
-                            <select id="acquisitionCost" name="acquisitionCost">
-                                <option value="150-1000">150-1.000 €</option>
-                                <option value="from1000">ab 1.000 €</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <label for="labelBezeichnung">Bezeichnung</label>
-                            <input type="text" id="labelBezeichnung" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Bezeichnung">
-                            <span id="labelBezeichnungError" class="error-message"></span>
-                        </div>
-                        <div class="formGroup">
-                            <label for="purchasePrice">Kaufpreis</label>
-                            <input type="numbers" id="purchasePrice" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Kaufpreis" placeholder="0">
-                            <span id="purchasePriceError" class="error-message"></span>
-                            <span class="tooltipText">Reiner Kaufpreis, ohne Rabatte oder Förderungen.</span>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <label for="projectFinanzing">über Projektfinanzierung</label>
-                            <input type="numbers" id="projectFinancing" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="über Projektfinanzierung" placeholder="0">
-                            <span id="projectFinancingError" class="error-message"></span>
-                            <span class="tooltipText">Anteil der Investition, der über das Projektbudget gedeckt wird.</span>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <label for="remainingAmount">zu finanzierender Restbetrag</label>
-                            <input type="numbers" id="remainingAmount" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="zu finanzierender Restbetrag" placeholder="0">
-                            <span id="remainingAmountError" class="error-message"></span>
-                            <span class="tooltipText">verbleibende Summe, die extern oder intern zu decken ist.</span>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <label for="financingRamainingAmount">Finanzierung Restbetrag und Folgekosten durch</label>
-                            <input type="text" id="financingRemainingAmount" data-validate-regex= "^[A-Za-z]+$" data-error-message="nur Buchstaben erlaubt" name="Finanzierung Restbetrag und Folgekosten">
-                            <span id="financingRamainingAmountError" class="error-message"></span>
-                            <span class="tooltipText">Quelle für Restfinanzierung und spätere Kosten (z.B. Wartung)</span>
-                        </div>
-                    </div>
-                    <div class="formRow formRowRigth">
-                        <button type="button" class="sidebarButton saveButton" id="saveButton">Gegenstand speichern</button>
-                    </div>
-                </form>
-        <!-- Sidebar mit den Buttons und zusammenfassung -->
-                <aside class="sidebar">
-                    <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
-                    
-                    <div class="sidebarSummary">
-                        <span class="summaryTitle">Summe der Anschaffungskosten</span>
-                        <ul class="summaryList" id="summaryListDepreciation">
-                    </div>
-                    <div class="formRow formRowRigth">
-                        <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
-                    </div>
-                </aside>
-            </div>
-        </main>
-        
-
-        <footer class="footer">
-            <p>&copy; 2025 Hochschule Mittweida</p>
-        </footer>
-
-    </body>
 </html>
