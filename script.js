@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function()
     const saveButton = document.getElementById('saveButton');
     const summaryList = document.getElementById('summaryListDepreciation');
     const submitButton = document.getElementById('submitButton');
+    const backButton = document.getElementById('backButton');
 
     // beim Seite öffnen Formular verborgen
     form.style.display = 'none';
@@ -15,6 +16,14 @@ document.addEventListener('DOMContentLoaded', function()
     {
         form.style.display = 'block';
         submitButton.style.display = 'none';
+        backButton.style.display = 'block';
+    });
+
+    backButton.addEventListener('click', function()
+    {
+        form.style.display = 'none';
+        submitButton.style.display = 'block';
+        backButton.style.display = 'none';
     });
     
     // klick auf Speichern Button in Liste übertragen

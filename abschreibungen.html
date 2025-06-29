@@ -8,8 +8,20 @@
         <script defer src="validation.js"></script>
         <script defer src="script.js"></script>
         <script defer src="buttonScript.js"></script>
+        <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #e6e6e6;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
     </head>
     <body class="taskMain">
+    <div class="particle-container">
+        <canvas id="canvas"></canvas>
         <header class="headerBanner">
             <h1>Investitionen / Abschreibungen auf Geräte und Ausstattung</h1>
             <div class="logoutButtonContainer">
@@ -20,22 +32,24 @@
                     <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
                     <a href="personalkosten.html" class="tab">Personalkosten</a>
                     <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                    <option vlaue="personalkosten.html">Personalkosten</option>
-                    <option value="raeume.html">Kosten für Räume und Flächen</option>
                     <a href="sachkosten.html" class="tab">Sachkosten</a>
                     <a href="abschreibungen.html" class="tabActive">Investitionen/Abschreibungen</a>
                     <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
-                <select class="tabsDropdown" id="tabsDropdown">
+                
                 </div>
+                    <select class="tabsDropdown" id="tabsDropdown">
                     <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option vlaue="personalkosten.html">Personalkosten</option> 
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
                     <option value="sachkosten.html">Sachkosten</option>
                     <option value="abschreibungen.html" selected>Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
-                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option value="raeume.html">Kosten für Räume und Flächen</option>
                 </select>
-        </header>
             </div>
+        </header>
 
         <main>
+            
             <script>
                 const tabs = document.getElementById('tabs');
                 const dropdown = document.getElementById('tabsDropdown');
@@ -79,6 +93,7 @@
                     window.location.href = this.value;
                 });
             </script>
+            
             <div class="mainContent">
                 <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post" style="display: none;">
                     <div class="formRow">
@@ -142,9 +157,11 @@
                     </div>
                     <div class="formRow formRowRigth">
                         <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
+                        <button type="button" class="weiterButton" id="backButton" style="display: none;">Zurück</button>
                     </div>
                 </aside>
             </div>
+        </div>
         </main>
         
 

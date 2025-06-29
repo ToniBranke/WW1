@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Partikel Responsive Sicher</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #e6e6e6;
-        }
-        canvas {
-            display: block;
-        }
-    </style>
-    <script defer src="particles.js"></script>
-</head>
-<body>
-<canvas id="canvas"></canvas>
-<!-- <script>
-    const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
     canvas.width = window.innerWidth;
@@ -142,6 +122,3 @@
     }
 
     animate();
-</script>-->
-</body>
-</html>

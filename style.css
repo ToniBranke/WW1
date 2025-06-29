@@ -3,12 +3,25 @@ body, html
     height:100%;
     margin:0;
     font-family: 'Seorge UI', sans-serif;
-    background-color: #e6e6e6;
+   /*background-color: #e6e6e6;*/
     color: #222;
+    z-index: 1;
+}
+
+canvas
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #e6e6e6;
 }
 
 main {
     padding-top: 20px;
+
 }
 
 /*Header Banner */
@@ -30,6 +43,7 @@ main {
         border-bottom-left-radius: 14px;
         border-bottom-right-radius: 14px;
         overflow: hidden;
+        z-index: 1;
 
     }
 
@@ -112,6 +126,7 @@ main {
     max-width: 800px;
     margin: 2rem auto;
     align-items: center;
+    z-index: 1;
 }
 
 /* hier nochmal schauen wegen den Abständen zwischen den beiden sachen */
@@ -123,6 +138,7 @@ main {
     gap: 2rem;
     max-width: 7.5rem;
     margin: 0 auto;
+    z-index: 1;
 }
 
 .sidebar
@@ -201,6 +217,8 @@ main {
     margin: 0;
 }
 
+
+
 .projectForm
 {
     background: #f8f8f8;
@@ -209,6 +227,7 @@ main {
     padding: 2rem 2.2rem;
     max-width: 800px;
     margin: 0 auto;
+    
 }
 
 .formRow
