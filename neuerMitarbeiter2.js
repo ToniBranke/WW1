@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const summaryList = document.getElementById('summaryList');
     const submitButtons = document.querySelectorAll('#saveButton'); // Alle Weiter-Buttons
     const form = document.getElementById('personalForm');
+    const backButton = document.getElementById('backButton'); // Zurück-Button
 
     // Mapping für Entgeltgruppe zu Stundensatz pro Jahr
     const stundensatzMapping = {
@@ -30,6 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         form.style.display = 'none'; // Verstecke das erste Formular
+        backButton.style.display = 'block'; // Zeige den Zurück-Button
+    });
+
+    backButton.addEventListener('click', function() 
+    {
+        form.style.display = 'none';
+        form2.style.display = 'none';
+        backButton.style.display = 'none';
+        submitButtons.forEach(btn => btn.style.display = 'block');
     });
 
     // Wenn Entgeltgruppe geändert wird, Stundensatz setzen

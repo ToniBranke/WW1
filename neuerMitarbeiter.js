@@ -125,11 +125,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const summaryList = document.getElementById('summaryList');
     const submitButtons = document.querySelectorAll('#saveButton'); // Alle Weiter-Buttons
     const form2 = document.getElementById('personalForm2');
+    const backButton = document.getElementById('backButton'); // Zurück-Button
 
     addButton.addEventListener('click', function() {
         form.style.display = 'block';
         submitButtons.forEach(btn => btn.style.display = 'none');
+        backButton.style.display = 'block';
         form2.style.display = 'none';
+    });
+
+    backButton.addEventListener('click', function() {
+        form.style.display = 'none';
+        form2.style.display = 'none';
+        backButton.style.display = 'none';
+        submitButtons.forEach(btn => btn.style.display = 'block');
     });
 
     saveButton1.addEventListener('click', function(e) {
