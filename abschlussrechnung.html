@@ -124,11 +124,11 @@
         const preisBrutto = document.getElementById("preisBrutto");
         const angebotspreisNetto = document.getElementById("angebotspreisNetto");
         const kalPreisBrutto = document.getElementById("kalPreisBrutto");
-        let block1 = 0;
-        let block2 = 0;
-        let block3 = 0;
-        let block4 = 0;
-        let block5 = 0;
+        let block1 = 0.00;
+        let block2 = 0.00;
+        let block3 = 0.00;
+        let block4 = 0.00;
+        let block5 = 0.00;
 
         if (!projectId) {
             console.warn("Kein projectId vorhanden.");
@@ -144,11 +144,11 @@
                     alert("Fehler beim Laden: " + data.error);
                     return;
                 }
-                block1 = parseFloat(data.G_sumPersonalkosten || 0);
-                block2 = parseFloat(data.G_sumLeistungen || 0);
-                block3 = parseFloat(data.G_sumSachkosten || 0);
-                block4 = parseFloat(data.G_sumAbschreibungen || 0);
-                block5 = parseFloat(data.G_sumRaeume || 0);
+                block1 = parseFloat(data.G_sumPersonalkosten || 0.00);
+                block2 = parseFloat(data.G_sumLeistungen || 0.00);
+                block3 = parseFloat(data.G_sumSachkosten || 0.00);
+                block4 = parseFloat(data.G_sumAbschreibungen || 0.00);
+                block5 = parseFloat(data.G_sumRaeume || 0.00);
                 calculateValues()
             })
             .catch(err => {

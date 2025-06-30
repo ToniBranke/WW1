@@ -11,7 +11,7 @@
     <script src="buttonScript.js"></script>
     <script src="neuerMitarbeiter.js"></script>
     <script defer src="particles.js"></script>
-        <script src="neuerMitarbeiter2.js"></script>
+    <script src="neuerMitarbeiter2.js"></script>
 </head>
 
 <body class="taskMain">
@@ -125,21 +125,21 @@
                     </div>
                 </div>
 
-                    <!-- Stufe/ Std. satz -->
-                    <div class="formRow">
-                        <div class="formGroup">
-                            <label for="stufe">Stufe/ Std. satz</label>
-                            <select id="stufe" name="stufe">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                           <!-- <input type="numbers" id="stufe" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stufe">
+                <!-- Stufe/ Std. satz -->
+                <div class="formRow">
+                    <div class="formGroup">
+                        <label for="stufe">Stufe/ Std. satz</label>
+                        <select id="stufe" name="stufe">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <!-- <input type="numbers" id="stufe" data-validate-regex= "^\d+([.,]\d{1,2})?$" data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stufe">
                             <span id="stufeError" class="error-message"></span>-->
-                        </div>
                     </div>
+                </div>
 
 
                 <!-- 2025, 2026, 2027 -->
@@ -269,7 +269,7 @@
                     <ul class="summaryList" id="summaryList">
                 </div>
                 <div class="formRow formRowRigth">
-                    <button type="submit" class="weiterButton" id="saveButton" style="display: block;">Weiter</button>
+                    <button type="submit" class="weiterButton" id="submitButton" style="display: block;">Weiter</button>
                     <!-- save hinzugefügt-->
                 </div>
             </aside>
@@ -360,9 +360,10 @@
                 formData.append("B_summaryList", JSON.stringify(items));
                 let totalSum = 0;
                 items.forEach(itemText => {
-                    const match = itemText.match(/([\d.,]+)/);
+                    const match = itemText.match(/([\d\.]+,\d{2})/);
                     if (match) {
-                        let cleaned = match[1].replace(',', '.');
+                        
+                        let cleaned = match[1].replace(/\./g, "").replace(',', '.');
                         let num = parseFloat(cleaned);
                         if (!isNaN(num)) {
                             totalSum += num;

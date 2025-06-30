@@ -6,8 +6,8 @@ $db = new SQLite3('mitarbeiterdb1.sqlite');
 
 // Wenn das Formular abgeschickt wurde
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $username = isset($_POST['Benutzername']) ? $_POST['Benutzername'] : '';
+    $password = isset($_POST['Passwort']) ? $_POST['Passwort'] : '';
 
     // Prüfung auf leere Felder
     if (empty($username) || empty($password)) {

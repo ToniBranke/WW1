@@ -6,7 +6,7 @@ $db->exec("
 CREATE TABLE IF NOT EXISTS mitarbeiter (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     tarif_gruppe TEXT DEFAULT 'TG1',
-    entgeltgruppe TEXT DEFAULT 'EG1',
+    entgeltgruppe TEXT DEFAULT 'EG1',a
     name TEXT,
     benutzername TEXT UNIQUE,
     email TEXT UNIQUE,
@@ -21,14 +21,15 @@ CREATE TABLE IF NOT EXISTS mitarbeiter (
 
 // Check if POST data from registration form exists
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['registerUsername'] ?? '');
-    $email = trim($_POST['registerEmail'] ?? '');
-    $password = $_POST['registerPassword'] ?? '';
-    $confirmPassword = $_POST['registerConfirmPassword'] ?? '';
+    $username = trim($_POST['Benutzername'] ?? '');
+    $email = trim($_POST['E-Mail-Adresse'] ?? '');
+    $password = $_POST['Passwort'] ?? '';
+    $confirmPassword = $_POST["Passwort-bestätigen"] ?? '';
 
     // Basic validation
-    if (empty($username) || empty($password) || empty($confirmPassword)) {
+    if (empty($username) || empty($password) || empty($confirmPassword) || empty($email)) {
         echo "Bitte alle Felder ausfüllen.";
+        echo "username: $username, email: $email, password: $password, confirmPassword: $confirmPassword";
         exit;
     }
 
@@ -63,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($insert->execute()) {
         // Redirect to login page or show success message
         header("Location: ../login.html");
+        console.log("forwarding to login.html");
         exit;
     } else {
         echo "Fehler bei der Registrierung. Bitte versuchen Sie es erneut.";
