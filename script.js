@@ -2,6 +2,7 @@ const addButton = document.getElementById('addButton');
 const form = document.getElementById('abschreibungForm');
 const saveButton = document.getElementById('saveButton');
 const saveButton2 = document.getElementById('saveButton2');
+const form2 = document.getElementById('abschreibungForm2');
 const summaryList = document.getElementById('summaryListDepreciation');
 const submitButton = document.getElementById('submitButton');
 const backButton = document.getElementById('backButton');
@@ -103,8 +104,8 @@ saveButton2.addEventListener('click', function (e) {
     li.textContent = `${itemName ? itemName + ': ' : ''}${summe.toFixed(2)} €`;
     summaryList.appendChild(li);
 
-    form.reset();
-    form.style.display = 'none';
+    form2.reset();
+    form2.style.display = 'none';
     submitButton.style.display = 'block';
     backButton.style.display = 'none';
 });

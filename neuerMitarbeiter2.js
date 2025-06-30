@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         form.reset();
         form2.style.display = 'none';
+        backButton.style.display = 'none';
         submitButtons.forEach(btn => btn.style.display = 'block');
     });
 });
