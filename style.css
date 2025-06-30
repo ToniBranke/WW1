@@ -393,6 +393,11 @@ main {
     flex-direction: column;
 }
 
+.depreciationRate
+{
+    width: 50%;
+}
+
 .formGroup label
 {
     font-size: 1rem;
@@ -444,9 +449,9 @@ main {
     font-size: 0.95rem;
     color: #4069b1;
     text-decoration: none;
-    justify-content: flex-end;
+    justify-content: flex-start;
     transition: color 0.2s;
-    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -750,11 +755,7 @@ main {
         display:block;
     }
 
-    .loginContainer
-    {
-        padding: 1.2rem 0.6rem;
-        max-width: 99vw;
-    }
+    
     .mainContent
     {
         flex-direction: column;
@@ -779,6 +780,13 @@ main {
         width: 85vw;
  
     }
+
+    .loginContainer
+    {
+        padding: 1.2rem 0.6rem;
+        max-width: 99vw;
+    }   
+
     .formRow 
     {
         flex-direction: column;

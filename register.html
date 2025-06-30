@@ -7,14 +7,16 @@
         <link rel="stylesheet" href="style.css">
         <script defer src="validation.js"></script>
         <script defer src="buttonScript.js"></script>
+        <script defer src="particles.js"></script>
         <!-- Removed script.js -->
     </head>
     <body class="loginBody">
+        <canvas id="canvas"></canvas>
         <div class="loginContainer">
-            <div class="registerLogo">
+            <div class="loginLogo">
                 <img src="bilder/Logo-hsmw.svg.png" alt="Logo HSMW" class="logoImg">
             </div>
-            <form class="registerForm" action="php/register.php" method="post">
+            <form class="loginForm" action="php/register.php" method="post">
                 <h1>Registrierung</h1>
                 <div class="formGroup">
                     <label for="registerUsername">Benutzername</label>
@@ -47,9 +49,7 @@
             </form>
         </div>
     </body>
-    <div class="footerBox">
-        <footer class="footer">
+        <footer class="loginFooter">
             <p>&copy; 2025 Hochschule Mittweida</p>
         </footer>
-    </div>
 </html>

@@ -46,11 +46,21 @@ const canvas = document.getElementById('canvas');
     });
 
     window.addEventListener('resize', function() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        createParticles();
-        mouse.x = canvas.width / 2;
-        mouse.y = canvas.height / 2;
+      // Merke alte Größe
+    const oldWidth = canvas.width;
+    const oldHeight = canvas.height;
+    // Setze neue Größe
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // Skaliere die Partikelpositionen relativ zur neuen Canvas-Größe
+    for (let particle of particlesArray) {
+        particle.x = particle.x / oldWidth * canvas.width;
+        particle.y = particle.y / oldHeight * canvas.height;
+        particle.baseX = particle.baseX / oldWidth * canvas.width;
+        particle.baseY = particle.baseY / oldHeight * canvas.height;
+    }
+    mouse.x = canvas.width / 2;
+    mouse.y = canvas.height / 2;
     });
 
     class Particle {
