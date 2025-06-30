@@ -6,10 +6,14 @@ document.addEventListener('DOMContentLoaded', function()
     const summaryList = document.getElementById('summaryListDepreciation');
     const submitButton = document.getElementById('submitButton');
     const backButton = document.getElementById('backButton');
+    const abschreibungForm2 = document.getElementById('abschreibungForm2');
+    const addButton2 = document.getElementById('addAbschtButton');
+
+
 
     // beim Seite öffnen Formular verborgen
     form.style.display = 'none';
-    
+    abschreibungForm2.style.display = 'none';
 
     // bei + Gegenstand Button Klick Formular anzeigen
     addButton.addEventListener('click', function() 
@@ -17,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function()
         form.style.display = 'block';
         submitButton.style.display = 'none';
         backButton.style.display = 'block';
+        abschreibungForm2.style.display = 'none'; // Verstecke das zweite Formular
     });
 
     backButton.addEventListener('click', function()
@@ -26,6 +31,15 @@ document.addEventListener('DOMContentLoaded', function()
         backButton.style.display = 'none';
     });
     
+    addButton2.addEventListener('click', function()
+    {
+        abschreibungForm2.style.display = 'block';
+        submitButton.style.display = 'none';
+        backButton.style.display = 'block';
+        form.style.display = 'none'; // Verstecke das erste Formular
+        
+    });
+
     // klick auf Speichern Button in Liste übertragen
     saveButton.addEventListener('click', function(e)
     {
