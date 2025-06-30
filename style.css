@@ -101,7 +101,7 @@ main {
 
 .backButton:hover, .newProjectButton:hover, .selectButton:hover, 
 .createButton:hover, .openButton:hover, .weiterButton:hover, .loginButton:hover, 
-.logoutButton:hover, .addButton:hover, .weiterSelectButton:hover
+.logoutButton:hover, .addButton:hover, .weiterSelectButton:hover, .registerForm:hover
 {
     background: #24406a;
     transform: scale(1.05);
@@ -315,7 +315,7 @@ main {
     margin-top: 2.4rem;
 }
 
-.weiterButton
+.weiterButton, .registerForm
 {
     padding: 0.8rem 2.1rem;
     background: #4069b1;
@@ -329,7 +329,7 @@ main {
     letter-spacing: 0.02rem;
     transition: transform 0.4s ease-out, background 0.4s ease-out;
 }
-.weiterButton:hover 
+.weiterButton:hover, .registerForm:hover
 {
     background: #24406a;
     transition: background 0.5s ease-out;
