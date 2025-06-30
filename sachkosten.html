@@ -30,7 +30,7 @@
             </div>
             <select class="tabsDropdown" id="tabsDropdown">
                 <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option vlaue="personalkosten.html">Personalkosten</option>
+                <option value="personalkosten.html">Personalkosten</option>
                 <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
                 <option value="sachkosten.html" selected>Sachkosten</option>
                 <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
@@ -201,7 +201,7 @@
 
     <footer class="footer">
         <p>&copy; 2025 Hochschule Mittweida</p>
-            <canvas id="canvas"></canvas>
+        <canvas id="canvas"></canvas>
     </footer>
 
 </body>
@@ -282,17 +282,17 @@
                 return;
             }
 
-            let sum = parseFloat(document.getElementById("officeSupplies").value.replace(".", ",")) +
-                parseFloat(document.getElementById("softwareLicenses").value.replace(".", ",")) +
-                parseFloat(document.getElementById("advertisingCost").value.replace(".", ",")) +
-                parseFloat(document.getElementById("PostagePhoneComm").value.replace(".", ",")) +
-                parseFloat(document.getElementById("storageDevices").value.replace(".", ",")) +
-                parseFloat(document.getElementById("maintenance").value.replace(".", ",")) +
-                parseFloat(document.getElementById("devicesBelow150").value.replace(".", ",")) +
-                parseFloat(document.getElementById("magazinesLiterature").value.replace(".", ",")) +
-                parseFloat(document.getElementById("materials").value.replace(".", ",")) +
-                parseFloat(document.getElementById("travelCost").value.replace(".", ",")) +
-                parseFloat(document.getElementById("otherExpenses").value.replace(".", ","));
+            let sum = parseFloat(document.getElementById("officeSupplies").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("softwareLicenses").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("advertisingCost").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("PostagePhoneComm").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("storageDevices").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("maintenance").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("devicesBelow150").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("magazinesLiterature").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("materials").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("travelCost").value.replace(".", ",")) || 0 +
+                parseFloat(document.getElementById("otherExpenses").value.replace(".", ",")) || 0;
 
             const formData = new FormData();
             for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
@@ -342,6 +342,18 @@
             url.searchParams.set('projectId', projectId);
             link.href = url.toString();
         });
+
+        // Dropdown-Optionen updaten
+        const dropdown = document.getElementById("tabsDropdown");
+        if (dropdown) {
+            Array.from(dropdown.options).forEach(option => {
+                if (option.value) {
+                    const url = new URL(option.value, window.location.origin);
+                    url.searchParams.set('projectId', projectId);
+                    option.value = url.pathname + url.search;
+                }
+            });
+        }
     });
 </script>
 

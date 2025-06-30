@@ -362,7 +362,7 @@
                 items.forEach(itemText => {
                     const match = itemText.match(/([\d\.]+,\d{2})/);
                     if (match) {
-                        
+
                         let cleaned = match[1].replace(/\./g, "").replace(',', '.');
                         let num = parseFloat(cleaned);
                         if (!isNaN(num)) {
@@ -411,6 +411,18 @@
             url.searchParams.set('projectId', projectId);
             link.href = url.toString();
         });
+
+        // Dropdown-Optionen updaten
+        const dropdown = document.getElementById("tabsDropdown");
+        if (dropdown) {
+            Array.from(dropdown.options).forEach(option => {
+                if (option.value) {
+                    const url = new URL(option.value, window.location.origin);
+                    url.searchParams.set('projectId', projectId);
+                    option.value = url.pathname + url.search;
+                }
+            });
+        }
     });
 
 

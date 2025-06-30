@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+
     const tabOrder = ["login.html", "allgemein.html", "personalkosten.html", "leistungen.html", "sachkosten.html", "abschreibungen.html", "raeume.html", "abschlussrechnung.html"];
     const currentPath = window.location.pathname.split("/").pop();
     const currentIndex = tabOrder.indexOf(currentPath);
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (nextPage)
         {
-            window.location.href = nextPage + "?projectId=" + new URLSearchParams(window.location.search).get("projectId");
+           window.location.href = nextPage + "?projectId=" + new URLSearchParams(window.location.search).get("projectId");
         }
     });
     

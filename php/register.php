@@ -5,17 +5,10 @@ $db = new SQLite3('mitarbeiterdb1.sqlite');
 $db->exec("
 CREATE TABLE IF NOT EXISTS mitarbeiter (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    tarif_gruppe TEXT DEFAULT 'TG1',
-    entgeltgruppe TEXT DEFAULT 'EG1',a
     name TEXT,
     benutzername TEXT UNIQUE,
     email TEXT UNIQUE,
-    passwort TEXT,
-    entgelt_stunde REAL DEFAULT 20,
-    monatsgehalt REAL DEFAULT 2000,
-    ag TEXT DEFAULT 'AG1',
-    jsz TEXT DEFAULT 'JSZ1',
-    is_assigned_to TEXT DEFAULT 'unassigned'
+    passwort TEXT
 );
 ");
 
@@ -29,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Basic validation
     if (empty($username) || empty($password) || empty($confirmPassword) || empty($email)) {
         echo "Bitte alle Felder ausfüllen.";
-        echo "username: $username, email: $email, password: $password, confirmPassword: $confirmPassword";
         exit;
     }
 

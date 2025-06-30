@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
-        <link rel="stylesheet" href="style.css">
-        <script defer src="validation.js"></script>
-        <script defer src="script.js"></script>
-        <script defer src="buttonScript.js"></script>
-         <script defer src="particles.js"></script>
-        <style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investitionen / Abschreibungen auf Geräte und Ausstattung</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="validation.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="buttonScript.js"></script>
+    <script defer src="particles.js"></script>
+    <script defer src="neueAbschreibung.js"></script>
+    <style>
         body {
             margin: 0;
             overflow: hidden;
             background: #e6e6e6;
         }
+
         canvas {
             display: block;
         }
     </style>
-    </head>
-    <body class="taskMain">
+</head>
+
+<body class="taskMain">
     <div class="particle-container">
-        <canvas id="canvas"></canvas>
         <header class="headerBanner">
             <h1>Investitionen / Abschreibungen auf Geräte und Ausstattung</h1>
             <div class="logoutButtonContainer">
@@ -40,7 +43,7 @@
                 </div>
                 <select class="tabsDropdown" id="tabsDropdown">
                     <option value="allgemein.html">Allgemeine Projektdaten</option>
-                    <option vlaue="personalkosten.html">Personalkosten</option>
+                    <option value="personalkosten.html">Personalkosten</option>
                     <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
                     <option value="sachkosten.html">Sachkosten</option>
                     <option value="abschreibungen.html" selected>Investitionen/Abschreibungen auf Geräte und Ausstattung
@@ -162,10 +165,64 @@
                             speichern</button>
                     </div>
                 </form>
+                <form class="projectForm" id="abschreibungForm2" action="abschreibungen.php" method="post"
+                    style="display: none;">
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="itemID">Inventar Nummer</label>
+                            <input type="numbers" id="depreciationRate" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                                data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Abschreibungsrate"
+                                placeholder="0">
+                            <span id="depreciationRateError" class="error-message"></span>
+                        </div>
+                        <div class="formGroup">
+                            <label for="itemName">Bezeichnung</label>
+                            <input type="text" id="itemName" name="Bezeichnung" readonly>
+                        </div>
+                        <div class="formGroup">
+                            <label for="itemCost">Anschaffungskosten</label>
+                            <input type="numbers" id="cost" name="Anschaffungskosten" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="depreciationRateYears">Abschr. in Monaten</label>
+                            <input type="numbers" id="depreciationRateYears" name="Abschreibungsrate in Monaten"
+                                placeholder="0" readonly>
+                        </div>
+                        <div class="formGroup">
+                            <label for="itemDepreciationRateYear">Abschr. in €/Jahr</label>
+                            <input type="numbers" id="depreciationRateYear" name="Abschreibungsrate in Euro pro Jahr"
+                                placeholder="0" readonly>
+                        </div>
+                        <div class="formGroup">
+                            <label for="itemEuroHour">€/[1632 Std.]</label>
+                            <input type="numbers" id="depreciationRateMonth" name="Abschreibungsrate in Euro pro Monat"
+                                placeholder="0" readonly>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="formGroup">
+                            <label for="itemUsageHours">Nutzungsstunden gesamt</label>
+                            <input type="numbers" id="usageHours" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                                data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt"
+                                name="Nutzungsstunden gesamt" placeholder="0">
+                            <span id="usageHoursError" class="error-message"></span>
+                            <span class="tooltipText">Gesamte Nutzungsdauer in Stunden, während der Projektdauer z.B. 50
+                                Std.</span>
+                        </div>
+                    </div>
+                    <div class="formRow formRowRigth">
+                        <button type="button" class="sidebarButton saveButton" id="saveButton69">Gegenstand
+                            speichern</button>
+                    </div>
+
+                </form>
+
                 <!-- Sidebar mit den Buttons und zusammenfassung -->
                 <aside class="sidebar">
                     <button type="button" class="sidebarButton addButton" id="addButton">+ Gegenstand</button>
-
+                    <button type="button" class="sidebarButton addButton" id="addAbschtButton">+ Abschreibung</button>
                     <div class="sidebarSummary">
                         <span class="summaryTitle">Summe der Anschaffungskosten</span>
                         <ul class="summaryList" id="summaryListDepreciation">
@@ -178,9 +235,9 @@
                     </div>
                 </aside>
             </div>
-        
+
         </main>
-        
+
 
         <footer class="footer">
             <p>&copy; 2025 Hochschule Mittweida</p>
@@ -308,6 +365,18 @@
             url.searchParams.set('projectId', projectId);
             link.href = url.toString();
         });
+
+        // Dropdown-Optionen updaten
+        const dropdown = document.getElementById("tabsDropdown");
+        if (dropdown) {
+            Array.from(dropdown.options).forEach(option => {
+                if (option.value) {
+                    const url = new URL(option.value, window.location.origin);
+                    url.searchParams.set('projectId', projectId);
+                    option.value = url.pathname + url.search;
+                }
+            });
+        }
     });
 </script>
 

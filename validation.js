@@ -95,7 +95,7 @@ function validateInput(event) {
                 console.log("event.preventDefault() wurde aufgerufen"); // Debug-Ausgabe
             }
         } else {
-            //console.log("Alle Felder gültig."); // Debug-Ausgabe
+            console.log("Alle Felder gültig."); // Debug-Ausgabe
         }
 
         return isValid;

@@ -744,10 +744,6 @@ main {
 */
 @media (max-width: 1500px)
 {
-    .tabs
-    {
-        /* display: none */
-    }
 
     .tabsDropdown
     {

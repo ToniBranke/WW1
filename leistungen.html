@@ -29,7 +29,7 @@
             </div>
             <select class="tabsDropdown" id="tabsDropdown">
                 <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option vlaue="personalkosten.html">Personalkosten</option>
+                <option value="personalkosten.html">Personalkosten</option>
                 <option value="leistungen.html" selected>Kosten für projektbezogene Leistungen</option>
                 <option value="sachkosten.html">Sachkosten</option>
                 <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
@@ -249,15 +249,15 @@
                 alert("Projekt-ID fehlt.");
                 return;
             }
-            let sum = parseFloat(workContract25.value.replace(".", ",")) +
-                parseFloat(workContract26.value.replace(".", ",")) +
-                parseFloat(workContract27.value.replace(".", ",")) +
-                parseFloat(scientificService25.value.replace(".", ",")) +
-                parseFloat(scientificService26.value.replace(".", ",")) +
-                parseFloat(scientificService27.value.replace(".", ",")) +
-                parseFloat(thirdPartyService25.value.replace(".", ",")) +
-                parseFloat(thirdPartyService26.value.replace(".", ",")) +
-                parseFloat(thirdPartyService27.value.replace(".", ","));
+            let sum = parseFloat(workContract25.value.replace(".", ",")) || 0 +
+                parseFloat(workContract26.value.replace(".", ",")) || 0 +
+                parseFloat(workContract27.value.replace(".", ",")) || 0 +
+                parseFloat(scientificService25.value.replace(".", ",")) || 0 +
+                parseFloat(scientificService26.value.replace(".", ",")) || 0 +
+                parseFloat(scientificService27.value.replace(".", ",")) || 0 +
+                parseFloat(thirdPartyService25.value.replace(".", ",")) || 0 +
+                parseFloat(thirdPartyService26.value.replace(".", ",")) || 0 +
+                parseFloat(thirdPartyService27.value.replace(".", ",")) || 0;
             const formData = new FormData();
             for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
                 const field = document.getElementById(htmlId);
@@ -306,6 +306,18 @@
             url.searchParams.set('projectId', projectId);
             link.href = url.toString();
         });
+
+        // Dropdown-Optionen updaten
+        const dropdown = document.getElementById("tabsDropdown");
+        if (dropdown) {
+            Array.from(dropdown.options).forEach(option => {
+                if (option.value) {
+                    const url = new URL(option.value, window.location.origin);
+                    url.searchParams.set('projectId', projectId);
+                    option.value = url.pathname + url.search;
+                }
+            });
+        }
     });
 </script>
 
