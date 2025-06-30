@@ -1,6 +1,7 @@
 const addButton = document.getElementById('addButton');
 const form = document.getElementById('abschreibungForm');
 const saveButton = document.getElementById('saveButton');
+const saveButton2 = document.getElementById('saveButton2');
 const summaryList = document.getElementById('summaryListDepreciation');
 const submitButton = document.getElementById('submitButton');
 const backButton = document.getElementById('backButton');
@@ -65,6 +66,41 @@ saveButton.addEventListener('click', function (e) {
     // neues Listenelement erstellen
     const li = document.createElement('li');
     li.textContent = `${bezeichnung ? bezeichnung + ': ' : ''}${summe.toFixed(2)} €`;
+    summaryList.appendChild(li);
+
+    form.reset();
+    form.style.display = 'none';
+    submitButton.style.display = 'block';
+    backButton.style.display = 'none';
+});
+
+saveButton2.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    let validationPassed = validateInput(); // Validierung für abschreibungen.html
+    if (!validationPassed) {
+        console.log("Validierung fehlgeschlagen");
+        return;
+    }
+
+
+    // holt die Eingegebenen werte aus dem Formular
+    const itemName = document.getElementById('itemName').value;
+    const usageHours = document.getElementById('usageHours').value;
+    const depreciationRateMonth = parseFloat(document.getElementById('depreciationRateMonth').value) || 0;
+    
+    // alert falls keine werte eingegeben wurden
+    if (!itemName && (usageHours + depreciationRateMonth === 0)) {
+        alert('Bitte geben Sie einen Wert ein.');
+        return;
+    }
+
+    // berechung Gesamtbetrag
+    const summe = depreciationRateMonth * usageHours;
+
+    // neues Listenelement erstellen
+    const li = document.createElement('li');
+    li.textContent = `${itemName ? itemName + ': ' : ''}${summe.toFixed(2)} €`;
     summaryList.appendChild(li);
 
     form.reset();
