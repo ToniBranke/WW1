@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,14 @@
         <script defer src="particles.js"></script>
         <script defer src="neueAbschreibung.js"></script>
     </head>
-    <body class="taskMain">
 
+    <body class="taskMain">
         <header class="headerBanner">
             <h1>Investitionen / Abschreibungen auf Geräte und Ausstattung</h1>
             <div class="logoutButtonContainer">
                 <button class="logoutButton" id="logoutButton">Abmelden</button>
             </div>
-            <div class="tabsContainer">
+            <div class="tabsContainer">       <!-- Tabs for navigation -->
                 <div class="tabs" id="tabs">
                     <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
                     <a href="personalkosten.html" class="tab">Personalkosten</a>
@@ -28,7 +29,7 @@
                     <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
 
                 </div>
-                <select class="tabsDropdown" id="tabsDropdown">
+                <select class="tabsDropdown" id="tabsDropdown">     <!-- Tab dropdown for small screens -->
                     <option value="allgemein.html">Allgemeine Projektdaten</option>
                     <option value="personalkosten.html">Personalkosten</option> 
                     <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
@@ -39,10 +40,9 @@
                 </select>
             </div>
         </header>
-
-        <main>
-
-            <script>
+        <main>  
+                <!-- script to change the display-style of the Tabs -->
+            <script>        
                 const tabs = document.getElementById('tabs');
                 const dropdown = document.getElementById('tabsDropdown');
 
@@ -87,6 +87,7 @@
             </script>
 
             <div class="mainContent">
+                <!-- form for the investments -->
                 <form class="projectForm" id="abschreibungForm" action="abschreibungen.php" method="post"
                     style="display: none;">
                     <div class="formRow">
@@ -152,7 +153,8 @@
                             speichern</button>
                     </div>
                 </form>
-
+                
+                <!-- Form to display and use the depreciation -->
                 <form class="projectForm" id="abschreibungForm2" action="abschreibungen.php" method="post" style="display: none;">
                     <div class="formRow">
                         <div class="formGroup">
@@ -194,8 +196,8 @@
                     <div class="formRow formRowRigth">
                         <button type="button" class="sidebarButton saveButton" id="saveButton2">Gegenstand speichern</button>
                     </div>
-                </form>
-        <!-- Sidebar mit den Buttons und zusammenfassung -->
+                </form> 
+            <!-- Sidebar with buttons and summ of the values 
                 <form class="projectForm" id="abschreibungForm2" action="abschreibungen.php" method="post"
                     style="display: none;">
                     <div class="formRow">
@@ -247,10 +249,10 @@
                         <button type="button" class="sidebarButton saveButton" id="saveButton69">Gegenstand
                             speichern</button>
                     </div>
+                </form> 
+                -->
 
-                </form>
-
-                <!-- Sidebar mit den Buttons und zusammenfassung -->
+            <!-- Sidebar mit den Buttons und zusammenfassung -->
                 <aside class="sidebar">
                     <button type="button" class="sidebarButton addButton" id="addButton">+ Investition</button>
                     <button type="button" class="sidebarButton addButton" id="addAbschtButton">+ Abschreibung</button>

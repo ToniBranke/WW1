@@ -642,6 +642,7 @@ main {
     margin-top: 2rem;
     background: #2b4572;
     color: #fff;
+    display: flex;
 
 }
 
