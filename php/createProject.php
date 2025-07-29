@@ -7,7 +7,7 @@ try {
     $db = new PDO("sqlite:$dbFile");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Create the table if it doesn't exist
+    // Create the table
     $db->exec("CREATE TABLE IF NOT EXISTS projects (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         A_projectName TEXT NOT NULL,
@@ -51,7 +51,6 @@ try {
     )");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['projectName'])) {
-        // Collect POST values (use null coalescing operator for optional fields)
         $fields = [
             'A_projectName' => $_POST['projectName'],
             'A_sponsor' => $_POST['sponsor'] ?? null,

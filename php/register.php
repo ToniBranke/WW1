@@ -54,9 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $insert->bindValue(':email', $email, SQLITE3_TEXT);
 
     if ($insert->execute()) {
-        // Redirect to login page or show success message
+        // Redirect to login page
         header("Location: ../login.html");
-        console.log("forwarding to login.html");
         exit;
     } else {
         echo "Fehler bei der Registrierung. Bitte versuchen Sie es erneut.";
