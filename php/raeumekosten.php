@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $labName = $_POST['LabName'] ?? '';
     $labWeeks = intval($_POST['labUsageFeeWeeks'] ?? 0);
     $labHours = floatval($_POST['labUsageFeeHours'] ?? 0);
-    $labRatePerHour = 2,18; // Festpreis 2,18€
+    $labRatePerHour = 2.18; // Festpreis 2,18€  
 
     $otherRoomName = $_POST['otherRoomName'] ?? '';
     $otherRoomSize = floatval($_POST['otherRoomSize'] ?? 0);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,16 @@
         <script defer src="particles.js"></script>
         <script src="neuerMitarbeiter2.js"></script>
     </head>
+
     <body class="taskMain">
         <header class="headerBanner">
             <div class="header">
                 <h1>KostenKalkulationstool</h1>
             </div>
             <div class="logoutButtonContainer">
-                    <button class="logoutButton" id="logoutButton">Abmelden</button>
+                <button class="logoutButton" id="logoutButton">Abmelden</button>
             </div>
+            <!-- Tabs for navigation -->
             <div class="tabsContainer">
                 <div class="tabs" id="tabs">
                     <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
@@ -29,6 +32,7 @@
                     <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
                     <a href="raeume.html" class="tab">Kosten für Räume und Flächen</a>
                 </div>
+                <!-- tabs dropdown for small screens -->
                 <select class="tabsDropdown" id="tabsDropdown">
                     <option value="allgemein.html">Allgemeine Projektdaten</option>
                     <option value="personalkosten.html"selected>Personalkosten</option>
@@ -41,6 +45,7 @@
         </header>
 
     <main>
+        <!-- Script to change display-style of the Tabs -->
         <script>
             const tabs = document.getElementById('tabs');
             const dropdown = document.getElementById('tabsDropdown');
@@ -423,9 +428,5 @@
             });
         }
     });
-
-
-
 </script>
-
 </html>

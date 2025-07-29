@@ -609,6 +609,7 @@ main {
 .tabs, .tabsDropdown {
     opacity: 1;
     position: relative;
+    appearance: none;
 
     display: flex;
     flex-wrap: nowrap;

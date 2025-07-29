@@ -1,351 +1,347 @@
 <!DOCTYPE html>
 <html lang="de">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kosten für Räume und Flächen</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="particles.js"></script>
-    <script defer src="validation.js"></script>
-    <script defer src="raeumeScript.js"></script>
-    <script defer src="buttonScript.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kosten für Räume und Flächen</title>
+        <link rel="stylesheet" href="style.css">
+        <script defer src="particles.js"></script>
+        <script defer src="validation.js"></script>
+        <script defer src="raeumeScript.js"></script>
+        <script defer src="buttonScript.js"></script>
+    </head>
 
-</head>
-
-<body class="taskMain">
-    <canvas id="canvas"></canvas>
-    <header class="headerBanner">
-        <h1>Kosten für Räume und Flächen</h1>
-        <div class="logoutButtonContainer">
-            <button class="logoutButton" id="logoutButton">Abmelden</button>
-        </div>
-        <div class="tabsContainer">
-            <div class="tabs" id="tabs">
-                <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
-                <a href="personalkosten.html" class="tab">Personalkosten</a>
-                <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
-                <a href="sachkosten.html" class="tab">Sachkosten</a>
-                <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
-                <a href="raeume.html" class="tabActive">Kosten für Räume und Flächen</a>
+    <body class="taskMain">
+        <canvas id="canvas"></canvas>
+        <header class="headerBanner">
+            <h1>Kosten für Räume und Flächen</h1>
+            <div class="logoutButtonContainer">
+                <button class="logoutButton" id="logoutButton">Abmelden</button>
             </div>
-            <select class="tabsDropdown" id="tabsDropdown">
-                <option value="allgemein.html">Allgemeine Projektdaten</option>
-                <option value="personalkosten.html">Personalkosten</option>
-                <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
-                <option value="sachkosten.html">Sachkosten</option>
-                <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
-                <option value="raeume.html" selected>Kosten für Räume und Flächen</option>
-            </select>
-        </div>
-    </header>
+            <div class="tabsContainer">
+                <!-- Tabs for navigation -->
+                <div class="tabs" id="tabs">
+                    <a href="allgemein.html" class="tab">Allgemeine Projektdaten</a>
+                    <a href="personalkosten.html" class="tab">Personalkosten</a>
+                    <a href="leistungen.html" class="tab">Kosten für projektbezogene Leistungen</a>
+                    <a href="sachkosten.html" class="tab">Sachkosten</a>
+                    <a href="abschreibungen.html" class="tab">Investitionen/Abschreibungen</a>
+                    <a href="raeume.html" class="tabActive">Kosten für Räume und Flächen</a>
+                </div>
+                <!--  tab Dropdown for small screens -->
+                <select class="tabsDropdown" id="tabsDropdown">
+                    <option value="allgemein.html">Allgemeine Projektdaten</option>
+                    <option value="personalkosten.html">Personalkosten</option>
+                    <option value="leistungen.html">Kosten für projektbezogene Leistungen</option>
+                    <option value="sachkosten.html">Sachkosten</option>
+                    <option value="abschreibungen.html">Investitionen/Abschreibungen auf Geräte und Ausstattung</option>
+                    <option value="raeume.html" selected>Kosten für Räume und Flächen</option>
+                </select>
+            </div>
+        </header>
 
-    <main>
-        <script>
-            const tabs = document.getElementById('tabs');
-            const dropdown = document.getElementById('tabsDropdown');
+        <main>
+            <!-- Script to change display-style of the Tabs -->
+            <script>
+                const tabs = document.getElementById('tabs');
+                const dropdown = document.getElementById('tabsDropdown');
 
-            const changeWidth = 1500;
-            let tooSmall = window.innerWidth <= changeWidth;
+                const changeWidth = 1500;
+                let tooSmall = window.innerWidth <= changeWidth;
 
-            function animateSwitch(showDropdown) {
-                if (showDropdown) {
-                    tabs.classList.add('tabsHidden');
-                    dropdown.classList.remove('dropdownHidden');
-                } else {
-                    tabs.classList.remove('tabsHidden');
-                    dropdown.classList.add('dropdownHidden');
-                }
-            }
-
-            window.addEventListener('resize', () => {
-                const isSmall = window.innerWidth <= changeWidth;
-                if (isSmall !== tooSmall) {
-                    animateSwitch(isSmall);
-                    tooSmall = isSmall;
-                }
-            });
-
-            window.addEventListener('DOMContentLoaded', () => {
-                if (tooSmall) {
-                    tabs.classList.add('tabsHidden');
-                    dropdown.classList.remove('dropdownHidden');
-                } else {
-                    dropdown.classList.add('dropdownHidden');
+                function animateSwitch(showDropdown) {
+                    if (showDropdown) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        tabs.classList.remove('tabsHidden');
+                        dropdown.classList.add('dropdownHidden');
+                    }
                 }
 
-                requestAnimationFrame(() => {
-                    tabs.classList.add('navTransition');
-                    dropdown.classList.add('navTransition');
+                window.addEventListener('resize', () => {
+                    const isSmall = window.innerWidth <= changeWidth;
+                    if (isSmall !== tooSmall) {
+                        animateSwitch(isSmall);
+                        tooSmall = isSmall;
+                    }
                 });
-            });
 
-            dropdown.addEventListener('change', function () {
-                window.location.href = this.value;
-            });
-        </script>
-
-        <div class="mainContent">
-            <form class="projectForm" id="raeumeForm" action="raeume.php" method="post" style="display: block;">
-                <div class="formRow" id="officeUsageFeeContainer" style="display: none;">
-                    <div class="formGroup wide">
-                        <label for="officeUsageFee">Büronutzungsgebühr</label>
-                        <input type="numbers" id="officeUsageFee" data-validate-regex="^\d+([.,]\d{1,2})?$"
-                            data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Büronutzungsgebühr"
-                            placeholder="0">
-                        <span id="officeUsageFeeError" class="error-message"></span>
-                        <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
-                    </div>
-                    <button type="button" class="weiterButton" id="bueroSaveButton">Gegenstand speichern</button>
-                </div>
-                <div id="LabUsageContainer" style="display: none;">
-                    <h3>Labornutzungsgebühr</h3>
-                    <div class="formRow" id="LabUsageFeeContainer">
-                        <div class="formGroup" id="LabNameContainer">
-                            <label for="LabName">Name</label>
-                            <input type="text" id="LabName" data-validate-regex="^[A-Za-z]+$"
-                                data-error-message="nur Buchstaben erlaubt" name="Name">
-                            <span id="LabNameError" class="error-message"></span>
-                        </div>
-                        <div class="formGroup" id="LabUsageFeeYearContainer">
-                            <label for="LabUsageFeeYear">Jahr</label>
-                            <select id="LabUsageFeeYear" name="LabUsageFeeYear">
-                                <option value="LabUsageFeeYear2025">2025</option>
-                                <option value="LabUsageFeeYear2026">2026</option>
-                                <option value="LabUsageFeeYear2027">2027</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="formRow" id="LabUsageFeeTimeContainer">
-                        <div class="formGroup" id="labUsageFeeWeeksContainer">
-                            <label for="labUsageFeeWeeks">Anzahl der Wochen</label>
-                            <input type="numbers" id="labUsageFeeWeeksAmount" data-validate-regex="^\d+$"
-                                data-error-message="nur ganze Zahlen erlaubt" name="Anzahl der Wochen" placeholder="0">
-                            <span id="labUsageFeeWeeksAmountError" class="error-message"></span>
-                        </div>
-                        <div class="formGroup" id="LabUsageFeeHoursContainer">
-                            <label for="labUsageFeeHours">Stunden pro Woche</label>
-                            <input type="numbers" id="labUsageFeeHours" data-validate-regex="^\d+([.,]\d{1,2})?$"
-                                data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stunden pro Woche"
-                                placeholder="0">
-                            <span id="labUsageFeeHoursError" class="error-message"></span>
-                            <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
-                        </div>
-                    </div>
-                    <button type="button" class="weiterButton" id="labSaveButton">Gegenstand speichern</button>
-                </div>
-
-                <div id="otherRoomContainer" style="display: none;">
-                    <h3>Zusatzräume</h3>
-                    <div class="formRow">
-                        <div class="formGroup" id="otherRoomNameContainer">
-                            <label for="otherRoomName">Name</label>
-                            <input type="text" id="otherRoomName" data-validate-regex="^[A-Za-z]+$"
-                                data-error-message="nur Buchstaben erlaubt" name="Name">
-                            <span id="otherRoomNameError" class="error-message"></span>
-                        </div>
-                        <div class="formGroup" id="otherRoomSizeContainer">
-                            <label for="otherRoomSize">QM</label>
-                            <input type="numbers" id="otherRoomSize" data-validate-regex="^\d+([.,]\d{1,2})?$"
-                                data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="QM"
-                                placeholder="0">
-                            <span id="otherRoomSizeError" class="error-message"></span>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="formGroup" id="otherRoomRentContainer">
-                            <label for="otherRoomRent"> mtl. Miete pro QM</label>
-                            <input type="numbers" id="otherRoomRent" data-validate-regex="^\d+([.,]\d{1,2})?$"
-                                data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="mtl. Miete"
-                                name="otherRoomRent" placeholder="0">
-                            <span id="otherRoomRentError" class="error-message"></span>
-                            <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
-                        </div>
-                        <div class="formGroup" id="otherRoomDurationContainer">
-                            <label for="otherRoomDuration">Monate</label>
-                            <select id="otherRoomDuration" name="otherRoomDuration">
-                                <option value="1">1 Monate</option>
-                                <option value="2">2 Monate</option>
-                                <option value="3">3 Monate</option>
-                                <option value="4">4 Monate</option>
-                                <option value="5">5 Monate</option>
-                                <option value="6">6 Monate</option>
-                                <option value="7">7 Monate</option>
-                                <option value="8">8 Monate</option>
-                                <option value="9">9 Monate</option>
-                                <option value="10">10 Monate</option>
-                                <option value="11">11 Monate</option>
-                                <option value="12">12 Monate</option>
-                            </select>
-                            <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
-                        </div>
-                    </div>
-                    <div class="formRow" id="saveButtonContainer">
-                        <button type="button" class="weiterButton" id="andereSaveButton">Gegenstand speichern</button>
-                    </div>
-                </div>
-
-                <!--<div class="form-row form-row-rigth" >
-                        <button type="submit" class="weiter-button">Weiter</button>
-                    </div> -->
-            </form>
-            <aside class="sidebar">
-                <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
-                <button type="button" class="sidebarButton labor" id="addLaborButton">+ Labor</button>
-                <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
-                <div class="sidebarSummary">
-                    <span class="summaryTitle">Summe der Nutzungskosten</span>
-                    <ul class="summaryList" id="raeumeSummaryList">
-                    </ul>
-                </div>
-                <div class="formRow formRowRigth">
-                    <button type="submit" class="weiterButton" id="submitButton"
-                        style="display: none;">Abschließen</button>
-                    <button type="button" class="weiterButton" id="backButton">zurück</button>
-                </div>
-            </aside>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2025 Hochschule Mittweida</p>
-
-    </footer>
-
-</body>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
-
-        if (!projectId) {
-            console.warn("Kein projectId vorhanden.");
-            return;
-        }
-
-        localStorage.setItem("projectId", projectId);
-
-        fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    alert("Fehler beim Laden: " + data.error);
-                    return;
-                }
-
-                const summaryListElement = document.getElementById("raeumeSummaryList");
-                if (summaryListElement && data.F_summaryList) {
-                    let items = [];
-                    try {
-                        items = JSON.parse(data.F_summaryList);
-                    } catch (e) {
-                        console.error("Fehler beim Parsen der Listendaten:", e);
+                window.addEventListener('DOMContentLoaded', () => {
+                    if (tooSmall) {
+                        tabs.classList.add('tabsHidden');
+                        dropdown.classList.remove('dropdownHidden');
+                    } else {
+                        dropdown.classList.add('dropdownHidden');
                     }
 
-                    summaryListElement.innerHTML = "";
-
-                    items.forEach(itemText => {
-                        const li = document.createElement("li");
-                        li.textContent = itemText;
-                        summaryListElement.appendChild(li);
+                    requestAnimationFrame(() => {
+                        tabs.classList.add('navTransition');
+                        dropdown.classList.add('navTransition');
                     });
-                }
-            })
-            .catch(err => {
-                console.error("Fehler beim Laden:", err);
-                alert("Projekt konnte nicht geladen werden.");
-            });
-    });
+                });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.querySelector('form.projectForm');
-        const submitButton = document.getElementById('submitButton');
+                dropdown.addEventListener('change', function() {
+                    window.location.href = this.value;
+                });
+            </script>
 
-        if (!form || !submitButton) return;
+            <div class="mainContent">
+                <form class="projectForm" id="raeumeForm" action="raeume.php" method="post" style="display: block;">
+                    <div class="formRow" id="officeUsageFeeContainer" style="display: none;">
+                        <div class="formGroup wide">
+                            <label for="officeUsageFee">Büronutzungsgebühr</label>
+                            <input type="numbers" id="officeUsageFee" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                                data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Büronutzungsgebühr"
+                                placeholder="0">
+                            <span id="officeUsageFeeError" class="error-message"></span>
+                            <span class="tooltipText">Pauschale oder anteilige Kosten für die Nutzung von Büroräumen</span>
+                        </div>
+                        <button type="button" class="weiterButton" id="bueroSaveButton">Gegenstand speichern</button>
+                    </div>
+                    <div id="LabUsageContainer" style="display: none;">
+                        <h3>Labornutzungsgebühr</h3>
+                        <div class="formRow" id="LabUsageFeeContainer">
+                            <div class="formGroup" id="LabNameContainer">
+                                <label for="LabName">Name</label>
+                                <input type="text" id="LabName" data-validate-regex="^[A-Za-z]+$"
+                                    data-error-message="nur Buchstaben erlaubt" name="Name">
+                                <span id="LabNameError" class="error-message"></span>
+                            </div>
+                            <div class="formGroup" id="LabUsageFeeYearContainer">
+                                <label for="LabUsageFeeYear">Jahr</label>
+                                <select id="LabUsageFeeYear" name="LabUsageFeeYear">
+                                    <option value="LabUsageFeeYear2025">2025</option>
+                                    <option value="LabUsageFeeYear2026">2026</option>
+                                    <option value="LabUsageFeeYear2027">2027</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formRow" id="LabUsageFeeTimeContainer">
+                            <div class="formGroup" id="labUsageFeeWeeksContainer">
+                                <label for="labUsageFeeWeeks">Anzahl der Wochen</label>
+                                <input type="numbers" id="labUsageFeeWeeksAmount" data-validate-regex="^\d+$"
+                                    data-error-message="nur ganze Zahlen erlaubt" name="Anzahl der Wochen" placeholder="0">
+                                <span id="labUsageFeeWeeksAmountError" class="error-message"></span>
+                            </div>
+                            <div class="formGroup" id="LabUsageFeeHoursContainer">
+                                <label for="labUsageFeeHours">Stunden pro Woche</label>
+                                <input type="numbers" id="labUsageFeeHours" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                                    data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="Stunden pro Woche"
+                                    placeholder="0">
+                                <span id="labUsageFeeHoursError" class="error-message"></span>
+                                <span class="tooltipText">Durchschnittliche wöchentliche Nutzungsdauer des Labors</span>
+                            </div>
+                        </div>
+                        <button type="button" class="weiterButton" id="labSaveButton">Gegenstand speichern</button>
+                    </div>
 
-        submitButton.addEventListener('click', function (e) {
+                    <div id="otherRoomContainer" style="display: none;">
+                        <h3>Zusatzräume</h3>
+                        <div class="formRow">
+                            <div class="formGroup" id="otherRoomNameContainer">
+                                <label for="otherRoomName">Name</label>
+                                <input type="text" id="otherRoomName" data-validate-regex="^[A-Za-z]+$"
+                                    data-error-message="nur Buchstaben erlaubt" name="Name">
+                                <span id="otherRoomNameError" class="error-message"></span>
+                            </div>
+                            <div class="formGroup" id="otherRoomSizeContainer">
+                                <label for="otherRoomSize">QM</label>
+                                <input type="numbers" id="otherRoomSize" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                                    data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="QM"
+                                    placeholder="0">
+                                <span id="otherRoomSizeError" class="error-message"></span>
+                            </div>
+                        </div>
+                        <div class="formRow">
+                            <div class="formGroup" id="otherRoomRentContainer">
+                                <label for="otherRoomRent"> mtl. Miete pro QM</label>
+                                <input type="numbers" id="otherRoomRent" data-validate-regex="^\d+([.,]\d{1,2})?$"
+                                    data-error-message="nur ganze Zahlen und Dezimalzahlen erlaubt" name="mtl. Miete"
+                                    name="otherRoomRent" placeholder="0">
+                                <span id="otherRoomRentError" class="error-message"></span>
+                                <span class="tooltipText">Monatlicher Mietpreis pro Quadratmeter Nutzfläche</span>
+                            </div>
+                            <div class="formGroup" id="otherRoomDurationContainer">
+                                <label for="otherRoomDuration">Monate</label>
+                                <select id="otherRoomDuration" name="otherRoomDuration">
+                                    <option value="1">1 Monate</option>
+                                    <option value="2">2 Monate</option>
+                                    <option value="3">3 Monate</option>
+                                    <option value="4">4 Monate</option>
+                                    <option value="5">5 Monate</option>
+                                    <option value="6">6 Monate</option>
+                                    <option value="7">7 Monate</option>
+                                    <option value="8">8 Monate</option>
+                                    <option value="9">9 Monate</option>
+                                    <option value="10">10 Monate</option>
+                                    <option value="11">11 Monate</option>
+                                    <option value="12">12 Monate</option>
+                                </select>
+                                <span class="tooltipText">Anzahl der Monate, in denen Kosten anfallen</span>
+                            </div>
+                        </div>
+                        <div class="formRow" id="saveButtonContainer">
+                            <button type="button" class="weiterButton" id="andereSaveButton">Gegenstand speichern</button>
+                        </div>
+                    </div> 
+                </form>
+                <!-- sidebar to controll the pannels -->
+                <aside class="sidebar">
+                    <button type="button" class="sidebarButton buero" id="addBueroButton">+ Büro</button>
+                    <button type="button" class="sidebarButton labor" id="addLaborButton">+ Labor</button>
+                    <button type="button" class="sidebarButton anderes" id="addAnderesButton">+ Anderes</button>
+                    <div class="sidebarSummary">
+                        <span class="summaryTitle">Summe der Nutzungskosten</span>
+                        <ul class="summaryList" id="raeumeSummaryList"></ul>
+                    </div>
+                    <div class="formRow formRowRigth">
+                        <button type="submit" class="weiterButton" id="submitButton"
+                            style="display: none;">Abschließen</button>
+                        <button type="button" class="weiterButton" id="backButton">zurück</button>
+                    </div>
+                </aside>
+            </div>
+        </main>
 
+        <footer class="footer">
+            <p>&copy; 2025 Hochschule Mittweida</p>
+        </footer>
+    </body>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
 
-
-            const projectId = localStorage.getItem("projectId");
             if (!projectId) {
-                alert("Projekt-ID fehlt.");
+                console.warn("Kein projectId vorhanden.");
                 return;
             }
 
-            const formData = new FormData();
-            const summaryList = document.getElementById("raeumeSummaryList");
-            if (summaryList) {
-                const items = Array.from(summaryList.querySelectorAll("li")).map(li => li.textContent.trim());
-                formData.append("F_summaryList", JSON.stringify(items));
+            localStorage.setItem("projectId", projectId);
 
-            let totalSum = 0;
-                items.forEach(itemText => {
-                    const match = itemText.match(/([\d.,]+)/);
-                    if (match) {
-                        let cleaned = match[1].replace(',', '.');
-                        let num = parseFloat(cleaned);
-                        if (!isNaN(num)) {
-                            totalSum += num;
-                        }
+            fetch(`php/loadProject.php?projectId=${encodeURIComponent(projectId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert("Fehler beim Laden: " + data.error);
+                        return;
                     }
-                });
 
-                formData.append("G_sumRaeume", totalSum);
-            }
+                    const summaryListElement = document.getElementById("raeumeSummaryList");
+                    if (summaryListElement && data.F_summaryList) {
+                        let items = [];
+                        try {
+                            items = JSON.parse(data.F_summaryList);
+                        } catch (e) {
+                            console.error("Fehler beim Parsen der Listendaten:", e);
+                        }
 
-            formData.append("projectId", projectId);
-            fetch("php/saveProject.php", {
-                method: "POST",
-                body: formData
-            })
-                .then(res => res.text())
-                .then(result => {
-                    console.log("Server response:", result);
+                        summaryListElement.innerHTML = "";
+
+                        items.forEach(itemText => {
+                            const li = document.createElement("li");
+                            li.textContent = itemText;
+                            summaryListElement.appendChild(li);
+                        });
+                    }
                 })
                 .catch(err => {
-                    console.error("Fehler beim Speichern:", err);
-                    alert("Speichern fehlgeschlagen.");
+                    console.error("Fehler beim Laden:", err);
+                    alert("Projekt konnte nicht geladen werden.");
                 });
         });
-    });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlProjectId = urlParams.get('projectId');
-        const localProjectId = localStorage.getItem("projectId");
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form.projectForm');
+            const submitButton = document.getElementById('submitButton');
 
-        if (urlProjectId) {
-            localStorage.setItem("projectId", urlProjectId);
-        }
+            if (!form || !submitButton) return;
 
-        const projectId = urlProjectId || localProjectId;
+            submitButton.addEventListener('click', function (e) {
 
-        if (!projectId) {
-            console.warn("Keine projectId gefunden");
-            return;
-        }
 
-        // Tabs updaten
-        const links = document.querySelectorAll('.tabs a');
-        links.forEach(link => {
-            const url = new URL(link.href, window.location.origin);
-            url.searchParams.set('projectId', projectId);
-            link.href = url.toString();
+
+                const projectId = localStorage.getItem("projectId");
+                if (!projectId) {
+                    alert("Projekt-ID fehlt.");
+                    return;
+                }
+
+                const formData = new FormData();
+                const summaryList = document.getElementById("raeumeSummaryList");
+                if (summaryList) {
+                    const items = Array.from(summaryList.querySelectorAll("li")).map(li => li.textContent.trim());
+                    formData.append("F_summaryList", JSON.stringify(items));
+
+                let totalSum = 0;
+                    items.forEach(itemText => {
+                        const match = itemText.match(/([\d.,]+)/);
+                        if (match) {
+                            let cleaned = match[1].replace(',', '.');
+                            let num = parseFloat(cleaned);
+                            if (!isNaN(num)) {
+                                totalSum += num;
+                            }
+                        }
+                    });
+
+                    formData.append("G_sumRaeume", totalSum);
+                }
+
+                formData.append("projectId", projectId);
+                fetch("php/saveProject.php", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.text())
+                    .then(result => {
+                        console.log("Server response:", result);
+                    })
+                    .catch(err => {
+                        console.error("Fehler beim Speichern:", err);
+                        alert("Speichern fehlgeschlagen.");
+                    });
+            });
         });
 
-        // Dropdown-Optionen updaten
-        const dropdown = document.getElementById("tabsDropdown");
-        if (dropdown) {
-            Array.from(dropdown.options).forEach(option => {
-                if (option.value) {
-                    const url = new URL(option.value, window.location.origin);
-                    url.searchParams.set('projectId', projectId);
-                    option.value = url.pathname + url.search;
-                }
-            });
-        }
-    });
-</script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlProjectId = urlParams.get('projectId');
+            const localProjectId = localStorage.getItem("projectId");
 
+            if (urlProjectId) {
+                localStorage.setItem("projectId", urlProjectId);
+            }
+
+            const projectId = urlProjectId || localProjectId;
+
+            if (!projectId) {
+                console.warn("Keine projectId gefunden");
+                return;
+            }
+
+            // Tabs updaten
+            const links = document.querySelectorAll('.tabs a');
+            links.forEach(link => {
+                const url = new URL(link.href, window.location.origin);
+                url.searchParams.set('projectId', projectId);
+                link.href = url.toString();
+            });
+
+            // Dropdown-Optionen updaten
+            const dropdown = document.getElementById("tabsDropdown");
+            if (dropdown) {
+                Array.from(dropdown.options).forEach(option => {
+                    if (option.value) {
+                        const url = new URL(option.value, window.location.origin);
+                        url.searchParams.set('projectId', projectId);
+                        option.value = url.pathname + url.search;
+                    }
+                });
+            }
+        });
+    </script>
 </html>
