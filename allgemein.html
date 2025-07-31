@@ -167,6 +167,7 @@
     </body>
 
     <script>
+        //loads project data from database based on  projectID from localstorage or URL parameter
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             let projectId = urlParams.get('projectId') || localStorage.getItem("projectId");
@@ -215,7 +216,7 @@
                 return fieldMap[dbKey] || dbKey;
             }
         });
-
+        //saves project data from database based on  projectID from localstorage or URL parameter
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector('form.projectForm');
             const submitButton = document.getElementById('submitButton');
@@ -237,13 +238,14 @@
             submitButton.addEventListener('click', function (e) {
                 e.preventDefault();
 
-
+                //get projectId from localStorage
                 const projectId = localStorage.getItem("projectId");
                 if (!projectId) {
                     alert("Projekt-ID fehlt.");
                     return;
                 }
 
+                //add entered values to formData object
                 const formData = new FormData();
                 for (const [htmlId, dbColumn] of Object.entries(fieldMap)) {
                     const field = document.getElementById(htmlId);
@@ -252,6 +254,7 @@
                     }
                 }
 
+                //add projectId to formData object and send to php script
                 formData.append("projectId", projectId);
                 fetch("php/saveProject.php", {
                     method: "POST",
@@ -284,7 +287,7 @@
                 return;
             }
 
-            // Tabs updaten
+            // extend tab links with projectId
             const links = document.querySelectorAll('.tabs a');
             links.forEach(link => {
                 const url = new URL(link.href, window.location.origin);
@@ -292,7 +295,7 @@
                 link.href = url.toString();
             });
 
-            // Dropdown-Optionen updaten
+            // extend dropdown links with projectId
             const dropdown = document.getElementById("tabsDropdown");
             if (dropdown) {
                 Array.from(dropdown.options).forEach(option => {

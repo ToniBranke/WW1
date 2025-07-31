@@ -335,7 +335,6 @@
             return;
         }
 
-        // Tabs updaten
         const links = document.querySelectorAll('.tabs a');
         links.forEach(link => {
             const url = new URL(link.href, window.location.origin);
@@ -343,7 +342,6 @@
             link.href = url.toString();
         });
 
-        // Dropdown-Optionen updaten
         const dropdown = document.getElementById("tabsDropdown");
         if (dropdown) {
             Array.from(dropdown.options).forEach(option => {

@@ -29,8 +29,7 @@
         </div>
         <script>
             document.getElementById('PasswortZuruecksetzenButton').addEventListener('click', function(event) {
-                event.preventDefault(); // Verhindert das Standardverhalten des Buttons
-
+                event.preventDefault(); 
                 let validationPassed = validateInput();
                     if(!validationPassed) {
                         console.log("Validierung fehlgeschlagen");
